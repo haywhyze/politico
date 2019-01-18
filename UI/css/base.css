@@ -1,0 +1,33 @@
+/* Variables */
+
+:root {
+  --color-primary: #2660A4;
+  --color-secondary: #FF0022;
+  --color-tertiary: #011627;
+  --color-white: #FFFAFF;
+  --color-black: #050401;
+}
+
+:root {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
