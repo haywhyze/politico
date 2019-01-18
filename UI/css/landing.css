@@ -2,5 +2,23 @@
   padding: 5rem 2rem;
   display: flex;
   align-items: center;
-  min-height: 90vh;
+  min-height: 98vh;
+  background-image: linear-gradient(to right bottom, rgba(1, 22, 39, .6), rgba(38, 96, 164, .6)), url('../img/img_1.jpg');
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0 0, 100% 0%, 100% 92%, 0% 100%);
+}
+
+.hero-text {
+  padding: 0 3rem;
+}
+
+.hero-text__heading {
+  padding-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero-text {
+    padding: 0 .5rem;
+  }
 }
