@@ -8,7 +8,7 @@
     background-color: var(--color-primary);
     box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
     position: fixed;
-    width: 100%;
+    width: 100vw;
     transition: all .3s;
 }
 
@@ -42,13 +42,16 @@
     .header {
         padding: 1.5rem 2.5rem;
     }
+
     .header__nav {
         flex-direction: column;
         display: none;
     }
+
     .nav-list {
         flex-direction: column;
     }
+
     .nav-list__item {
         padding: .5rem;
     }

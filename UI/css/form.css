@@ -5,7 +5,7 @@
 
 .input-group {
     width: 100%;
-    margin: 0 10%;
+    padding: 0 20%
 }
 
 .input,
@@ -13,9 +13,13 @@ textarea {
     margin: .5rem 0;
     padding: .5rem 1rem;
     display: block;
-    width: 80%;
+    width: 100%;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, .4);
     border-radius: 10px;
     border-bottom: var(--color-tertiary) 2px solid;
     border-right: var(--color-tertiary) 2px solid;
+}
+
+.form-paragraph {
+    text-align: center;
 }

@@ -28,6 +28,7 @@ p {
 
 .hero-text__heading {
   color: var(--color-white);
+  text-align: center;
   font-size: 3rem;
   font-weight: normal;
   text-shadow: 3px 3px 5px rgba(0, 0, 0, .8);
