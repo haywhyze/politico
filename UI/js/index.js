@@ -1,18 +1,20 @@
-const header = document.querySelector('#header');
+const header = document.querySelector('.header');
 const mobileMenu = document.querySelector('#mobile-menu');
 const _top = document.querySelector('.top');
 const _middle = document.querySelector('.middle');
 const _bottom = document.querySelector('.bottom');
 const menu = document.querySelector('.header__nav');
 
-// // TO animate page header on scroll
-// window.addEventListener('scroll', () => {
-//   if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-//   header.style.padding = '0rem 5rem';
-//   } else {
-//     header.style.padding = '1rem 5rem';
-//   }
-// });
+// TO animate page header on scroll
+window.addEventListener('scroll', () => {
+  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    header.style.backgroundColor = 'var(--color-white)';
+    header.style.color = 'var(--color-primary)';
+  } else {
+    header.style.backgroundColor = 'var(--color-primary)';
+    header.style.color = 'var(--color-white)';
+  }
+});
 
 // To animate hamburger menu on click
 mobileMenu.addEventListener('click', () => {
