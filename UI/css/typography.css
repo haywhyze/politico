@@ -35,7 +35,9 @@ p {
 
 .hero-text__heading,
 .secondary-heading,
-.tertiary-heading {
+.secondary-heading--alt,
+.tertiary-heading,
+.tertiary-heading--alt {
   font-family: 'Dancing Script', cursive;
 }
 
@@ -46,7 +48,8 @@ p {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, .8);
 }
 
-.secondary-heading {
+.secondary-heading,
+.secondary-heading--alt {
   font-size: 2.5rem;
   text-align: center;
 }
@@ -58,9 +61,16 @@ p {
   color: var(--color-secondary)
 }
 
-.tertiary-heading {
+.tertiary-heading,
+.tertiary-heading--alt {
   font-size: 1.8rem;
   color: var(--color-secondary)
+}
+
+.secondary-heading--alt,
+.tertiary-heading--alt {
+  color: var(--color-white);
+  text-shadow: 0px 0px 2px rgba(15, 4, 7, .8);
 }
 
 .feature {
