@@ -11,6 +11,7 @@
 :root {
   box-sizing: border-box;
   scroll-behavior: smooth;
+  color: var(--color-black)
 }
 
 * {

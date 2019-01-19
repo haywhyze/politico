@@ -23,7 +23,8 @@
 
 .nav-list {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-list__item {
