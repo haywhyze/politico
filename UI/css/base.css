@@ -1,44 +1,83 @@
 /* Variables */
 
 :root {
-  --color-primary: #2660A4;
-  --color-secondary: #FF0022;
-  --color-tertiary: #011627;
-  --color-white: #FFFAFF;
-  --color-black: #050401;
+    --color-primary: #2660A4;
+    --color-secondary: #FF0022;
+    --color-tertiary: #011627;
+    --color-white: #FFFAFF;
+    --color-black: #050401;
 }
 
 :root {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  color: var(--color-black)
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    color: var(--color-black)
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  border: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
 *,
 ::before,
 ::after {
-  box-sizing: inherit;
-  padding: 0;
-  margin: 0;
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 .img {
-  width: 40%;
-  border-radius: 20px;
+    width: 40%;
+    border-radius: 20px;
 }
 
 .star {
-  color: goldenrod;
-  text-shadow: 0 0 2px black;
+    color: goldenrod;
+    text-shadow: 0 0 2px black;
+}
+
+.social {
+    margin: 1rem auto;
+}
+
+.social .fab {
+    padding: .5rem;
+    font-size: 2rem;
+    cursor: pointer;
+    opacity: .7;
+    text-shadow: 0 0 2px black;
+}
+
+.social .fab:hover {
+    opacity: 1;
+    transform: scale(1.2);
+    transition: all .3s;
+}
+
+.fa-facebook {
+    color: rgb(72, 103, 170);
+}
+
+.fa-github {
+    color: black;
+}
+
+.fa-twitter {
+    color: rgb(29, 161, 242);
+}
+
+.fa-linkedin {
+    color: rgb(2, 116, 179);
 }
