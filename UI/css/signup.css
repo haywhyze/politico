@@ -1,0 +1,8 @@
+.sign-up {
+  padding-top: 5rem;
+  min-height: calc(100vh - 2.5rem);
+  background-image: linear-gradient(to right bottom, rgba(1, 22, 39, .6), rgba(38, 96, 164, .6)), url('../img/img_1.jpg');
+  background-size: cover;
+  background-position: top;
+  color: var(--color-white);
+}

@@ -81,3 +81,7 @@ table {
 .fa-linkedin {
     color: rgb(2, 116, 179);
 }
+
+p>a {
+    color: #FF0022;
+}
