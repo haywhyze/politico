@@ -1,0 +1,23 @@
+.table-container {
+  display: block;
+}
+
+table {
+  box-shadow: 0 0 20px #000;
+  text-align: center;
+}
+
+thead {
+  background-color: var(--color-secondary);
+}
+
+tbody {
+  background-color: var(--color-tertiary);
+}
+
+td,
+th {
+  padding: 1rem;
+  border-collapse: collapse;
+  border: 1px solid #ffffee
+}

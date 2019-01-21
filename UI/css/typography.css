@@ -66,7 +66,10 @@ p {
 .tertiary-heading,
 .tertiary-heading--alt {
   font-size: 1.8rem;
-  color: var(--color-secondary)
+  font-weight: bold;
+  color: var(--color-secondary);
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, .3);
+
 }
 
 .secondary-heading--alt,

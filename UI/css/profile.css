@@ -1,0 +1,35 @@
+.profile-container {
+  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, .6), rgba(255, 255, 255, .5)), url('../img/img_3.jpg');
+  background-size: cover;
+  background-position: top;
+  color: var(--color-white);
+  min-height: calc(100vh - 2rem);
+  display: flex;
+  align-items: center;
+  padding-top: 5rem;
+}
+
+.tab {
+  display: flex;
+  /* flex-direction: column; */
+  /* width: 15rem; */
+  /* position: fixed; */
+}
+
+.tabcontent {
+  display: none;
+  width: 100%;
+}
+
+#vote {
+  display: block;
+}
+
+.party-logo {
+  height: 5em;
+  width: 5em;
+}
+
+#parties .review {
+  background-color: var(--color-primary);
+}
