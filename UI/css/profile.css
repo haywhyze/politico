@@ -33,3 +33,7 @@
 #parties .review {
   background-color: var(--color-primary);
 }
+
+#intent {
+  color: var(--color-tertiary)
+}

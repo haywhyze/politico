@@ -18,13 +18,15 @@
     color: #000;
     margin: auto;
     background-color: var(--color-white);
-    padding: 4rem;
+    padding: 2rem;
     border: 1px solid #888;
-    width: 70%;
+    width: 80%;
 }
 
 @media (max-width: 800px) {
-    width: 90%;
+    .modal-content {
+        width: 90%;
+    }
 }
 
 
@@ -58,5 +60,5 @@
 }
 
 .input-radio:checked~.flex-item {
-    border: 1em solid green;
+    border: 1rem solid var(--color-secondary);
 }

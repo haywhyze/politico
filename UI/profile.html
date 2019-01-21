@@ -20,14 +20,14 @@
       <div class="bar bottom"></div>
     </div>
     <div class="header__logo">
-      Politico
+      <p>Politico</p>
     </div>
     <nav class="header__nav">
       <ul class="tab nav-list">
         <li data-tab="vote" class="nav-list__item tablinks active">Vote</li>
         <li data-tab="my-vote" class="nav-list__item tablinks">My Votes</li>
         <li data-tab="parties" class="nav-list__item tablinks">Political Parties</li>
-        <li data-tab="results" class="nav-list__item tablinks">Election Results</li>
+        <li data-tab="intent" class="nav-list__item tablinks">Run for Office</li>
       </ul>
       <ul class="nav-list">
         <div>
@@ -41,14 +41,12 @@
     </nav>
   </header>
   <main>
-    <!-- <div class="tab">
-      <button data-tab="vote" class="button tablinks active">Vote</button>
-      <button data-tab="my-vote" class="button tablinks">My Votes</button>
-      <button data-tab="parties" class="button tablinks">Political Parties</button>
-      <button data-tab="results" class="button tablinks">Election Results</button>
-    </div> -->
+
     <div class="profile-container">
       <div id="vote" class="tabcontent">
+        <h2 class="secondary-heading">Vote</h2>
+        <p class="secondary-heading--small">Click on the election you wish to vote in and choose your preferred
+          candidate</p>
         <div class="flex-container">
           <div class="flex-item">
             <a class="vote-link" href="">
@@ -83,11 +81,11 @@
         </div>
       </div>
       <div id="my-vote" class="tabcontent">
+        <h2 class="secondary-heading">My Votes</h2>
+        <p class="secondary-heading--small">History of the votes you participated in and your choice of candidate</p>
         <div class="flex-container">
+
           <table>
-            <caption>
-              <h3 class="tertiary-heading">My Votes</h3>
-            </caption>
             <thead>
               <tr>
                 <th>Post/Office</th>
@@ -132,6 +130,8 @@
         </div>
       </div>
       <div id="parties" class="tabcontent">
+        <h2 class="secondary-heading">Political Parties</h2>
+        <p class="secondary-heading--small">List of all registered political parties</p>
         <div class="flex-container">
           <div class="review">
             <img class="img party-logo" src="./img/PDP.jpg" alt="" srcset="">
@@ -160,38 +160,36 @@
           </div>
         </div>
       </div>
-      <div id="results" class="tabcontent">
-        <div class="flex-container">
-          <div class="flex-item">
-            <a class="vote-link" href="">
-              <h3 class="tertiary-heading">President</h3>
-              <p>federal</p>
-            </a>
-          </div>
-          <div class="flex-item">
-            <a class="vote-link" href="">
-              <h3 class="tertiary-heading">Governor</h3>
-              <p>state</p>
-            </a>
-          </div>
-          <div class="flex-item">
-            <a class="vote-link" href="">
-              <h3 class="tertiary-heading">Senate</h3>
-              <p>legislative</p>
-            </a>
-          </div>
-          <div class="flex-item">
-            <a class="vote-link" href="">
-              <h3 class="tertiary-heading">House of Representatives</h3>
-              <p>legislative</p>
-            </a>
-          </div>
-          <div class="flex-item">
-            <a class="vote-link" href="">
-              <h3 class="tertiary-heading">Chairman</h3>
-              <p>local government</p>
-            </a>
-          </div>
+      <div id="intent" class="tabcontent">
+        <h2 class="secondary-heading">Intent to Run Form</h2>
+        <p class="secondary-heading--small">Fill this form to express your interest to run for a political office</p>
+        <div class="form-container">
+          <h2 class="hero-text__heading"></h2>
+          <form action="#" class="form">
+            <div class="input-group"><label for="office">Political Office</label>
+              <select name="office">
+                <option value="president">President</option>
+                <option value="senate">Senate</option>
+                <option value="governor">Governor</option>
+                <option value="rep">House of Representatives</option>
+                <option value="chaiman">Chairman</option>
+              </select>
+            </div>
+            <div class="input-group"><label for="parties">Political Parties</label>
+              <select name="parties">
+                <option value="apc">All Progressive Congress (APC)</option>
+                <option value="pdp">Peoples Democratic Party (PDP)</option>
+                <option value="sdp">Social Democratic Party (SDP)</option>
+              </select>
+            </div>
+
+            <div class="input-group"><label for="reason">Manifesto (Why you want to run for office)</label><textarea
+                name="description" id="reason" rows="10"></textarea></div>
+            <div class="input-group  u-center">
+              <a href="profile.html" class="button button--alt">Submit Form</a>
+            </div>
+          </form>
+          <p class="form-paragraph">Already have an acount? <a href="login.html">Login</a> instead.</p>
         </div>
 
       </div>
@@ -209,7 +207,8 @@
             <div class="flex-item">
               <img src="./img/apc.jfif" width="50%" alt="" class="img party-logo">
               <img src="./img/buhari.jpg" alt="" class="img party-logo">
-              <h3 class="tertiary-heading">Muhammadu Buhari (APC)</h3>
+              <p class="hero-text__paragraph">Muhammadu Buhari (APC)</p>
+              <p class="hero-text__paragraph">Total Votes: 73267</p>
             </div>
           </label>
         </div>
@@ -220,14 +219,15 @@
             <div class="flex-item">
               <img src="./img/PDP.jpg" width="50%" alt="" class="img party-logo">
               <img src="./img/Atiku.jpg" alt="" class="img party-logo">
-              <h3 class="tertiary-heading">Atiku Abubakar (PDP)</h3>
+              <p class="hero-text__paragraph">Atiku Abubakar (PDP)</p>
+              <p class="hero-text__paragraph">Total Votes: 73267</p>
             </div>
           </label>
         </div>
 
       </div>
       <div class="u-center">
-        <a href="admin.html" class="button button--alt">Vote</a>
+        <a href="#" class="button button--alt">Vote</a>
       </div>
 
 
