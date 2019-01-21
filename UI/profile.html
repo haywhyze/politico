@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Politico - Home</title>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css' integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/'
+    crossorigin='anonymous'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header class="header">
+    <div id="mobile-menu" class="menu-close">
+      <div class="bar top"></div>
+      <div class="bar middle"></div>
+      <div class="bar bottom"></div>
+    </div>
+    <div class="header__logo">
+      <p>Politico</p>
+    </div>
+    <nav class="header__nav">
+      <ul class="tab nav-list">
+        <li data-tab="vote" class="nav-list__item tablinks active">Vote</li>
+        <li data-tab="my-vote" class="nav-list__item tablinks">My Votes</li>
+        <li data-tab="parties" class="nav-list__item tablinks">Political Parties</li>
+        <li data-tab="intent" class="nav-list__item tablinks">Run for Office</li>
+      </ul>
+      <ul class="nav-list">
+        <div>
+          <p><i class='fas fa-user-alt'></i> Yusuf Ayo</p>
+        </div>
+        <a href="login.html">
+          <li class="nav-list__item">Sign Out</li>
+        </a>
+
+      </ul>
+    </nav>
+  </header>
+  <main>
+
+    <div class="profile-container">
+      <div id="vote" class="tabcontent">
+        <h2 class="secondary-heading">Vote</h2>
+        <p class="secondary-heading--small">Click on the election you wish to vote in and choose your preferred
+          candidate</p>
+        <div class="flex-container">
+          <div class="flex-item">
+            <a class="vote-link" href="">
+              <h3 class="tertiary-heading">President</h3>
+              <p>federal</p>
+            </a>
+          </div>
+          <div class="flex-item">
+            <a class="vote-link" href="">
+              <h3 class="tertiary-heading">Governor</h3>
+              <p>state</p>
+            </a>
+          </div>
+          <div class="flex-item">
+            <a class="vote-link" href="">
+              <h3 class="tertiary-heading">Senate</h3>
+              <p>legislative</p>
+            </a>
+          </div>
+          <div class="flex-item">
+            <a class="vote-link" href="">
+              <h3 class="tertiary-heading">House of Representatives</h3>
+              <p>legislative</p>
+            </a>
+          </div>
+          <div class="flex-item">
+            <a class="vote-link" href="">
+              <h3 class="tertiary-heading">Chairman</h3>
+              <p>local government</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div id="my-vote" class="tabcontent">
+        <h2 class="secondary-heading">My Votes</h2>
+        <p class="secondary-heading--small">History of the votes you participated in and your choice of candidate</p>
+        <div class="flex-container">
+
+          <table>
+            <thead>
+              <tr>
+                <th>Post/Office</th>
+                <th>Type</th>
+                <th>Candidate</th>
+                <th>Party</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>President</td>
+                <td>federal</td>
+                <td>Fela Durotoye</td>
+                <td>AAC</td>
+                <td>12/01/2019</td>
+              </tr>
+              <tr>
+                <td>Governor</td>
+                <td>state</td>
+                <td>Jimi Sanwo-olu</td>
+                <td>ADX</td>
+                <td>12/01/2019</td>
+              </tr>
+              <tr>
+                <td>Senate</td>
+                <td>legislative</td>
+                <td>Bukoye Saraki</td>
+                <td>ADS</td>
+                <td>12/01/2019</td>
+              </tr>
+              <tr>
+                <td>Chairman</td>
+                <td>local government</td>
+                <td>Fela Harrison</td>
+                <td>AFC</td>
+                <td>12/01/2019</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="parties" class="tabcontent">
+        <h2 class="secondary-heading">Political Parties</h2>
+        <p class="secondary-heading--small">List of all registered political parties</p>
+        <div class="flex-container">
+          <div class="review">
+            <img class="img party-logo" src="./img/PDP.jpg" alt="" srcset="">
+            <h2 class="secondary-heading">PDP</h2>
+            <h3 class="tertiary-heading">Peoples Democratic Party</h3>
+          </div>
+          <div class="review">
+            <img class="img party-logo" src="./img/apc.jfif" alt="" srcset="">
+            <h2 class="secondary-heading">APC</h2>
+            <h3 class="tertiary-heading">All Progressive Congress</h3>
+          </div>
+          <div class="review">
+            <img class="img party-logo" src="./img/ACPN.jpg" alt="" srcset="">
+            <h2 class="secondary-heading">ACPN</h2>
+            <h3 class="tertiary-heading">Allied Congress Party of Nigeria</h3>
+          </div>
+          <div class="review">
+            <img class="img party-logo" src="./img/ypp.jfif" alt="" srcset="">
+            <h2 class="secondary-heading">YPP</h2>
+            <h3 class="tertiary-heading">Young Progressive Party</h3>
+          </div>
+          <div class="review">
+            <img class="img party-logo" src="./img/sdp.jfif" alt="" srcset="">
+            <h2 class="secondary-heading">SDP</h2>
+            <h3 class="tertiary-heading">Social Democratic Party</h3>
+          </div>
+        </div>
+      </div>
+      <div id="intent" class="tabcontent">
+        <h2 class="secondary-heading">Intent to Run Form</h2>
+        <p class="secondary-heading--small">Fill this form to express your interest to run for a political office</p>
+        <div class="form-container">
+          <h2 class="hero-text__heading"></h2>
+          <form action="#" class="form">
+            <div class="input-group"><label for="office">Political Office</label>
+              <select name="office">
+                <option value="president">President</option>
+                <option value="senate">Senate</option>
+                <option value="governor">Governor</option>
+                <option value="rep">House of Representatives</option>
+                <option value="chaiman">Chairman</option>
+              </select>
+            </div>
+            <div class="input-group"><label for="parties">Political Parties</label>
+              <select name="parties">
+                <option value="apc">All Progressive Congress (APC)</option>
+                <option value="pdp">Peoples Democratic Party (PDP)</option>
+                <option value="sdp">Social Democratic Party (SDP)</option>
+              </select>
+            </div>
+
+            <div class="input-group"><label for="reason">Manifesto (Why you want to run for office)</label><textarea
+                name="description" id="reason" rows="10"></textarea></div>
+            <div class="input-group  u-center">
+              <a href="profile.html" class="button button--alt">Submit Form</a>
+            </div>
+          </form>
+          <p class="form-paragraph">Already have an acount? <a href="login.html">Login</a> instead.</p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <div class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <h2 class="secondary-heading">President</h2>
+      <div class="flex-container">
+        <div>
+          <label class="radio-label" for="apc">
+            <input class="input-radio" type="radio" name="vote" id="apc" value="apc">
+            <div class="flex-item">
+              <img src="./img/apc.jfif" width="50%" alt="" class="img party-logo">
+              <img src="./img/buhari.jpg" alt="" class="img party-logo">
+              <p class="hero-text__paragraph">Muhammadu Buhari (APC)</p>
+              <p class="hero-text__paragraph">Total Votes: 73267</p>
+            </div>
+          </label>
+        </div>
+
+        <div>
+          <label class="radio-label" for="pdp">
+            <input class="input-radio" type="radio" name="vote" id="pdp" value="pdp">
+            <div class="flex-item">
+              <img src="./img/PDP.jpg" width="50%" alt="" class="img party-logo">
+              <img src="./img/Atiku.jpg" alt="" class="img party-logo">
+              <p class="hero-text__paragraph">Atiku Abubakar (PDP)</p>
+              <p class="hero-text__paragraph">Total Votes: 73267</p>
+            </div>
+          </label>
+        </div>
+
+      </div>
+      <div class="u-center">
+        <a href="#" class="button button--alt">Vote</a>
+      </div>
+
+
+      <span class="close">&times;</span>
+    </div>
+
+  </div>
+
+  <script src="./js/index.js"></script>
+</body>
+
+</html>

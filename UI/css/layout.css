@@ -12,8 +12,9 @@
     transition: all .3s;
 }
 
-
-/* .header__logo {} */
+.header-logo p {
+    font-family: 'Dancing Script', cursive;
+}
 
 .header__nav {
     align-self: flex-end;
