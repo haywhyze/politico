@@ -1,5 +1,5 @@
 .profile-container {
-  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, .9), rgba(255, 255, 255, .8)), url('../img/img_3.jpg');
+  background-image: linear-gradient(to right bottom, rgba(1, 22, 39, .6), rgba(38, 96, 164, .6)), url('../img/img_2.jpg');
   background-size: cover;
   background-position: top;
   color: var(--color-white);
@@ -20,15 +20,6 @@
 
 #vote {
   display: block;
-}
-
-#my-vote,
-#intent,
-#parties {
-  background-image: linear-gradient(to right bottom, rgba(1, 22, 39, .6), rgba(38, 96, 164, .6)), url('../img/img_2.jpg');
-  background-size: cover;
-  background-position: top;
-  min-height: calc(100vh - 7rem);
 }
 
 .party-logo {
