@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 3rem;
     color: var(--color-white);
     background-color: var(--color-primary);
     box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
@@ -12,8 +12,10 @@
     transition: all .3s;
 }
 
-.header-logo p {
+.header__logo p {
     font-family: 'Dancing Script', cursive;
+    text-transform: capitalize;
+    font-size: 1.5rem;
 }
 
 .header__nav {
@@ -41,10 +43,11 @@
 
 @media (max-width: 768px) {
     .header {
-        padding: 1.5rem 2.5rem;
+        flex-direction: column;
     }
 
     .header__nav {
+        align-self: center;
         flex-direction: column;
         display: none;
     }
@@ -54,7 +57,11 @@
     }
 
     .nav-list__item {
-        padding: .5rem;
+        padding: .5rem 1.5rem;
+    }
+
+    .header__logo p {
+        font-size: 2.2rem;
     }
 }
 

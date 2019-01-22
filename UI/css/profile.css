@@ -1,5 +1,5 @@
 .profile-container {
-  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, .6), rgba(255, 255, 255, .5)), url('../img/img_3.jpg');
+  background-image: linear-gradient(to right bottom, rgba(1, 22, 39, .6), rgba(38, 96, 164, .6)), url('../img/img_2.jpg');
   background-size: cover;
   background-position: top;
   color: var(--color-white);
@@ -11,9 +11,6 @@
 
 .tab {
   display: flex;
-  /* flex-direction: column; */
-  /* width: 15rem; */
-  /* position: fixed; */
 }
 
 .tabcontent {
@@ -28,12 +25,28 @@
 .party-logo {
   height: 5em;
   width: 5em;
+  border-radius: 0px;
+}
+
+.party-container {
+  display: flex;
+  justify-content: center;
 }
 
 #parties .review {
   background-color: var(--color-primary);
 }
 
-#intent {
+#intent,
+#create-office,
+#create-party {
   color: var(--color-tertiary)
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 1rem;
+    padding-top: 5rem;
+    align-items: flex-start;
+  }
 }

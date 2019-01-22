@@ -60,17 +60,40 @@ let openTab = () => {
 
 tablinks.map(e => e.addEventListener('click', openTab()));
 
-// Update record Modal
-let office = document.querySelectorAll('.office');
+// Modal
 let modal = document.querySelector('.modal');
-modal.style.display = 'none';
+let modalVote = document.querySelector('.modal-vote');
+let modalEdit = document.querySelector('.modal-edit');
+let modalDelete = document.querySelector('.modal-delete');
+
+if (modal) modal.style.display = 'none';
+if (modalEdit) modalEdit.style.display = 'none';
+if (modalDelete) modalDelete.style.display = 'none';
+if (modalVote) modalVote.style.display = 'none';
+
 let voteLinks = Array.from(document.querySelectorAll('.vote-link'));
-voteLinks.map(e => {
-  e.addEventListener('click', (x) => {
-    x.preventDefault();
-    modal.style.display = 'block';
-  })
-})
+let resultLinks = Array.from(document.querySelectorAll('.result-link'));
+let editLinks = Array.from(document.querySelectorAll('.edit'));
+let deleteLinks = Array.from(document.querySelectorAll('.delete'));
+
+const openModal = (links, modal) => {
+  links.map(link => {
+    link.addEventListener('click', (x) => {
+      x.preventDefault();
+      modal.style.display = 'block'
+    });
+  });
+}
+if (resultLinks && modal) openModal(resultLinks, modal);
+if (editLinks && modalEdit) openModal(editLinks, modalEdit);
+if (deleteLinks && modalDelete) openModal(deleteLinks, modalDelete);
+if (voteLinks && modalVote) openModal(voteLinks, modalVote);
+
 // When the user clicks on <span> (x), close the modal
-let close = document.querySelector(".close");
-close.addEventListener('click', e => modal.style.display = 'none')
+let close = Array.from(document.querySelectorAll(".close"));
+close.map(e => e.addEventListener('click', (x) => {
+  if (modal) modal.style.display = 'none';
+  if (modalEdit) modalEdit.style.display = 'none';
+  if (modalDelete) modalDelete.style.display = 'none';
+  if (modalVote) modalVote.style.display = 'none';
+}));

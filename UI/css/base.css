@@ -1,8 +1,8 @@
 /* Variables */
 
 :root {
-    --color-primary: #2660A4;
-    --color-secondary: #FF0022;
+    --color-primary: rgb(30, 139, 195);
+    --color-secondary: rgb(207, 0, 15);
     --color-tertiary: #011627;
     --color-white: #FFFAFF;
     --color-black: #050401;
@@ -83,5 +83,5 @@ table {
 }
 
 p>a {
-    color: #FF0022;
+    border-bottom: solid 1px #FF0022;
 }

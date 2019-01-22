@@ -1,8 +1,14 @@
 .button {
-  padding: 1rem;
+  padding: .8rem;
+  margin: .5rem;
   display: inline-block;
   text-decoration: none;
   border-radius: .5rem;
   color: var(--color-white);
+  cursor: pointer;
   background-color: var(--color-secondary);
+}
+
+.button:hover {
+  box-shadow: 1px 1px 3px rgba(3, 3, 3, .8)
 }
