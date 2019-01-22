@@ -1,5 +1,9 @@
 .u-center {
-  text-align: center;
+  text-align: center !important;
+}
+
+.u-white {
+  color: var(--color-white) !important;
 }
 
 .active {

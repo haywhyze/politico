@@ -36,8 +36,9 @@
   margin: 1rem;
 }
 
-.secondary-heading--small {
+.profile-container .secondary-heading--small {
   margin: 0.5rem;
+  color: black;
 }
 
 .flex-container {
@@ -75,6 +76,18 @@
 .flex-item:hover {
   box-shadow: 0 0 20px rgba(0, 0, 0, .8);
 }
+
+.flex-item--alt {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.flex-item--alt .tertiary-heading {
+  font-weight: bold;
+  color: var(--color-secondary);
+  text-shadow: 0px 0px 15px rgba(255, 255, 255, .8);
+}
+
 
 .tertiary-heading {
   margin: 0.5rem;

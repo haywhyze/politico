@@ -22,6 +22,15 @@
   display: block;
 }
 
+#my-vote,
+#intent,
+#parties {
+  background-image: linear-gradient(to right bottom, rgba(1, 22, 39, .6), rgba(38, 96, 164, .6)), url('../img/img_2.jpg');
+  background-size: cover;
+  background-position: top;
+  min-height: calc(100vh - 7rem);
+}
+
 .party-logo {
   height: 5em;
   width: 5em;
