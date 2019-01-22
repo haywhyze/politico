@@ -63,8 +63,13 @@
   border-radius: 10px;
   box-sizing: content-box;
   margin: .5rem;
-  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  background-color: var(--color-white);
   box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+}
+
+.flex-item .tertiary-heading {
+  color: var(--color-primary);
 }
 
 .flex-item:hover {
