@@ -63,5 +63,5 @@
 }
 
 .input-radio:checked~.flex-item {
-    border: 1rem solid var(--color-secondary);
+    border: .4rem solid var(--color-secondary);
 }

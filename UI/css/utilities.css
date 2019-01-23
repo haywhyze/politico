@@ -6,6 +6,10 @@
   color: var(--color-white) !important;
 }
 
+.u-black {
+  color: var(--color-black) !important;
+}
+
 .active {
   opacity: 1;
   border-bottom: 1px solid var(--color-white)

@@ -1,7 +1,7 @@
 .form {
     margin: 1rem auto;
-    padding: 1rem 4rem;
-    max-width: 480px;
+    padding: 1rem .5rem;
+    max-width: 45vw;
 }
 
 .input-group {
@@ -21,7 +21,7 @@ label {
 select,
 textarea {
     margin: .5rem 0;
-    padding: .5rem 1rem;
+    padding: 1rem;
     display: block;
     width: 100%;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, .4);
@@ -32,4 +32,11 @@ textarea {
 
 .form-paragraph {
     text-align: center;
+}
+
+@media (max-width: 768px) {
+    .form {
+        max-width: 90vw;
+        padding: 1rem;
+    }
 }
