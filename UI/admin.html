@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Politico - Home</title>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css' integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/'
+    crossorigin='anonymous'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header class="header">
+    <div id="mobile-menu" class="menu-close">
+      <div class="bar top"></div>
+      <div class="bar middle"></div>
+      <div class="bar bottom"></div>
+    </div>
+    <div class="header__logo">
+      <a href="index.html">
+        <p>Politico</p>
+      </a>
+    </div>
+    <nav class="header__nav">
+      <ul class="tab nav-list">
+        <li data-tab="results" class="nav-list__item tablinks active">Results</li>
+        <li data-tab="create-office" class="nav-list__item tablinks">Create New Office</li>
+        <li data-tab="a-parties" class="nav-list__item tablinks">Political Parties</li>
+        <li data-tab="create-party" class="nav-list__item tablinks">Create New Party</li>
+      </ul>
+      <ul class="nav-list">
+        <div>
+          <p class="nav-list__item"><i class='fas fa-user-alt'></i> Yusuf Ayo</p>
+        </div>
+        <a href="login.html">
+          <li class="nav-list__item">Sign Out</li>
+        </a>
+
+      </ul>
+    </nav>
+  </header>
+  <main>
+
+    <div class="profile-container">
+
+      <div id="results" class="tabcontent">
+        <h2 class="secondary-heading u-white">Results</h2>
+        <p class="secondary-heading--small u-white">Click on any of the election to track the results</p>
+        <div class="flex-container">
+          <div class="flex-item">
+            <a class="result-link" href="">
+              <h3 class="tertiary-heading">President</h3>
+              <p>federal</p>
+            </a>
+          </div>
+          <div class="flex-item">
+            <a class="result-link" href="">
+              <h3 class="tertiary-heading">Governor</h3>
+              <p>state</p>
+            </a>
+          </div>
+          <div class="flex-item">
+            <a class="result-link" href="">
+              <h3 class="tertiary-heading">Senate</h3>
+              <p>legislative</p>
+            </a>
+          </div>
+          <div class="flex-item">
+            <a class="result-link" href="">
+              <h3 class="tertiary-heading">House of Representatives</h3>
+              <p>legislative</p>
+            </a>
+          </div>
+          <div class="flex-item">
+            <a class="result-link" href="">
+              <h3 class="tertiary-heading">Chairman</h3>
+              <p>local government</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div id="create-office" class="tabcontent">
+        <h2 class="secondary-heading u-white">Create a Government Office</h2>
+        <p class="secondary-heading--small u-white">Fill this form to create a Government office for Politians to run
+          for.</p>
+        <div class="form-container">
+          <h2 class="hero-text__heading"></h2>
+          <form action="#" class="form">
+            <div class="input-group"><label for="office-name">Name of Political Office</label><input name="office-name"
+                class="input" id="office-name" type="text"></div>
+            <div class="input-group"><label for="">Type of Government office</label>
+              <select name="parties">, , , or
+                <option value="federal">federal</option>
+                <option value="legislative">legislative</option>
+                <option value="state">state</option>
+                <option value="local">local government</option>
+              </select>
+            </div>
+            <div class="input-group  u-center">
+              <a href="#" class="button button--alt">Create Office</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="a-parties" class="tabcontent">
+        <h2 class="secondary-heading u-white">Political Parties</h2>
+        <p class="secondary-heading--small u-white">List of all registered political parties</p>
+        <div class="flex-container">
+          <div class="flex-item">
+            <div class="party-container">
+              <img class="img party-logo" src="./img/PDP.jpg" alt="" srcset="">
+              <h2 class="secondary-heading">PDP</h2>
+            </div>
+            <h3 class="tertiary-heading">Peoples Democratic Party</h3>
+            <address>
+              <i class="material-icons">
+                location_on
+              </i>
+              PDP Secretariat,<br>
+              Wadata Plaza,<br>
+              Wuse Zone 5,<br>
+              Abuja.
+            </address>
+            <a href="" class="button edit u-blue">Edit</a>
+            <a href="" class="button delete">Delete</a>
+          </div>
+          <div class="flex-item">
+            <div class="party-container">
+              <img class="img party-logo" src="./img/apc.jfif" alt="" srcset="">
+              <h2 class="secondary-heading">APC</h2>
+            </div>
+            <h3 class="tertiary-heading">All Progressive Congress</h3>
+            <address>
+              <i class="material-icons">
+                location_on
+              </i>
+              PDP Secretariat,<br>
+              Wadata Plaza,<br>
+              Wuse Zone 5,<br>
+              Abuja.
+            </address> <a href="" class="button edit u-blue">Edit</a>
+            <a href="" class="button delete">Delete</a>
+          </div>
+          <div class="flex-item">
+            <div class="party-container">
+              <img class="img party-logo" src="./img/ACPN.jpg" alt="" srcset="">
+              <h2 class="secondary-heading">ACPN</h2>
+            </div>
+            <h3 class="tertiary-heading">Allied Congress Party of Nigeia</h3>
+            <address>
+              <i class="material-icons">
+                location_on
+              </i>
+              PDP Secretariat,<br>
+              Wadata Plaza,<br>
+              Wuse Zone 5,<br>
+              Abuja.
+            </address>
+            <a href="" class="button edit u-blue">Edit</a>
+            <a href="" class="button delete">Delete</a>
+          </div>
+          <div class="flex-item">
+            <div class="party-container">
+              <img class="img party-logo" src="./img/ypp.jfif" alt="" srcset="">
+              <h2 class="secondary-heading">YPP</h2>
+            </div>
+            <h3 class="tertiary-heading">Young Progressive Party</h3>
+
+            <address>
+              <i class="material-icons">
+                location_on
+              </i>
+              PDP Secretariat,<br>
+              Wadata Plaza,<br>
+              Wuse Zone 5,<br>
+              Abuja.
+            </address><a href="" class="button edit u-blue">Edit</a>
+            <a href="" class="button delete">Delete</a>
+          </div>
+          <div class="flex-item">
+            <div class="party-container">
+              <img class="img party-logo" src="./img/sdp.jfif" alt="" srcset="">
+              <h2 class="secondary-heading">SDP</h2>
+            </div>
+            <h3 class="tertiary-heading">Social Democratic Party</h3>
+
+            <address>
+              <i class="material-icons">
+                location_on
+              </i>
+              PDP Secretariat,<br>
+              Wadata Plaza,<br>
+              Wuse Zone 5,<br>
+              Abuja.
+            </address><a href="" class="button edit u-blue">Edit</a>
+            <a href="" class="button delete">Delete</a>
+          </div>
+        </div>
+      </div>
+      <div id="create-party" class="tabcontent">
+        <h2 class="secondary-heading u-white">Create a Political Party</h2>
+        <p class="secondary-heading--small u-white">Fill this form to create a Political Party.</p>
+        <div class="form-container">
+          <h2 class="hero-text__heading"></h2>
+          <form action="#" class="form">
+            <div class="input-group"><label for="party-name">Name of Political Party</label><input name="party-name"
+                class="input" id="party-name" type="text"></div>
+            <div class="input-group"><label for="party-hq-address">Headquarters Address</label><textarea name="party-hq-address"
+                id="party-hq-address" rows="5"></textarea></div>
+
+            <div class="input-group"><label for="party-logo">Party logo image</label><input class="u-white" type="file"
+                id="party-logo" name="party-logo" accept="image/*"></div>
+            <div class="input-group  u-center">
+              <a href="#" class="button button--alt">Create Party</a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </main>
+  <footer class="footer">
+
+    <div class="flex-container copy">
+      <div class="copy__text">Copyright &copy; 2019, Politico. | With &hearts; from Haywhyze</div>
+      <div class="copy__text"><a href="">Privacy Policy</a> | <a href="">Terms of Service</a></div>
+    </div>
+  </footer>
+
+  <div class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <h2 class="secondary-heading">President</h2>
+      <div class="flex-container">
+        <div>
+          <div class="flex-item flex-item--alt">
+            <img src="./img/apc.jfif" width="50%" alt="" class="img party-logo">
+            <img src="./img/buhari.jpg" alt="" class="img party-logo">
+            <p>Muhammadu Buhari (APC)</p>
+            <p>Total Votes: 73267</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex-item flex-item--alt">
+            <img src="./img/PDP.jpg" width="50%" alt="" class="img party-logo">
+            <img src="./img/Atiku.jpg" alt="" class="img party-logo">
+            <p>Atiku Abubakar (PDP)</p>
+            <p>Total Votes: 73267</p>
+          </div>
+        </div>
+
+      </div>
+
+      <span class="close">&times;</span>
+    </div>
+
+  </div>
+  <div class="modal-edit">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <p class="secondary-heading--small">Edit the name of the political party</p>
+      <div class="form-container">
+        <h2 class="hero-text__heading"></h2>
+        <form action="#" class="form">
+          <div class="input-group"><label class="u-black" for="party-name">Name of Political Party</label><input name="party-name"
+              class="input" id="party-name" type="text"></div>
+          <div class="input-group  u-center">
+            <a href="#" class="button button--alt">Update</a>
+          </div>
+        </form>
+      </div>
+      <span class="close">&times;</span>
+    </div>
+
+  </div>
+  <div class="modal-delete">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <p class="secondary-heading--small">Are you sure you want to delete the party?</p>
+      <div class="form-container u-center">
+        <a href="" class="button">Yes</a>
+        <a href="" class="button u-blue--alt">Cancel</a>
+      </div>
+      <span class="close">&times;</span>
+    </div>
+
+  </div>
+
+  <script src="./js/index.js"></script>
+</body>
+
+</html>
