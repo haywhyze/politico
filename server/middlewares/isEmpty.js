@@ -1,15 +1,12 @@
-import joinStrings from '../helpers';
+import { joinStrings } from '../helpers';
 
 const populateError = req => {
   const error = [];
-  if (!req.body.name.trim()) {
+  if (!req.body.name) {
     error.push('name');
   }
-  if (!req.body.hqAddress.trim()) {
+  if (!req.body.hqAddress) {
     error.push('hqAddress');
-  }
-  if (!req.body.logoUrl.trim()) {
-    error.push('logoUrl');
   }
   return error;
 };

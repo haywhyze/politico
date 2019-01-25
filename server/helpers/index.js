@@ -5,4 +5,4 @@ const joinStrings = strings => {
   return stringArray.join(' ');
 };
 
-export default joinStrings;
+export { joinStrings };

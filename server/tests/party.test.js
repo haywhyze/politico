@@ -36,12 +36,11 @@ describe('Parties', () => {
       chai
         .request(app)
         .post('/api/v1/parties')
-        .send({
-          name: 'All Progressives Congress',
-          hqAddress: 'APC National Secretariat',
-          logoUrl: '../UI/img/apc.jfif',
-        })
-        .end((err, res) => {
+        .type('form')
+        .field('name', 'All Progressives Congress')
+        .field('hqAddress', 'APC National Secretariat')
+        .attach('logoUrl', './UI/img/img_3.jpg', 'img_3.jpg')
+        .then(res => {
           expect(res.status).to.equal(201);
           done();
         });
@@ -51,12 +50,11 @@ describe('Parties', () => {
       chai
         .request(app)
         .post('/api/v1/parties')
-        .send({
-          name: '',
-          hqAddress: 'APC National Secretariat',
-          logoUrl: '../UI/img/apc.jfif',
-        })
-        .end((err, res) => {
+        .type('form')
+        .field('name', '')
+        .field('hqAddress', 'APC National Secretariat')
+        .attach('logoUrl', './UI/img/img_3.jpg', 'img_3.jpg')
+        .then(res => {
           expect(res.status).to.equal(400);
           done();
         });
@@ -66,12 +64,11 @@ describe('Parties', () => {
       chai
         .request(app)
         .post('/api/v1/parties')
-        .send({
-          name: 'All Progressives Congress',
-          hqAddress: '',
-          logoUrl: '../UI/img/apc.jfif',
-        })
-        .end((err, res) => {
+        .type('form')
+        .field('name', 'All Progressives Congress')
+        .field('hqAddress', '')
+        .attach('logoUrl', './UI/img/img_3.jpg', 'img_3.jpg')
+        .then(res => {
           expect(res.status).to.equal(400);
           done();
         });
@@ -81,12 +78,11 @@ describe('Parties', () => {
       chai
         .request(app)
         .post('/api/v1/parties')
-        .send({
-          name: 'All Progressives Congress',
-          hqAddress: 'APC National Secretariat',
-          logoUrl: '',
-        })
-        .end((err, res) => {
+        .type('form')
+        .field('name', 'All Progressives Congress')
+        .field('hqAddress', 'APC National Secretariat')
+        .attach('logoUrl', '', '')
+        .then(res => {
           expect(res.status).to.equal(400);
           done();
         });
@@ -96,12 +92,11 @@ describe('Parties', () => {
       chai
         .request(app)
         .post('/api/v1/parties')
-        .send({
-          name: 'All Progressives Congress',
-          hqAddress: 'outside my compound',
-          logoUrl: '../UI/img/apc.jfif',
-        })
-        .end((err, res) => {
+        .type('form')
+        .field('name', 'All Progressives Congress')
+        .field('hqAddress', 'Just me trying out stuff')
+        .attach('logoUrl', './UI/img/img_3.jpg', 'img_3.jpg')
+        .then(res => {
           expect(res.status).to.equal(400);
           done();
         });
@@ -111,12 +106,11 @@ describe('Parties', () => {
       chai
         .request(app)
         .post('/api/v1/parties')
-        .send({
-          name: 'All',
-          hqAddress: 'outside my compound',
-          logoUrl: '../UI/img/apc.jfif',
-        })
-        .end((err, res) => {
+        .type('form')
+        .field('name', 'All')
+        .field('hqAddress', 'APC National Secretariat')
+        .attach('logoUrl', './UI/img/img_3.jpg', 'img_3.jpg')
+        .then(res => {
           expect(res.status).to.equal(400);
           done();
         });
@@ -126,12 +120,11 @@ describe('Parties', () => {
       chai
         .request(app)
         .post('/api/v1/parties')
-        .send({
-          name: 'All',
-          hqAddress: 'outside my compound',
-          logoUrl: '../UI/img/apc.jfif',
-        })
-        .end((err, res) => {
+        .type('form')
+        .field('name', 'All Progressives Congress')
+        .field('hqAddress', 'APC National Secretariat')
+        .attach('logoUrl', './UI/index.html', 'index.html')
+        .then(res => {
           expect(res.status).to.equal(400);
           done();
         });
