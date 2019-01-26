@@ -9,4 +9,3 @@ router.use('/parties', parties);
 router.use('/offices', offices);
 router.use('/auth', auth);
 
-export default router;
