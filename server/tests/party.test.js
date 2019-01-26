@@ -186,7 +186,6 @@ describe('Parties', () => {
         .get('/api/v1/parties/1yut')
         .end((err, res) => {
           expect(res.status).to.equal(400);
-          expect(res.body.error).to.equal('party ID value provided is not valid');
           done();
         });
     });
@@ -294,7 +293,5 @@ describe('Parties', () => {
           expect(res.status).to.equal(400);
           expect(res.body.error).to.equal('party ID value provided is not valid');
           done();
-        });
-    });
   });
 });
