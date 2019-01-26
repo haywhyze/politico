@@ -130,4 +130,29 @@ describe('Parties', () => {
         });
     });
   });
+
+  describe('GET /api/v1/parties', () => {
+    it('should get all parties if records exist', done => {
+      chai
+        .request(app)
+        .get('/api/v1/parties')
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.data).to.be.an('array');
+          done();
+        });
+    });
+
+    it('should return empty array if there are no party records to display', done => {
+      partiesData.splice(0, partiesData.length);
+      chai
+        .request(app)
+        .get('/api/v1/parties')
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.data).to.eql([]);
+          done();
+        });
+    });
+  });
 });
