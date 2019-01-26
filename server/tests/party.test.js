@@ -155,4 +155,37 @@ describe('Parties', () => {
         });
     });
   });
+
+  describe('GET /api/v1/parties/<party-id>', () => {
+    it('should get a specific party if ID exist', done => {
+      chai
+        .request(app)
+        .get('/api/v1/parties/1')
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.data[0].id).to.equal(1);
+          done();
+        });
+    });
+
+    it('should send a 404 error if ID does not exist', done => {
+      chai
+        .request(app)
+        .get('/api/v1/parties/15')
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+
+    it('should send a 400 error if ID is not valid', done => {
+      chai
+        .request(app)
+        .get('/api/v1/parties/1yut')
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
+  });
 });
