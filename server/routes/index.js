@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import offices from './offices';
 import parties from './parties';
+import offices from './offices';
 
 const router = Router();
 
