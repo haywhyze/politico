@@ -4,7 +4,7 @@ class PartyController {
   static create(req, res) {
     const party = {
       id: partiesData.length + 1,
-      name: req.body.name,
+      name: res.locals.partyName,
       hqAddress: res.locals.address,
       logoUrl: res.locals.logo,
     };

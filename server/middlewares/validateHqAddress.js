@@ -3,13 +3,13 @@ import dotenv from 'dotenv';
 dotenv.load();
 
 const validateHqAddress = (req, res, next) => {
-  // eslint-disable-next-line global-require
+// eslint-disable-next-line global-require
   const googleMapsClient = require('@google/maps').createClient({
     key: process.env.GOOGLE_API_KEY,
   });
   googleMapsClient.places(
     {
-      query: req.body.hqAddress,
+      query: req.body.hqAddress.trim().replace(/\s{2,}/gi, ' '),
     },
     (err, response) => {
       if (response.json.results[0]) {

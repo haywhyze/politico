@@ -1,14 +1,19 @@
 const validateName = (req, res, next) => {
   let partyNameLength;
+  let error;
   if (req.body.name) {
-    partyNameLength = req.body.name.trim().split(/\s+/).length;
+    if (/^[A-Z\s]+$/i.test(req.body.name)) {
+      res.locals.partyName = req.body.name.trim().replace(/\s{2,}/gi, ' ');
+      partyNameLength = res.locals.partyName.split(/\s+/).length;
+      if (partyNameLength < 2) error = 'Party Name should be more than one word';
+      if (res.locals.partyName.length > 70) error = 'Party name is too Long';
+    }
+    else error = 'Party name is invalid'
   }
-  if (partyNameLength < 2 || req.body.name.trim().length > 70) {
-    return res.status(400).send({
+  if (error) return res.status(400).send({
       status: 400,
-      error: 'Comment too short or too long',
-    });
-  }
+      error,
+  });
   return next();
 };
 
