@@ -67,5 +67,4 @@ class PartyController {
     });
   }
 }
-
 export default PartyController;
