@@ -52,6 +52,20 @@ class PartyController {
       ],
     });
   }
+
+  static delete(req, res) {
+    const id = Number(req.params.id);
+    const partyIndex = partiesData.findIndex(party => party.id === id);
+    const party = partiesData.splice(partyIndex, 1);
+    return res.status(200).send({
+      status: 200,
+      data: [
+        {
+          message: `${party[0].name} deleted`,
+        },
+      ],
+    });
+  }
 }
 
 export default PartyController;

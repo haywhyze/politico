@@ -263,4 +263,35 @@ describe('Parties', () => {
         });
     });
   });
+
+  describe('DELETE /api/v1/parties/<party-id>', () => {
+    it('should delete party record if party ID exist', done => {
+      chai
+        .request(app)
+        .delete('/api/v1/parties/1')
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('should not delete record if party ID does not exist, 404', done => {
+      chai
+        .request(app)
+        .delete('/api/v1/parties/12')
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+    it('should not delete record if party ID value is invalid, 400', done => {
+      chai
+        .request(app)
+        .delete('/api/v1/parties/shade')
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
+  });
 });

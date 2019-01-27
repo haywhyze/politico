@@ -16,9 +16,9 @@ router.post(
   validateHqAddress,
   PartyController.create,
 );
-
 router.get('/parties', PartyController.getAll);
 router.get('/parties/:id', validateID, PartyController.getOne);
 router.patch('/parties/:id/name', validateID, isEmpty, validateName, PartyController.patchName);
+router.delete('/parties/:id', validateID, PartyController.delete);
 
 export default router;
