@@ -22,15 +22,26 @@ const setErrorMsg = error => {
 };
 
 const isEmpty = (req, res, next) => {
-  const error = populateError(req);
-  if (error[0]) {
-    const errorMsg = setErrorMsg(error);
-    return res.status(400).send({
-      status: 400,
-      error: errorMsg,
-    });
-  }
+  let path = req.url.split('/');
+  path = path[path.length - 1];
 
+  if (req.method === 'PATCH') {
+    if (!req.body[path]) {
+      return res.status(400).send({
+        status: 400,
+        error: `No ${path} value provided`,
+      });
+    }
+  } else {
+    const error = populateError(req);
+    if (error[0]) {
+      const errorMsg = setErrorMsg(error);
+      return res.status(400).send({
+        status: 400,
+        error: errorMsg,
+      });
+    }
+  }
   return next();
 };
 

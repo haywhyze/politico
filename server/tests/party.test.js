@@ -191,4 +191,71 @@ describe('Parties', () => {
         });
     });
   });
+
+  describe('PATCH api/v1/parties/<party-id>/name', () => {
+    it('should change the name of the specified party if party id and new name value is valid', done => {
+      chai
+        .request(app)
+        .patch('/api/v1/parties/1/name')
+        .send({
+          name: 'Action Congress of Nigeria',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('should not change the name if name field is missing or empty', done => {
+      chai
+        .request(app)
+        .patch('/api/v1/parties/1/name')
+        .send({
+          name: '',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
+
+    it('should not change the name if name value is invalid', done => {
+      chai
+        .request(app)
+        .patch('/api/v1/parties/1/name')
+        .send({
+          name: '1987 yugyuh 7878',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
+
+    it('should not change the name if party ID does not exist, 404', done => {
+      chai
+        .request(app)
+        .patch('/api/v1/parties/12/name')
+        .send({
+          name: 'Action Congress of Nigeria',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+
+    it('should not change the name if party ID value is invalid, 400', done => {
+      chai
+        .request(app)
+        .patch('/api/v1/parties/shade/name')
+        .send({
+          name: 'Action Congress of Nigeria',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
+  });
 });

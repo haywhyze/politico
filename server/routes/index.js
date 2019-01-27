@@ -19,5 +19,6 @@ router.post(
 
 router.get('/parties', PartyController.getAll);
 router.get('/parties/:id', validateID, PartyController.getOne);
+router.patch('/parties/:id/name', validateID, isEmpty, validateName, PartyController.patchName);
 
 export default router;
