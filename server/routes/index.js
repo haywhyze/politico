@@ -27,5 +27,6 @@ router.delete('/parties/:id', validateID, PartyController.delete);
 // office routes
 router.post('/offices', isEmpty, validateType, validateOfficeName, OfficeContrller.create);
 router.get('/offices', OfficeContrller.getAll);
+router.get('/offices/:id', validateID, OfficeContrller.getOne);
 
 export default router;
