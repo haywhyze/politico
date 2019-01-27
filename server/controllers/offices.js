@@ -19,6 +19,13 @@ class OfficeContrller {
       ],
     });
   }
+
+  static getAll(req, res) {
+    return res.status(200).send({
+      status: 200,
+      data: officesData,
+    });
+  }
 }
 
 export default OfficeContrller;
