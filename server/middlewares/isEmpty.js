@@ -1,13 +1,11 @@
 import { joinStrings } from '../helpers';
 
-const populateError = req => {
+const populateError = (req, ...fields) => {
   const error = [];
-  if (!req.body.name) {
-    error.push('name');
-  }
-  if (!req.body.hqAddress) {
-    error.push('hqAddress');
-  }
+  // eslint-disable-next-line array-callback-return
+  fields.map(field => {
+    if (!req.body[field]) error.push(field);
+  });
   return error;
 };
 
@@ -24,6 +22,7 @@ const setErrorMsg = error => {
 const isEmpty = (req, res, next) => {
   let path = req.url.split('/');
   path = path[path.length - 1];
+  let error;
 
   if (req.method === 'PATCH') {
     if (!req.body[path]) {
@@ -33,7 +32,9 @@ const isEmpty = (req, res, next) => {
       });
     }
   } else {
-    const error = populateError(req);
+    const endpointRoot = req.url.split('/')[1];
+    if (endpointRoot === 'offices') error = populateError(req, 'name', 'type');
+    else if (endpointRoot === 'parties') error = populateError(req, 'name', 'hqAddress');
     if (error[0]) {
       const errorMsg = setErrorMsg(error);
       return res.status(400).send({
