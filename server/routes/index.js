@@ -16,4 +16,6 @@ router.post(
   PartyController.create,
 );
 
+router.get('/parties', PartyController.getAll);
+
 export default router;
