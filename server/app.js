@@ -24,8 +24,19 @@ app.get('/', (req, res) =>
 
 app.use('/api/v1/', router);
 
-app.listen(3000);
-/* eslint-disable-next-line no-console */
-console.log('app running on port ', 3000);
+app.all('*', (req, res) => {
+  res
+    .status(404)
+    .send(
+      '<h2>Well!!! This is Embarrasing</h2><p>There are no resources here. Check the documentation here for valid routes</p>',
+    );
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  /* eslint-disable-next-line no-console */
+  console.log(`server running on port ${PORT}`);
+});
 
 export default app;
