@@ -1,4 +1,13 @@
 # politico
+<<<<<<< HEAD
+=======
+
+[![Build Status](https://travis-ci.com/haywhyze/politico.svg?branch=ch-setup-ci-%23163504828)](https://travis-ci.com/haywhyze/politico)
+[![Coverage Status](https://coveralls.io/repos/github/haywhyze/politico/badge.svg?branch=ch-setup-ci-%23163504828)](https://coveralls.io/github/haywhyze/politico?branch=ch-setup-ci-%23163504828)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b493c2924608712dbcf3/maintainability)](https://codeclimate.com/github/haywhyze/politico/maintainability)
+
+Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
+>>>>>>> chore(docs): Update readme
 
 Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
 
