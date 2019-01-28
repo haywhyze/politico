@@ -2,13 +2,13 @@
   "name": "politico",
   "version": "1.0.0",
   "description": "Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.",
-  "main": "./server/app.js",
+  "main": "./server/app",
   "scripts": {
     "build": "babel server --out-dir ./dist --source-maps",
     "debug": "node --inspect-brk ./dist/index.js",
     "serve": "node ./dist/index.js",
     "start": "nodemon --exec babel-node ./server/app.js",
-    "test": "./node_modules/.bin/mocha ./server/tests/* --require @babel/register --exit"
+    "test": "./node_modules/.bin/mocha ./server/tests/* --require @babel/register --timeout 15000 --exit"
   },
   "repository": {
     "type": "git",
@@ -39,7 +39,14 @@
     "prettier": "^1.16.1"
   },
   "dependencies": {
+    "@google/maps": "^0.5.5",
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "chai-http": "^4.2.1",
+    "cloudinary": "^1.13.2",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.1.1-alpha.1",
+    "multer": "^1.4.1",
+    "rimraf": "^2.6.3"
   }
 }
