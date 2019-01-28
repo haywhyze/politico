@@ -1,8 +1,9 @@
 # politico
+
 Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
 
-
 ## Motivation
+
 The general elections in my country is just around the corner, hence, politics is a major talking points in the country right now. In a way to get in the mood of the season, it would make sense to help build a platform which both the politicians and the citizens can use.
 
 ## Expected Features
@@ -26,8 +27,11 @@ The general elections in my country is just around the corner, hence, politics i
 ---
 
 ## Installation
+
 **Note:**
+
 > As at the time of writing this, the application is still in development and the following commands might not behave as expected. This docs will be updated as soon as the application can be installed.
+
 - Clone this repository and navigate into it.
 
 `git clone https://github.com/haywhyze/politico.git && cd politico`
@@ -36,7 +40,7 @@ The general elections in my country is just around the corner, hence, politics i
 
 `npm install`
 
-- Start the application. 
+- Start the application.
 
 `npm run start`
 
@@ -46,260 +50,297 @@ The general elections in my country is just around the corner, hence, politics i
 
 This application will be deployed on heroku where the following endpoints will be accessible
 
-|Method|Functionality|Endpoint|
-|--|--|--|
-|POST */parties*|Create a political party|`api/v1/parties`|
-|GET */parties/\<party-id\>*| Fetch a specific political party record| `api/v1/parties/:id`
-|GET */parties/* | Fetch all political parties records| `api/v1/parties/`
-|PATCH */parties/\<party-id\>/name* | Edit the name of a specific political party| `api/v1/parties/:id`
-|DELETE */parties/\<party-id\>* | Delete a specific political party | `api/v1/parties/:id`
-|POST */offices* | Create a political office| `api/v1/offices`
-|GET */offices* | Fetch all political offices record | `api/v1/offices` 
-| GET */offices/\<office-id\>* | Fetch a particular political office | `api/v1/offices/:id`
-| POST */auth/signup* | Create a user account | `api/v1/auth/signup`
-| POST */auth/login* | Login a user | `api/v1/auth/login`
-| POST */office/\<user-id\>/register* | Register a user as a candidate running for a political office. Accessible by the admin alone. | `api/v1/office/:id/register`
-|POST */votes/* | Vote for a candidate | `api/v1/votes` 
-| POST */office/\<office-id\>/result* | Collate and fetch the result of specific office following a concluded election.| `api/v1/office/:id/result`
-| POST */auth/reset* | Reset user password| `api/v1/auth/reset`
-| POST */petitions/* |Create petitions challenging the outcome of a concluded election.| `api/v1/petitions` 
+| Method                              | Functionality                                                                                 | Endpoint                     |
+| ----------------------------------- | --------------------------------------------------------------------------------------------- | ---------------------------- |
+| POST _/parties_                     | Create a political party                                                                      | `api/v1/parties`             |
+| GET _/parties/\<party-id\>_         | Fetch a specific political party record                                                       | `api/v1/parties/:id`         |
+| GET _/parties/_                     | Fetch all political parties records                                                           | `api/v1/parties/`            |
+| PATCH _/parties/\<party-id\>/name_  | Edit the name of a specific political party                                                   | `api/v1/parties/:id`         |
+| DELETE _/parties/\<party-id\>_      | Delete a specific political party                                                             | `api/v1/parties/:id`         |
+| POST _/offices_                     | Create a political office                                                                     | `api/v1/offices`             |
+| GET _/offices_                      | Fetch all political offices record                                                            | `api/v1/offices`             |
+| GET _/offices/\<office-id\>_        | Fetch a particular political office                                                           | `api/v1/offices/:id`         |
+| POST _/auth/signup_                 | Create a user account                                                                         | `api/v1/auth/signup`         |
+| POST _/auth/login_                  | Login a user                                                                                  | `api/v1/auth/login`          |
+| POST _/office/\<user-id\>/register_ | Register a user as a candidate running for a political office. Accessible by the admin alone. | `api/v1/office/:id/register` |
+| POST _/votes/_                      | Vote for a candidate                                                                          | `api/v1/votes`               |
+| POST _/office/\<office-id\>/result_ | Collate and fetch the result of specific office following a concluded election.               | `api/v1/office/:id/result`   |
+| POST _/auth/reset_                  | Reset user password                                                                           | `api/v1/auth/reset`          |
+| POST _/petitions/_                  | Create petitions challenging the outcome of a concluded election.                             | `api/v1/petitions`           |
 
 ### Response Specifications
 
-#### POST */parties*
+#### POST _/parties_
+
 Response spec:
-```json
+
+```javascript
 {
-	“status” : Integer ,
-	“data” : [ {
-		“id” : Integer , // id of newly created party
-		“name” : String ,
-	} ]
+  “status” : Integer ,
+  “data” : [ 
+    {
+      “id” : Integer , // id of newly created party
+      “name” : String ,
+    } 
+  ]
 }
 ```
 
-#### GET */parties/\<party-id\>*
+#### GET _/parties/\<party-id\>_
+
 Response spec:
-```JSON
+
+```javascript
 {
-	“status” : Integer ,
-	“data” : [ {
-		“id” : Integer , // political party unique id
-		“name” : String ,
-		“logoUrl” : String ,
-	} ]
+  “status” : Integer ,
+  “data” : [ {
+    “id” : Integer , // political party unique id
+    “name” : String ,
+    “logoUrl” : String ,
+  } ]
 }
 ```
 
 #### GET /parties/
+
 Response spec:
-```JSON
+
+```javascript
 {
-	{
-		“status” : Integer ,
-		“data” : [
-			{
-				“id” : Integer , // political party unique id
-				“name” : String ,
-				“logoUrl” : String ,
-			} , {
-				“id” : Integer , // political party unique id
-				“name” : String ,
-				“logoUrl” : String ,
-			} , {
-				“id” : Integer , // political party unique id
-				“name” : String ,
-				“logoUrl” : String ,
-			} , {
-				“id” : Integer , // political party unique id
-				“name” : String ,
-				“logoUrl” : String ,
-			}
-		]
-}
-```
-#### PATCH */parties/\<party-id\>/name*
-Response spec:
-```json
-{
-	“status” : Integer ,
-	“data” : [ {
-		“id”: Integer , // political party unique id
-		“name” : String , // the new name of the political party
-	} ]
+  {
+    “status” : Integer ,
+    “data” : [
+      {
+        “id” : Integer , // political party unique id
+        “name” : String ,
+        “logoUrl” : String ,
+      } , {
+        “id” : Integer , // political party unique id
+        “name” : String ,
+        “logoUrl” : String ,
+      } , {
+        “id” : Integer , // political party unique id
+        “name” : String ,
+        “logoUrl” : String ,
+      } , {
+        “id” : Integer , // political party unique id
+        “name” : String ,
+        “logoUrl” : String ,
+      }
+    ]
 }
 ```
 
-#### DELETE */parties/\<party-id\>*
+#### PATCH _/parties/\<party-id\>/name_
+
 Response spec:
-```json
+
+```javascript
 {
-	“status” : Integer ,
-	“data” : [ {
-		“message” : String
-	} ]
+  “status” : Integer ,
+  “data” : [ {
+    “id”: Integer , // political party unique id
+    “name” : String , // the new name of the political party
+  } ]
 }
 ```
 
-#### POST */offices*
+#### DELETE _/parties/\<party-id\>_
+
 Response spec:
-```json
+
+```javascript
 {
-	“status” : Integer ,
-	“data” : [ {
-		“id” : Integer , // id of newly created office
-		“type” : String , // type of office
-		“name” : String , // name of office
-	} ]
+  “status” : Integer ,
+  “data” : [ {
+    “message” : String
+  } ]
 }
 ```
 
-#### GET */offices*
+#### POST _/offices_
+
 Response spec:
-```json
+
+```javascript
 {
-	“status” : Integer ,
-	“data” : [
-		{
-			“id” : Integer , // office record unique id
-			“type” : String , // type of office
-			“name” : String // name of office
-		}, {
-			“id” : Integer , // office record unique id
-			“type” : String , // type of office
-			“name” : String // name of office
-		}, {
-			“id” : Integer , // office record unique id
-			“type” : String , // type of office
-			“name” : String // name of office
-		}
-	]
+  “status” : Integer ,
+  “data” : [ {
+    “id” : Integer , // id of newly created office
+    “type” : String , // type of office
+    “name” : String , // name of office
+  } ]
 }
 ```
 
-#### GET */offices/\<office-id\>*
+#### GET _/offices_
+
 Response spec:
-```json
+
+```javascript
 {
-	“status” : Integer ,
-	“data” : [ {
-		“id” : Integer , // office record unique id
-		“type” : String , // type of office
-		“name” : String // name of office
-	} ]
+  “status” : Integer ,
+  “data” : [
+    {
+      “id” : Integer , // office record unique id
+      “type” : String , // type of office
+      “name” : String // name of office
+    }, {
+      “id” : Integer , // office record unique id
+      “type” : String , // type of office
+      “name” : String // name of office
+    }, {
+      “id” : Integer , // office record unique id
+      “type” : String , // type of office
+      “name” : String // name of office
+    }
+  ]
 }
 ```
 
-#### POST */auth/signup*
+#### GET _/offices/\<office-id\>_
+
 Response spec:
-```json
+
+```javascript
 {
-	“status” : Integer ,
-	“data” : [ {
-		“token” : “45erkjherht45495783”,
-		“user” : {....} // the user object
-	} ]
+  “status” : Integer ,
+  “data” : [ {
+    “id” : Integer , // office record unique id
+    “type” : String , // type of office
+    “name” : String // name of office
+  } ]
 }
 ```
 
-#### POST */auth/login*
+#### POST _/auth/signup_
+
 Response spec:
-```json
+
+```javascript
 {
-	“status” : Integer ,
-	“data” : [ {
-		“token” : “45erkjherht45495783”,
-		“user” : {....} // the user object
-	} ]
+  “status” : Integer ,
+  “data” : [ {
+    “token” : `45erkjherht45495783`,
+    “user” : {....} // the user object
+  } ]
 }
 ```
 
-#### POST */office/\<user-id\>/register*
+#### POST _/auth/login_
+
 Response spec:
-```json
+
+```javascript
 {
-	“status” : Integer ,
-	“data” : [ {
-		“office” : Integer , // office unique id
-		“user” : Integer // candidate unique id
-	} ]
+  “status” : Integer ,
+  “data” : [ {
+    “token” : `45erkjherht45495783`,
+    “user” : {....} // the user object
+  } ]
 }
 ```
 
-#### POST */votes/*
+#### POST _/office/\<user-id\>/register_
+
 Response spec:
-```json
+
+```javascript
 {
-	“status” : Integer ,
-	“data” : [ {
-		“office” : Integer , // office unique id
-		“candidate” : Integer , // politician unique id
-		“voter” : Integer // voter unique id
-	} ]
+  “status” : Integer ,
+  “data” : [ {
+    “office” : Integer , // office unique id
+    “user” : Integer // candidate unique id
+  } ]
 }
 ```
 
-#### POST */office/\<office-id\>/result*
+#### POST _/votes/_
+
 Response spec:
-```json
+
+```javascript
 {
-	“status” : Integer ,
-	“data” : [
-		{
-			“office” : Integer , // office unique id
-			“candidate” : Integer , // candidate unique id
-			“result” : Integer // total vote for the candidate
-		}, {
-			“office” : Integer , // office id
-			“candidate” : Integer , // candidate unique id
-			“result” : Integer // total vote for the candidate
-		}, {
-			“office” : Integer , // office primary key
-			“candidate” : Integer , // politician primary key
-			“result” : Integer // total vote for the candidate
-		}
-	]
+  “status” : Integer ,
+  “data” : [ {
+    “office” : Integer , // office unique id
+    “candidate” : Integer , // politician unique id
+    “voter” : Integer // voter unique id
+  } ]
 }
 ```
-#### POST */auth/reset*
+
+#### POST _/office/\<office-id\>/result_
+
 Response spec:
-```json
+
+```javascript
 {
-	“status” : Integer ,
-	“data” : [ {
-		“message” : `Check your email for password reset link`,
-		“email” : String // email specified by user
-	} ]
+  “status” : Integer ,
+  “data” : [
+    {
+      “office” : Integer , // office unique id
+      “candidate” : Integer , // candidate unique id
+      “result” : Integer // total vote for the candidate
+    }, {
+      “office” : Integer , // office id
+      “candidate” : Integer , // candidate unique id
+      “result” : Integer // total vote for the candidate
+    }, {
+      “office” : Integer , // office primary key
+      “candidate” : Integer , // politician primary key
+      “result” : Integer // total vote for the candidate
+    }
+  ]
 }
 ```
-#### POST */petitions/*
+
+#### POST _/auth/reset_
+
 Response spec:
-```json
+
+```javascript
 {
-	“status” : Integer ,
-	“data” : [ {
-		“id” : Integer , // petition unique id
-		“office” : Integer , // office unique id
-		“createdBy” : Integer , // unique id of user who created the petition
-		“text” : String ,
-		“evidence” : [String, String, ....] , //imageUrl, videoUrl
-	} ]
+  “status” : Integer ,
+  “data” : [ {
+    “message” : `Check your email for password reset link`,
+    “email” : String // email specified by user
+  } ]
+}
+```
+
+#### POST _/petitions/_
+
+Response spec:
+
+```javascript
+{
+  “status” : Integer ,
+  “data” : [ {
+    “id” : Integer , // petition unique id
+    “office” : Integer , // office unique id
+    “createdBy” : Integer , // unique id of user who created the petition
+    “text” : String ,
+    evidence : [String, String, ....] , //imageUrl, videoUrl
+  } ]
 }
 ```
 
 ---
 
 ## Testing the Application Locally
+
 **Note:**
+
 > As at the time of writing this, the application is still in development and the following commands might not behave as expected. This docs will be updated as soon as the application can be installed.
 
 If the project has been cloned and navigated into as specified [above](#installation), you can run tests...
 
-### Using POSTMAN 
+### Using POSTMAN
 
 If you do not have POSTMAN installed, download [here](https://www.getpostman.com/)
 
-- In the terminal start the application with  `npm run start`
+- In the terminal start the application with `npm run start`
 
 - On POSTMAN navigate to `localhost:3000/` and use the documentation [above](#documentation) as guide to access the endpoints.
 
@@ -327,6 +368,7 @@ then you can run tests with:
 ---
 
 ## Acknowledgements
+
 [Andela](https://andela.com/)
 
 ---
