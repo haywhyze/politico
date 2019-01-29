@@ -28,6 +28,15 @@ class PartyController {
       data: partiesData,
     });
   }
+
+  static getOne(req, res) {
+    const id = Number(req.params.id);
+    const party = partiesData.find(e => e.id === id);
+    return res.status(200).send({
+      status: 200,
+      data: [party],
+    });
+  }
 }
 
 export default PartyController;
