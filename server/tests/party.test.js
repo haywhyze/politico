@@ -202,6 +202,7 @@ describe('Parties', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body.data[0].name).to.equal('Action Congress of Nigeria');
           done();
         });
     });
@@ -215,6 +216,7 @@ describe('Parties', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('No name value provided');
           done();
         });
     });
@@ -228,6 +230,7 @@ describe('Parties', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('Party name is invalid');
           done();
         });
     });
@@ -241,6 +244,7 @@ describe('Parties', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(404);
+          expect(res.body.error).to.equal('party ID provided does not exist');
           done();
         });
     });
@@ -254,6 +258,7 @@ describe('Parties', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('party ID value provided is not valid');
           done();
         });
     });
