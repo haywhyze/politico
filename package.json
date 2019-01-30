@@ -8,6 +8,8 @@
     "debug": "node --inspect-brk ./dist/index.js",
     "serve": "node ./dist/index.js",
     "start": "nodemon --exec babel-node ./server/app.js",
+    "postinstall": "npm run build",
+    "test": "nyc ./node_modules/.bin/mocha ./server/tests/* --require @babel/register --timeout 40000 --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "db-init": "babel-node ./server/models/dbinit.js"
   },
