@@ -2,7 +2,6 @@ import { joinStrings } from '../helpers';
 
 const populateError = (req, ...fields) => {
   const error = [];
-  // eslint-disable-next-line array-callback-return
   fields.map(field => {
     if (!req.body[field]) error.push(field);
   });
