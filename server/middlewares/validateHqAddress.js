@@ -1,10 +1,10 @@
 import dotenv from 'dotenv';
+import googleMaps from '@google/maps';
 
 dotenv.load();
 
 const validateHqAddress = (req, res, next) => {
-// eslint-disable-next-line global-require
-  const googleMapsClient = require('@google/maps').createClient({
+  const googleMapsClient = googleMaps.createClient({
     key: process.env.GOOGLE_API_KEY,
   });
   googleMapsClient.places(

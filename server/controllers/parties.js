@@ -37,6 +37,21 @@ class PartyController {
       data: [party],
     });
   }
+
+  static patchName(req, res) {
+    const id = Number(req.params.id);
+    const partyIndex = partiesData.findIndex(party => party.id === id);
+    partiesData[partyIndex].name = req.body.name;
+    return res.status(200).send({
+      status: 200,
+      data: [
+        {
+          id,
+          name: partiesData[partyIndex].name,
+        },
+      ],
+    });
+  }
 }
 
 export default PartyController;
