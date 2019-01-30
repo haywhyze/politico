@@ -271,6 +271,7 @@ describe('Parties', () => {
         .delete('/api/v1/parties/1')
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body.data[0].message).to.be.a('string');
           done();
         });
     });
@@ -281,6 +282,7 @@ describe('Parties', () => {
         .delete('/api/v1/parties/12')
         .end((err, res) => {
           expect(res.status).to.equal(404);
+          expect(res.body.error).to.equal('party ID provided does not exist');
           done();
         });
     });
@@ -290,6 +292,7 @@ describe('Parties', () => {
         .delete('/api/v1/parties/shade')
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('party ID value provided is not valid');
           done();
         });
     });
