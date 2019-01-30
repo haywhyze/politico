@@ -1,9 +1,16 @@
-const offices = [
-  {
-    id: 1,
-    type: 'federal',
-    name: 'President',
-  },
-];
+import db from './db';
 
-export default offices;
+module.exports = async () => {
+  try {
+    await db.query(
+      `CREATE TABLE IF NOT EXISTS offices(
+        id SERIAL PRIMARY KEY,
+        type TEXT NOT NULL,
+        name TEXT UNIQUE NOT NULL
+      )`,
+    );
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+  }
+};

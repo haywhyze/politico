@@ -1,10 +1,18 @@
-const parties = [
-  {
-    id: 1,
-    name: 'Peoples Democratic Party',
-    hqAddress: 'Plot 1970 Michael Okpara St, Wuse, Abuja',
-    logoUrl: 'http://res.cloudinary.com/haywhyze/image/upload/v1548329998/pdwafyuw0uqo1nlzejde.jpg',
-  },
-];
+import db from './db';
 
-export default parties;
+module.exports = async () => {
+  try {
+    await db.query(
+      `CREATE TABLE IF NOT EXISTS parties(
+        id SERIAL PRIMARY KEY,
+        name TEXT NOT NULL,
+        symbol TEXT UNIQUE NOT NULL,
+        hq_address TEXT NOT NULL,
+        logo_url TEXT NOT NULL
+      )`,
+    );
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+  }
+};
