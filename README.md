@@ -40,6 +40,8 @@ The general elections in my country is just around the corner, hence, politics i
 
 `npm install`
 
+- Edit .env.sample file to add a cloudinary url string and a google API key to have access to upload images to cloudinary and to use the google places API to autogenerate addresses. respectively. After that rename the file to `.env`
+
 - Start the application.
 
 `npm run start`
