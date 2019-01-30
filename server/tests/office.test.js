@@ -40,6 +40,7 @@ describe('Offices', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(201);
+          expect(res.body.data).to.be.an('array');
           done();
         });
     });
@@ -54,6 +55,7 @@ describe('Offices', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body.error).to.be.a('string');
           done();
         });
     });
@@ -68,6 +70,7 @@ describe('Offices', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body.error).to.be.a('string');
           done();
         });
     });
@@ -81,6 +84,7 @@ describe('Offices', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body.error).to.be.a('string');
           done();
         });
     });
@@ -94,6 +98,7 @@ describe('Offices', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body.error).to.be.a('string');
           done();
         });
     });
