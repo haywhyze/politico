@@ -8,5 +8,6 @@ import validateUserInput from '../middlewares/validateUserInput';
 const auth = Router();
 
 auth.post('/signup', uploadPassport, isEmpty, validateUserInput, emailExist, UserController.create);
+auth.post('/login', UserController.login);
 
 export default auth;
