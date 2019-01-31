@@ -147,6 +147,7 @@ describe('Offices', () => {
         .get('/api/v1/offices/15')
         .end((err, res) => {
           expect(res.status).to.equal(404);
+          expect(res.body.error).to.equal('office ID provided does not exist');
           done();
         });
     });
@@ -157,6 +158,7 @@ describe('Offices', () => {
         .get('/api/v1/offices/1yut')
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('office ID value provided is not valid');
           done();
         });
     });
