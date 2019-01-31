@@ -33,9 +33,9 @@ const parties = async () => {
   ];
 
   try {
-    await db.query(text, values[0]);
-    await db.query(text, values[1]);
-    await db.query(text, values[2]);
+    values.map(async value => {
+      await db.query(text, value);
+    });
   } catch (error) {
     console.log(error);
   }

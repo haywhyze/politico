@@ -10,6 +10,8 @@ const pool = new Pool({
   connectionString,
 });
 
-module.exports = {
+const db = {
   query: (text, params) => pool.query(text, params),
 };
+
+export default db;

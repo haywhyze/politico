@@ -1,9 +1,12 @@
 import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
 import db from '../db';
 
+dotenv.load();
+
 const saltRounds = 10;
-const adminPassword = 'adminpassword';
-const userPassword = 'userpassword';
+const adminPassword = process.env.ADMIN_PASSWORD;
+const userPassword = process.env.USER_PASSWORD;
 
 const users = async () => {
   const hashedAdminPassword = await bcrypt.hash(adminPassword, saltRounds);
@@ -57,9 +60,9 @@ const users = async () => {
   ];
 
   try {
-    await db.query(text, values[0]);
-    await db.query(text, values[1]);
-    await db.query(text, values[2]);
+    values.map(async value => {
+      await db.query(text, value);
+    });
   } catch (error) {
     console.log(error);
   }

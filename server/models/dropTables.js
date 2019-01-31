@@ -10,7 +10,6 @@ const dropTables = async () => {
     parties, 
     users CASCADE`);
   } catch (error) {
-    /* eslint-disable-next-line no-console */
     console.log(error);
   }
 };
