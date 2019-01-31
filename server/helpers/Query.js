@@ -27,6 +27,15 @@ class Query {
       return err;
     }
   }
+
+  static async getAll(table, column, userInfo) {
+    try {
+      const result = await db.query(`SELECT * FROM ${table} WHERE ${column} = $1`, userInfo);
+      return result;
+    } catch (error) {
+      return undefined;
+    }
+  }
 }
 
 export default Query;
