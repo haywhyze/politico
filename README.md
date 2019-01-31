@@ -26,7 +26,13 @@ The general elections in my country is just around the corner, hence, politics i
 
 ## Prerequisites
 
-[NodeJS](https://nodejs.org/) (>10.14.2) and [NPM](https://www.npmjs.com/) (>6.4.1) will be required to run this application.
+- [NodeJS](https://nodejs.org/) (>10.14.2) and [NPM](https://www.npmjs.com/) (>6.4.1) will be required to run this application.
+
+- A [Postgres](https://www.postgresql.org/download/) Database is required to persist data
+
+- A [cloudinary](https://cloudinary.com) account is required to upload images to the cloud
+
+- A [google API keys](https://developers.google.com/maps/documentation/javascript/get-api-key) to generate address from the GoogleMaps Places API
 
 ---
 
@@ -36,17 +42,29 @@ The general elections in my country is just around the corner, hence, politics i
 
 > As at the time of writing this, the application is still in development and the following commands might not behave as expected. This docs will be updated as soon as the application can be installed.
 
-- Clone this repository and navigate into it.
+#### Clone this repository and navigate into it.
 
 `git clone https://github.com/haywhyze/politico.git && cd politico`
 
-- Install dependencies.
+#### Install dependencies.
 
 `npm install`
 
-- Edit .env.sample file to add a cloudinary url string and a google API key to have access to upload images to cloudinary and to use the google places API to autogenerate addresses. respectively. After that rename the file to `.env`
+#### Add Neccessary Environment Variables
 
-- Start the application.
+ Edit the .env.sample file to add: 
+
+- A cloudinary url string to upload images to cloudinary, 
+
+- A google API key to have access to the google places API to autogenerate addresses. 
+
+- A jswebtoken secret to encrypt jsonwebtoken
+
+- Port number where the server can listen on
+
+After that rename the file to `.env`
+
+#### Start the application.
 
 `npm run start`
 
