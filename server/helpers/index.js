@@ -10,7 +10,6 @@ const joinStrings = strings => {
 
 const splitName = fullName => {
   const namesArr = fullName.split(' ');
-  /* eslint-disable-next-line prefer-const */
   let [firstName, lastName, ...otherNames] = namesArr;
   otherNames = otherNames.join(' ');
   return { firstName, lastName, otherNames };
