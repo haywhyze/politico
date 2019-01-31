@@ -94,7 +94,7 @@ describe('Parties', () => {
         .post('/api/v1/parties')
         .type('form')
         .field('name', 'All Progressives Congress')
-        .field('hqAddress', 'Just me trying out stuff')
+        .field('hqAddress', '')
         .attach('logoUrl', './UI/img/img_3.jpg', 'img_3.jpg')
         .then(res => {
           expect(res.status).to.equal(400);
@@ -293,5 +293,7 @@ describe('Parties', () => {
           expect(res.status).to.equal(400);
           expect(res.body.error).to.equal('party ID value provided is not valid');
           done();
+        });
+    });
   });
 });

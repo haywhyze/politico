@@ -116,7 +116,7 @@ describe('Offices', () => {
         });
     });
 
-    it('should return empty array if there are no party records to display', done => {
+    it('should return empty array if there are no office records to display', done => {
       officesData.splice(0, officesData.length);
       chai
         .request(app)
@@ -129,4 +129,38 @@ describe('Offices', () => {
     });
   });
 
+  describe('GET /api/v1/offices/<office-id>', () => {
+    it('should get a specific office if ID exist', done => {
+      chai
+        .request(app)
+        .get('/api/v1/offices/1')
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.data[0].id).to.equal(1);
+          done();
+        });
+    });
+
+    it('should send a 404 error if ID does not exist', done => {
+      chai
+        .request(app)
+        .get('/api/v1/offices/15')
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.error).to.equal('office ID provided does not exist');
+          done();
+        });
+    });
+
+    it('should send a 400 error if ID is not valid', done => {
+      chai
+        .request(app)
+        .get('/api/v1/offices/1yut')
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('office ID value provided is not valid');
+          done();
+        });
+    });
+  });
 });

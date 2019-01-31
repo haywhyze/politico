@@ -26,6 +26,15 @@ class OfficeContrller {
       data: officesData,
     });
   }
+
+  static getOne(req, res) {
+    const id = Number(req.params.id);
+    const office = officesData.find(e => e.id === id);
+    return res.status(200).send({
+      status: 200,
+      data: [office],
+    });
+  }
 }
 
 export default OfficeContrller;
