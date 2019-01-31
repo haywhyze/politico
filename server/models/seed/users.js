@@ -35,7 +35,7 @@ const users = async () => {
       '08031961496',
       `${hashedAdminPassword}`,
       true,
-      new Date(),
+      'https://res.cloudinary.com/haywhyze/image/upload/v1548899925/riw9zlsu4jjxwcc54yoa.jpg',
     ],
     [
       'Ayobami',
@@ -45,7 +45,7 @@ const users = async () => {
       '08055744044',
       `${hashedUserPassword}`,
       false,
-      new Date(),
+      'https://res.cloudinary.com/haywhyze/image/upload/v1548899925/riw9zlsu4jjxwcc54yoa.jpg',
     ],
     [
       'Shade',
@@ -55,7 +55,7 @@ const users = async () => {
       '07085033470',
       `${hashedUserPassword}`,
       false,
-      new Date(),
+      'https://res.cloudinary.com/haywhyze/image/upload/v1548899925/riw9zlsu4jjxwcc54yoa.jpg',
     ],
   ];
 

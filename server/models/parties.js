@@ -1,3 +1,4 @@
+import 'idempotent-babel-polyfill';
 import db from './db';
 
 module.exports = async () => {

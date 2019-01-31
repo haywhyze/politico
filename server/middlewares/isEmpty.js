@@ -1,4 +1,4 @@
-import { joinStrings } from '../helpers';
+import { joinStrings, splitName } from '../helpers';
 
 const populateError = (req, ...fields) => {
   const error = [];
@@ -21,7 +21,7 @@ const setErrorMsg = error => {
 const isEmpty = (req, res, next) => {
   let path = req.url.split('/');
   path = path[path.length - 1];
-  let error;
+  let error = [];
 
   if (req.method === 'PATCH') {
     if (!req.body[path]) {
@@ -34,6 +34,18 @@ const isEmpty = (req, res, next) => {
     const endpointRoot = req.url.split('/')[1];
     if (endpointRoot === 'offices') error = populateError(req, 'name', 'type');
     else if (endpointRoot === 'parties') error = populateError(req, 'name', 'hqAddress');
+    else {
+      if (!req.body.fullname) {
+        error.push('fullname');
+      } else {
+        const name = splitName(req.body.fullname);
+        if (!name.lastName) {
+          error.push('lastName');
+        }
+      }
+      const err = populateError(req, 'email', 'phoneNumber', 'password', 'confirmPassword');
+      if (err[0]) err.map(e => error.push(e));
+    }
     if (error[0]) {
       const errorMsg = setErrorMsg(error);
       return res.status(400).send({
