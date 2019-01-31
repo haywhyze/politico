@@ -1,4 +1,4 @@
-import { hashPassword, generateToken, splitName } from '../helpers/index';
+import { hashPassword, generateToken, comparePassword, splitName } from '../helpers/index';
 import Query from '../helpers/Query';
 
 class UserController {
@@ -34,6 +34,32 @@ class UserController {
     return res.status(500).send({
       status: 500,
       error: 'Internal Server Error',
+    });
+  }
+
+  static async login(req, res) {
+    const { rows } = await Query.getAll('users', 'email', [req.body.email]);
+    if (!rows[0]) {
+      return res.status(400).send({
+        status: 400,
+        error: 'Username/Password is incorrrect',
+      });
+    }
+    if (!comparePassword(rows[0].password, req.body.password)) {
+      return res.status(400).send({
+        status: 400,
+        error: 'Username/Password is incorrect',
+      });
+    }
+    const token = generateToken(rows[0].id);
+    return res.status(200).send({
+      status: 200,
+      data: [
+        {
+          token,
+          user: rows[0],
+        },
+      ],
     });
   }
 }

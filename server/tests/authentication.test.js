@@ -200,4 +200,51 @@ describe('Authenticate User', () => {
       expect(res.body.error).to.be.an('array');
     });
   });
+
+  describe('Sign In user end-point', () => {
+    it('should login user if provided with right values', async () => {
+      const res = await chai
+        .request(app)
+        .post('/api/v1/auth/login')
+        .send({
+          email: 'haywhyze@hotmail.com',
+          password: 'adminpassword',
+        });
+      expect(res.status).to.eql(200);
+      expect(res.body.data[0].user).to.be.an('object');
+    });
+    it('should not login user if email is not provided', async () => {
+      const res = await chai
+        .request(app)
+        .post('/api/v1/auth/login')
+        .send({
+          email: '',
+          password: 'haywhyze',
+        });
+      expect(res.status).to.equal(400);
+      expect(res.body.error).to.be.a('string');
+    });
+    it('should not login user with unregistered email', async () => {
+      const res = await chai
+        .request(app)
+        .post('/api/v1/auth/login')
+        .send({
+          email: 'haywhyze@google.com',
+          password: '(adminPASSWORD2018)',
+        });
+      expect(res.status).to.equal(400);
+      expect(res.body.error).to.be.a('string');
+    });
+    it('should not login user with wrong password', async () => {
+      const res = await chai
+        .request(app)
+        .post('/api/v1/auth/login')
+        .send({
+          email: 'haywhyze@hotmail.com',
+          password: '(admingfgfgf',
+        });
+      expect(res.status).to.equal(400);
+      expect(res.body.error).to.be.a('string');
+    });
+  });
 });
