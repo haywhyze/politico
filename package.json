@@ -5,11 +5,12 @@
   "main": "./server/app.js",
   "scripts": {
     "build": "babel server --out-dir ./dist --source-maps",
-    "debug": "node --inspect-brk ./dist/app.js",
-    "serve": "node ./dist/app.js",
+    "debug": "node --inspect-brk ./dist/index.js",
+    "serve": "node ./dist/index.js",
     "start": "nodemon --exec babel-node ./server/app.js",
-    "test": "./node_modules/.bin/mocha ./server/tests/* --require @babel/register --timeout 40000 --exit",
-    "postinstall": "npm run build"
+    "test": "nyc ./node_modules/.bin/mocha ./server/tests/* --require @babel/register --timeout 40000 --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "db-init": "babel-node ./server/models/dbinit.js"
   },
   "repository": {
     "type": "git",
@@ -46,11 +47,15 @@
   },
   "dependencies": {
     "@google/maps": "^0.5.5",
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "cloudinary": "^1.13.2",
+    "cross-env": "^5.2.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
     "multer": "^1.4.1",
+    "pg": "^7.8.0",
     "rimraf": "^2.6.3"
   }
 }
