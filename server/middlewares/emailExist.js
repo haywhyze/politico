@@ -1,7 +1,7 @@
-import QueryHelpers from '../helpers/Query';
+import Query from '../helpers/Query';
 
 const userInfoExists = async (req, res, next) => {
-  const { rows } = await QueryHelpers.checkUserInfoExist([req.body.email]);
+  const { rows } = await Query.checkDuplicate('users', 'email', [res.locals.email]);
   if (rows[0]) {
     return res.status(409).send({
       status: 409,

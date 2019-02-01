@@ -2,16 +2,24 @@ import { Router } from 'express';
 import isEmpty from '../middlewares/isEmpty';
 import validateHqAddress from '../middlewares/validateHqAddress';
 import validateName from '../middlewares/validateName';
-import validateID from '../middlewares/validateID';
 import uploadlogo from '../middlewares/uploadLogo';
+import partySymbolExists from '../middlewares/partySymbolExists';
 import PartyController from '../controllers/parties';
+import verifyToken from '../middlewares/verifyToken';
+import justAdmin from '../middlewares/justAdmin';
 
 const parties = Router();
 
-parties.post('/', uploadlogo, isEmpty, validateName, validateHqAddress, PartyController.create);
-parties.get('/', PartyController.getAll);
-parties.get('/:id', validateID, PartyController.getOne);
-parties.patch('/:id/name', validateID, isEmpty, validateName, PartyController.patchName);
-parties.delete('/:id', validateID, PartyController.delete);
+parties.post(
+  '/',
+  verifyToken,
+  justAdmin,
+  uploadlogo,
+  isEmpty,
+  validateName,
+  validateHqAddress,
+  partySymbolExists,
+  PartyController.create,
+);
 
 export default parties;

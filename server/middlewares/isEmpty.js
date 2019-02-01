@@ -31,7 +31,7 @@ const isEmpty = (req, res, next) => {
       });
     }
   } else {
-    const endpointRoot = req.url.split('/')[1];
+    const endpointRoot = req.originalUrl.split('/')[3];
     if (endpointRoot === 'offices') error = populateError(req, 'name', 'type');
     else if (endpointRoot === 'parties') error = populateError(req, 'name', 'hqAddress');
     else {

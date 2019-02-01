@@ -30,4 +30,13 @@ const generateToken = id => {
   return token;
 };
 
-export { joinStrings, hashPassword, comparePassword, splitName, generateToken };
+const getSymbol = str =>
+  str
+    .toLowerCase()
+    .split(' ')
+    .filter(e => e !== 'of' && e !== 'and' && e !== 'for')
+    .map(e => e[0])
+    .join('')
+    .toUpperCase();
+
+export { joinStrings, hashPassword, comparePassword, splitName, generateToken, getSymbol };
