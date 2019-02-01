@@ -30,10 +30,23 @@ class Query {
 
   static async getAll(table, column, userInfo) {
     try {
-      const result = await db.query(`SELECT * FROM ${table} WHERE ${column} = $1`, userInfo);
+      let result;
+      if (column) result = await db.query(`SELECT * FROM ${table} WHERE ${column} = $1`, userInfo);
+      else result = await db.query(`SELECT * FROM ${table}`);
       return result;
     } catch (error) {
-      return undefined;
+      console.log(error);
+      return error;
+    }
+  }
+
+  static async getOne(table, userInfo) {
+    try {
+      const result = await db.query(`SELECT * FROM ${table} WHERE id = $1`, userInfo);
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error;
     }
   }
 

@@ -20,6 +20,24 @@ class PartyController {
       error: 'Internal server Error',
     });
   }
+
+  static async getAll(req, res) {
+    const { rows } = await Query.getAll(`parties`);
+    return res.status(200).send({
+      status: 200,
+      data: [rows],
+    });
+  }
+
+  static async getOne(req, res) {
+    const id = Number(req.params.id);
+    const { rows } = await Query.getOne(`parties`, [id]);
+
+    return res.status(200).send({
+      status: 200,
+      data: [rows],
+    });
+  }
 }
 
 export default PartyController;
