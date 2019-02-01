@@ -25,5 +25,15 @@ parties.post(
 
 parties.get('/', verifyToken, PartyController.getAll);
 parties.get('/:id', verifyToken, validateID, PartyController.getOne);
+parties.patch(
+  '/:id/name',
+  verifyToken,
+  justAdmin,
+  validateID,
+  isEmpty,
+  validateName,
+  PartyController.updateName,
+);
+parties.delete('/:id', verifyToken, justAdmin, validateID, PartyController.delete);
 
 export default parties;
