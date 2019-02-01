@@ -11,16 +11,24 @@ const { expect } = chai;
 
 chai.use(chaiHttp);
 
-const tokenAdmin =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTU0ODk4NDU3MSwiZXhwIjoxNTQ5NTg5MzcxfQ.ZIDqiLemXgtVL6kIz-XzzJMr1Q4RDbpnS0Rc6QO2rL4';
-const tokenUser =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTU0ODk4NDc3NywiZXhwIjoxNTQ5NTg5NTc3fQ.V1UuCiEhoTjLHM_szV4-2S1fAKCZZEiVpZdEEoSIUcs';
 
 describe('Parties Route', () => {
+  let tokenAdmin;
+
   before(async () => {
     await dropTables();
     await createTables();
     await seedDb();
+    const result = await chai
+      .request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'haywhyze@hotmail.com',
+        password: process.env.ADMIN_PASSWORD,
+      });
+    console.log(result.body.data[0].token);
+
+    tokenAdmin = result.body.data[0].token;
   });
 
   describe('POST /parties - Create Party', () => {
