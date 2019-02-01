@@ -11,7 +11,6 @@ const { expect } = chai;
 
 chai.use(chaiHttp);
 
-
 describe('Parties Route', () => {
   let tokenAdmin;
 
@@ -154,6 +153,53 @@ describe('Parties Route', () => {
           expect(res.status).to.equal(400);
           done();
         });
+    });
+
+    describe('GET /api/v1/parties', () => {
+      it('should return 401 on users not logged in', async () => {
+        const res = await chai.request(app).get('/api/v1/parties');
+        expect(res.status).to.equal(401);
+      });
+      it('should return 400 for invalid token', async () => {
+        const res = await chai
+          .request(app)
+          .get('/api/v1/parties')
+          .set('x-access-token', 'justarandomddadd');
+        expect(res.status).to.equal(401);
+      });
+      it('should get all red-flags for logged in user', async () => {
+        const res = await chai
+          .request(app)
+          .get('/api/v1/parties')
+          .set('x-access-token', tokenAdmin);
+        expect(res.status).to.equal(200);
+      });
+    });
+
+    describe('GET /api/v1/parties/:id', () => {
+      it('should send a 400 error if ID is not valid', async () => {
+        const res = await chai
+          .request(app)
+          .get('/api/v1/parties/1yut')
+          .set('x-access-token', tokenAdmin);
+        expect(res.status).to.equal(400);
+        expect(res.body.error).to.be.a('string');
+      });
+      it('should send a 404 error if ID does not exist', async () => {
+        const res = await chai
+          .request(app)
+          .get('/api/v1/parties/15')
+          .set('x-access-token', tokenAdmin);
+        expect(res.status).to.equal(404);
+        expect(res.body.error).to.be.a('string');
+      });
+      it('should get a specific red-flag if ID exist', async () => {
+        const res = await chai
+          .request(app)
+          .get('/api/v1/parties/1')
+          .set('x-access-token', tokenAdmin);
+        expect(res.status).to.equal(200);
+      });
     });
   });
 });
