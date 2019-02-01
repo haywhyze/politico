@@ -19,9 +19,9 @@ class Query {
     }
   }
 
-  static async checkUserInfoExist(userInfo) {
+  static async checkDuplicate(table, field, value) {
     try {
-      const result = await db.query('SELECT email FROM users WHERE email = $1', userInfo);
+      const result = await db.query(`SELECT ${field} FROM ${table} WHERE ${field} = $1`, value);
       return result;
     } catch (err) {
       return err;
@@ -34,6 +34,24 @@ class Query {
       return result;
     } catch (error) {
       return undefined;
+    }
+  }
+
+  static async createParty(table, userInfo) {
+    const text = `INSERT INTO ${table}(
+        name,
+        symbol,
+        hq_address,
+        logo_url
+      )
+      VALUES($1, $2, $3, $4)
+      returning id, name`;
+    try {
+      const result = await db.query(text, userInfo);
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error;
     }
   }
 }

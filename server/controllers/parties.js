@@ -1,70 +1,25 @@
-import partiesData from '../models/parties';
+import Query from '../helpers/Query';
 
 class PartyController {
-  static create(req, res) {
-    const party = {
-      id: partiesData.length + 1,
-      name: res.locals.partyName,
-      hqAddress: res.locals.address,
-      logoUrl: res.locals.logo,
-    };
-    partiesData.push(party);
-    return res.status(201).send({
-      status: 201,
-      data: [
-        {
-          id: party.id,
-          name: party.name,
-          logoUrl: party.logoUrl,
-          hqAddress: party.hqAddress,
-        },
-      ],
-    });
-  }
-
-  static getAll(req, res) {
-    return res.status(200).send({
-      status: 200,
-      data: partiesData,
-    });
-  }
-
-  static getOne(req, res) {
-    const id = Number(req.params.id);
-    const party = partiesData.find(e => e.id === id);
-    return res.status(200).send({
-      status: 200,
-      data: [party],
-    });
-  }
-
-  static patchName(req, res) {
-    const id = Number(req.params.id);
-    const partyIndex = partiesData.findIndex(party => party.id === id);
-    partiesData[partyIndex].name = req.body.name;
-    return res.status(200).send({
-      status: 200,
-      data: [
-        {
-          id,
-          name: partiesData[partyIndex].name,
-        },
-      ],
-    });
-  }
-
-  static delete(req, res) {
-    const id = Number(req.params.id);
-    const partyIndex = partiesData.findIndex(party => party.id === id);
-    const party = partiesData.splice(partyIndex, 1);
-    return res.status(200).send({
-      status: 200,
-      data: [
-        {
-          message: `${party[0].name} deleted`,
-        },
-      ],
+  static async create(req, res) {
+    const values = [res.locals.partyName, res.locals.symbol, res.locals.address, res.locals.image];
+    const { rows } = await Query.createParty('parties', values);
+    if (rows) {
+      return res.status(201).send({
+        status: 201,
+        data: [
+          {
+            id: rows[0].id,
+            name: rows[0].name,
+          },
+        ],
+      });
+    }
+    return res.status(500).send({
+      status: 500,
+      error: 'Internal server Error',
     });
   }
 }
+
 export default PartyController;
