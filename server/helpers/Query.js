@@ -67,6 +67,29 @@ class Query {
       return error;
     }
   }
+
+  static async updateField(table, field, userInfo) {
+    const text = `UPDATE ${table}
+    SET ${field}=$1
+    WHERE id=$2 returning *`;
+    try {
+      const { rows } = await db.query(text, userInfo);
+      return rows;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  static async delete(table, id) {
+    try {
+      const result = await db.query(`DELETE FROM ${table} WHERE id = $1 returning id`, id);
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
 }
 
 export default Query;
