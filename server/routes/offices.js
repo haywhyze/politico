@@ -20,6 +20,7 @@ office.post(
   officeExists,
   OfficeContrller.create,
 );
+office.post('/:id/register', verifyToken, justAdmin, isEmpty, validateID, OfficeContrller.register);
 
 office.get('/', verifyToken, OfficeContrller.getAll);
 office.get('/:id', verifyToken, validateID, OfficeContrller.getOne);

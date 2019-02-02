@@ -39,6 +39,21 @@ class OfficeContrller {
       data: [rows],
     });
   }
+
+  static async register(req, res) {
+    const id = Number(req.params.id);
+    const result = await Query.register([req.body.office, req.body.party, id]);
+    if (result.rows) {
+      return res.status(201).send({
+        status: 200,
+        data: [result.rows],
+      });
+    }
+    return res.status(400).send({
+      status: 400,
+      data: result,
+    });
+  }
 }
 
 export default OfficeContrller;
