@@ -7,7 +7,7 @@ module.exports = async () => {
         id SERIAL UNIQUE NOT NULL,
         created_on TIMESTAMP,
         candidate INTEGER REFERENCES candidates (id) ON DELETE CASCADE,
-        office INTEGER REFERENCES parties (id) ON DELETE CASCADE,
+        office INTEGER REFERENCES offices (id) ON DELETE CASCADE,
         created_by INTEGER REFERENCES users (id) ON DELETE CASCADE,
         PRIMARY KEY (office, created_by)
       )`,

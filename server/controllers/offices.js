@@ -45,7 +45,7 @@ class OfficeContrller {
     const result = await Query.register([req.body.office, req.body.party, id]);
     if (result.rows) {
       return res.status(201).send({
-        status: 200,
+        status: 201,
         data: [result.rows],
       });
     }
