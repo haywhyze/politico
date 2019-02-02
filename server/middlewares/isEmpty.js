@@ -32,8 +32,11 @@ const isEmpty = (req, res, next) => {
     }
   } else {
     const endpointRoot = req.originalUrl.split('/')[3];
-    if (endpointRoot === 'offices') error = populateError(req, 'name', 'type');
-    else if (endpointRoot === 'parties') error = populateError(req, 'name', 'hqAddress');
+    if (endpointRoot === 'offices') {
+      if (req.originalUrl.split('/')[5] === 'register')
+        error = populateError(req, 'office', 'party');
+      else error = populateError(req, 'name', 'type');
+    } else if (endpointRoot === 'parties') error = populateError(req, 'name', 'hqAddress');
     else {
       if (!req.body.fullname) {
         error.push('fullname');
