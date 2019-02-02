@@ -147,7 +147,8 @@ class Query {
       const result = await db.query(
         `SELECT candidate, COUNT (created_by)
         FROM ${table}
-        WHERE office = $1`,
+        WHERE office = $1
+        GROUP BY candidate`,
         id,
       );
       return result;
