@@ -1,10 +1,10 @@
 const validateCandidateInput = (req, res, next) => {
   let error = 'Invalid value provided for: ';
   let flag;
-  const fields = [req.body.office, req.body.party];
+  const fields = [[req.body.office, 'office'], [req.body.party, 'party']];
   fields.map(field => {
-    if (Number(field) || field % 1 !== 0) {
-      error += `${field} `;
+    if (Number.isNaN(field[0]) || field[0] % 1 !== 0) {
+      error += `${field[1]} `;
       flag = true;
     }
   });
