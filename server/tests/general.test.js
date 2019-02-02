@@ -119,6 +119,56 @@ describe('Offices Route', () => {
     });
   });
 });
+
+describe('GET /api/v1/offices', () => {
+    it('should get all offices if records exist', done => {
+      chai
+        .request(app)
+        .get('/api/v1/offices')
+        .set('x-access-token', tokenAdmin)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.data).to.be.an('array');
+          done();
+        });
+    });
+  });
+
+  describe('GET /api/v1/offices/<office-id>', () => {
+    it('should get a specific office if ID exist', done => {
+      chai
+        .request(app)
+        .get('/api/v1/offices/1')
+        .set('x-access-token', tokenAdmin)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('should send a 404 error if ID does not exist', done => {
+      chai
+        .request(app)
+        .get('/api/v1/offices/15')
+        .set('x-access-token', tokenAdmin)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+
+    it('should send a 400 error if ID is not valid', done => {
+      chai
+        .request(app)
+        .get('/api/v1/offices/1yut')
+        .set('x-access-token', tokenAdmin)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
+  });
+
 describe('Parties Route', () => {
   describe('POST /parties - Create Party', () => {
     it('should not create when user is not logged in', async () => {
