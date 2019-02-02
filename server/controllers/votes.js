@@ -18,7 +18,7 @@ class VoteController {
     }
     let error;
     if (result.constraint.includes('pkey')) {
-      error = 'You have already voted for this candidate';
+      error = 'You have already voted for a candidate for this office';
       return res.status(409).send({
         status: 409,
         error,
