@@ -28,7 +28,7 @@ class VoteController {
     if (result.constraint.includes('office')) error = 'Office ID does not exist.';
     return res.status(404).send({
       status: 404,
-      error: result,
+      error,
     });
   }
 }
