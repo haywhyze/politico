@@ -10,10 +10,8 @@ import 'idempotent-babel-polyfill';
 const { expect } = chai;
 
 chai.use(chaiHttp);
-
-describe('Parties Route', () => {
-  let tokenAdmin;
-
+let tokenAdmin;
+describe('Offices Route', () => {
   before(async () => {
     await dropTables();
     await createTables();
@@ -28,6 +26,100 @@ describe('Parties Route', () => {
     tokenAdmin = result.body.data[0].token;
   });
 
+  describe('POST /api/v1/offices', () => {
+    it('should not create when user is not logged in', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices')
+        .send({
+          name: 'Deputy Governor',
+          type: 'state',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+    });
+
+    it('should create when user is logged in', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          name: 'Deputy Governor',
+          type: 'state',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          done();
+        });
+    });
+
+    it('should not create an office if name value is invalid', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          name: 'Governor90',
+          type: 'state',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.be.a('string');
+          done();
+        });
+    });
+
+    it('should not create an office if type value is invalid', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          name: 'Deputy Governor',
+          type: 'stateoforigin',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.be.a('string');
+          done();
+        });
+    });
+
+    it('should not create an office if name value is not provided', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          type: 'state',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.be.a('string');
+          done();
+        });
+    });
+
+    it('should not create an office if type value is not provided', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          name: 'Deputy Governor',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.be.a('string');
+          done();
+        });
+    });
+  });
+});
+describe('Parties Route', () => {
   describe('POST /parties - Create Party', () => {
     it('should not create when user is not logged in', async () => {
       const res = await chai
@@ -166,7 +258,7 @@ describe('Parties Route', () => {
         .set('x-access-token', 'justarandomddadd');
       expect(res.status).to.equal(401);
     });
-    it('should get all red-flags for logged in user', async () => {
+    it('should get all parties for logged in user', async () => {
       const res = await chai
         .request(app)
         .get('/api/v1/parties')
@@ -192,7 +284,7 @@ describe('Parties Route', () => {
       expect(res.status).to.equal(404);
       expect(res.body.error).to.be.a('string');
     });
-    it('should get a specific red-flag if ID exist', async () => {
+    it('should get a specific party if ID exist', async () => {
       const res = await chai
         .request(app)
         .get('/api/v1/parties/1')
