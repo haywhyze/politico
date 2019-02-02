@@ -34,5 +34,5 @@ office.post(
 
 office.get('/', verifyToken, OfficeContrller.getAll);
 office.get('/:id', verifyToken, validateID, OfficeContrller.getOne);
-
+office.get('/:id/results', verifyToken, validateID, OfficeContrller.results);
 export default office;

@@ -64,6 +64,21 @@ class OfficeContrller {
       error,
     });
   }
+
+  static async results(req, res) {
+    const id = Number(req.params.id);
+    const { rows } = await Query.fetchResults('votes', [id]);
+    if (rows) {
+      return res.status(200).json({
+        status: 200,
+        data: rows[0],
+      });
+    }
+    return res.status(500).send({
+      status: 500,
+      error: 'Internal Server Error',
+    });
+  }
 }
 
 export default OfficeContrller;
