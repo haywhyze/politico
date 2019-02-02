@@ -16,16 +16,19 @@ class VoteController {
         ],
       });
     }
+    let error;
     if (result.constraint.includes('pkey')) {
-      const error = 'You have already voted for this candidate';
+      error = 'You have already voted for this candidate';
       return res.status(409).send({
         status: 409,
         error,
       });
     }
-    return res.status(500).send({
-      status: 500,
-      error: 'Internal Server Error',
+    if (result.constraint.includes('party')) error = 'Party ID does not exist.';
+    if (result.constraint.includes('office')) error = 'Office ID does not exist.';
+    return res.status(404).send({
+      status: 404,
+      error,
     });
   }
 }
