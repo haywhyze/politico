@@ -64,6 +64,21 @@ class OfficeContrller {
       error,
     });
   }
+
+  static async results(req, res) {
+    const id = Number(req.params.id);
+    const result = await Query.fetchResults('votes', [id]);
+    if (result.rows) {
+      return res.status(200).json({
+        status: 200,
+        data: result.rows,
+      });
+    }
+    return res.status(500).send({
+      status: 500,
+      result,
+    });
+  }
 }
 
 export default OfficeContrller;

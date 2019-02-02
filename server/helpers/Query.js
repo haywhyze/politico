@@ -141,6 +141,22 @@ class Query {
       return error;
     }
   }
+
+  static async fetchResults(table, id) {
+    try {
+      const result = await db.query(
+        `SELECT candidate, COUNT (created_by) result
+        FROM ${table}
+        WHERE office = $1
+        GROUP BY candidate
+        ORDER BY result DESC`,
+        id,
+      );
+      return result;
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default Query;
