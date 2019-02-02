@@ -148,7 +148,8 @@ class Query {
         `SELECT candidate, COUNT (created_by) result
         FROM ${table}
         WHERE office = $1
-        GROUP BY candidate`,
+        GROUP BY candidate
+        ORDER BY result DESC`,
         id,
       );
       return result;

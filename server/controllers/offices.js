@@ -71,7 +71,7 @@ class OfficeContrller {
     if (result.rows) {
       return res.status(200).json({
         status: 200,
-        data: result.rows[0],
+        data: result.rows,
       });
     }
     return res.status(500).send({
