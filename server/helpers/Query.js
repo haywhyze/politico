@@ -58,7 +58,23 @@ class Query {
         logo_url
       )
       VALUES($1, $2, $3, $4)
-      returning id, name`;
+      returning *`;
+    try {
+      const result = await db.query(text, userInfo);
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  static async createOffice(table, userInfo) {
+    const text = `INSERT INTO ${table}(    
+      type,
+      name
+      )
+      VALUES($1, $2)
+      returning *`;
     try {
       const result = await db.query(text, userInfo);
       return result;

@@ -1,38 +1,24 @@
-import officesData from '../models/offices';
+import Query from '../helpers/Query';
 
 class OfficeContrller {
-  static create(req, res) {
-    const office = {
-      id: officesData.length + 1,
-      type: req.body.type,
-      name: res.locals.name,
-    };
-    officesData.push(office);
-    return res.status(201).send({
-      status: 201,
-      data: [
-        {
-          id: office.id,
-          type: office.type,
-          name: office.name,
-        },
-      ],
-    });
-  }
-
-  static getAll(req, res) {
-    return res.status(200).send({
-      status: 200,
-      data: officesData,
-    });
-  }
-
-  static getOne(req, res) {
-    const id = Number(req.params.id);
-    const office = officesData.find(e => e.id === id);
-    return res.status(200).send({
-      status: 200,
-      data: [office],
+  static async create(req, res) {
+    const values = [req.body.type, res.locals.name];
+    const { rows } = await Query.createOffice('offices', values);
+    if (rows) {
+      return res.status(201).send({
+        status: 201,
+        data: [
+          {
+            id: rows[0].id,
+            type: rows[0].type,
+            name: rows[0].name,
+          },
+        ],
+      });
+    }
+    return res.status(500).send({
+      status: 500,
+      error: 'Internal server Error',
     });
   }
 }
