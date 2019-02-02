@@ -123,6 +123,24 @@ class Query {
       return error;
     }
   }
+
+  static async vote(values) {
+    try {
+      const result = await db.query(
+        `INSERT INTO votes(
+          created_on,
+          created_by,
+          office,
+          candidate
+        )
+        VALUES($1, $2, $3, $4) returning *`,
+        values,
+      );
+      return result;
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default Query;

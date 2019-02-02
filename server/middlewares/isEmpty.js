@@ -37,6 +37,7 @@ const isEmpty = (req, res, next) => {
         error = populateError(req, 'office', 'party');
       else error = populateError(req, 'name', 'type');
     } else if (endpointRoot === 'parties') error = populateError(req, 'name', 'hqAddress');
+    else if (endpointRoot === 'votes') error = populateError(req, 'office', 'candidate');
     else {
       if (!req.body.fullname) {
         error.push('fullname');
