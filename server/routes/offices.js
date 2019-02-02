@@ -7,6 +7,7 @@ import verifyToken from '../middlewares/verifyToken';
 import justAdmin from '../middlewares/justAdmin';
 import officeExists from '../middlewares/officeExists';
 import validateID from '../middlewares/validateID';
+import validateCandidateInput from '../middlewares/validateCandidateInput';
 
 const office = Router();
 
@@ -20,7 +21,16 @@ office.post(
   officeExists,
   OfficeContrller.create,
 );
-office.post('/:id/register', verifyToken, justAdmin, isEmpty, validateID, OfficeContrller.register);
+
+office.post(
+  '/:id/register',
+  verifyToken,
+  justAdmin,
+  isEmpty,
+  validateID,
+  validateCandidateInput,
+  OfficeContrller.register,
+);
 
 office.get('/', verifyToken, OfficeContrller.getAll);
 office.get('/:id', verifyToken, validateID, OfficeContrller.getOne);
