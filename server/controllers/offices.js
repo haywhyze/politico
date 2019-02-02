@@ -21,6 +21,24 @@ class OfficeContrller {
       error: 'Internal server Error',
     });
   }
+
+  static async getAll(req, res) {
+    const { rows } = await Query.getAll(`offices`);
+    return res.status(200).send({
+      status: 200,
+      data: [rows],
+    });
+  }
+
+  static async getOne(req, res) {
+    const id = Number(req.params.id);
+    const { rows } = await Query.getOne(`offices`, [id]);
+
+    return res.status(200).send({
+      status: 200,
+      data: [rows],
+    });
+  }
 }
 
 export default OfficeContrller;

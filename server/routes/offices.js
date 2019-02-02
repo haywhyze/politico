@@ -6,6 +6,7 @@ import OfficeContrller from '../controllers/offices';
 import verifyToken from '../middlewares/verifyToken';
 import justAdmin from '../middlewares/justAdmin';
 import officeExists from '../middlewares/officeExists';
+import validateID from '../middlewares/validateID';
 
 const office = Router();
 
@@ -19,5 +20,8 @@ office.post(
   officeExists,
   OfficeContrller.create,
 );
+
+office.get('/', verifyToken, OfficeContrller.getAll);
+office.get('/:id', verifyToken, validateID, OfficeContrller.getOne);
 
 export default office;
