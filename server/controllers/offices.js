@@ -67,16 +67,16 @@ class OfficeContrller {
 
   static async results(req, res) {
     const id = Number(req.params.id);
-    const { rows } = await Query.fetchResults('votes', [id]);
-    if (rows) {
+    const result = await Query.fetchResults('votes', [id]);
+    if (result.rows) {
       return res.status(200).json({
         status: 200,
-        data: rows[0],
+        data: result.rows[0],
       });
     }
     return res.status(500).send({
       status: 500,
-      error: 'Internal Server Error',
+      result,
     });
   }
 }
