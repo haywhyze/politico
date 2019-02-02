@@ -3,8 +3,10 @@ import Query from '../helpers/Query';
 const validateID = async (req, res, next) => {
   let endpoint;
   const endpointRoot = req.originalUrl.split('/')[3];
-  if (endpointRoot === 'offices') endpoint = 'office';
-  else endpoint = 'party';
+  if (endpointRoot === 'offices') {
+    if (req.originalUrl.split('/')[5] === 'register') endpoint = 'candidate';
+    else endpoint = 'office';
+  } else endpoint = 'party';
   const id = Number(req.params.id);
   if (Number.isNaN(id) || id % 1 !== 0) {
     return res.status(400).send({
