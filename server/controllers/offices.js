@@ -50,11 +50,17 @@ class OfficeContrller {
       });
     }
     let error = '';
+    if (result.constraint.includes('pkey')) {
+      error = 'Candidate already registered for this office';
+      return res.status(409).send({
+        status: 409,
+        error,
+      });
+    }
     if (result.constraint.includes('party')) error = 'Party ID does not exist.';
     if (result.constraint.includes('office')) error = 'Office ID does not exist.';
-    if (result.constraint.includes('pkey')) error = 'Candidate already registered for this office';
-    return res.status(400).send({
-      status: 400,
+    return res.status(404).send({
+      status: 404,
       error,
     });
   }
