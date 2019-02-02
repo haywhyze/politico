@@ -24,8 +24,8 @@ class VoteController {
         error,
       });
     }
-    // if (result.constraint.includes('party')) error = 'Party ID does not exist.';
-    // if (result.constraint.includes('office')) error = 'Office ID does not exist.';
+    if (result.constraint.includes('candidate')) error = 'Candidate ID does not exist.';
+    if (result.constraint.includes('office')) error = 'Office ID does not exist.';
     return res.status(404).send({
       status: 404,
       error: result,
