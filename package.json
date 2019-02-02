@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel server --out-dir ./dist --source-maps",
     "debug": "node --inspect-brk ./dist/index.js",
-    "serve": "node ./dist/index.js",
+    "serve": "babel-node ./server/app.js",
     "start": "nodemon --exec babel-node ./server/app.js",
     "postinstall": "npm run build && npm run db-init",
     "test": "nyc ./node_modules/.bin/mocha ./server/tests/* --require @babel/register --timeout 40000 --exit",
