@@ -1,80 +1,398 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://politico-yusuf.herokuapp.com/
 
-# politico
+# Politico
+Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+## Sign up [/api/v1/auth/signup]
 
-## Questions Collection [/questions]
+### Register a user account [POST]
 
-### List All Questions [GET]
++ Request (multipart/form-data)
 
-+ Response 200 (application/json)
+    + Body
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
-+ Request (application/json)
-
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
+            passportUrl:Image File (jpg, png, gif)
+            fullname:Abdulkarim Yusuf
+            email:hayz@gmail.me
+            password:123456789
+            confirmPassword:123456789
+            phoneNumber:08031961496
 
 + Response 201 (application/json)
-
-    + Headers
-
-            Location: /questions/2
 
     + Body
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
+                "status" : 201,
+                "data" : [{
+                    "token" : "45erkjherht45495783",
+                    "user" : {...} // the user object
+                }]
+            }
+
+## Login [/api/v1/auth/login]
+
+### Log in a registered user [POST]
+
++ Request (application/json)
+
+    + Body
+
+            {
+                "email": "abc@xyz.com",
+                "password": "12345678"
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "status" : 201,
+                "data" : [{
+                    "token" : "45erkjherht45495783",
+                    "user" : {...} // the user object
+                }]
+            }
+
+## Parties [/api/v1/parties]
+
+### Fetch all political parties records [GET]
+
++ Request
+
+    + Headers
+    
+            x-access-token: Authentication token string provided on sign-up/sign-in
+
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "data": [
+                {
+                    "id": Integer, // political party unique id 
+                    "name": String,
+                    "logoUrl": String,
+                }, {
+                    "id": Integer, // political party unique id 
+                    "name": String,
+                    "logoUrl": String,
+                }, {
+                    "id": Integer, // political party unique id 
+                    "name": String,
+                    "logoUrl": String,
+                }, {
+                    "id": Integer, // political party unique id 
+                    "name": String,
+                    "logoUrl": String,
+                }
+            ]
+        }
+
+### Create a new political party [POST]
+
++ Request (multipart/form-data)
+
+    + Headers
+    
+            x-access-token: Authentication token string provided on sign-up/sign-in
+    
+    + Body
+
+            logoUrl: Image File (jpg, png, gif)
+            name: "Social Democratic Party"
+            hqAdress: "Address of the party's headquaters"
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "status": 201,
+                "data": [
                     {
-                        "choice": "Swift",
-                        "votes": 0
+                        "id": 201,
+                        "name": "Social Democratic Party",
                     }, {
-                        "choice": "Python",
-                        "votes": 0
+                        "id": 201,
+                        "name": "Social Democratic Party",
                     }, {
-                        "choice": "Objective-C",
-                        "votes": 0
+                        "id": 201,
+                        "name": "Social Democratic Party",
                     }, {
-                        "choice": "Ruby",
-                        "votes": 0
+                        "id": 201,
+                        "name": "Social Democratic Party",
+                    }
+                ]
+            }
+            
+## Party [/api/v1/parties/{party_id}]
+
++ Parameters
+
+    + party_id (number) - ID of the party in the form of integer
+
+### View a Party's Detail [GET]
+
++ Request
+
+    + Headers
+    
+            x-access-token: Authentication token string provided on sign-up/sign-in
+
++ Response 200 (application/json)
+
+    + Body 
+
+            {
+                "status": 200,
+                "data": [
+                    {
+                        "id": 1,
+                        "name": "Peoples Democratic Party",
+                        "symbol": "PDP",
+                        "hq_address": "Plot 1970 Michael Okpara St, Wuse, Abuja",
+                        "logo_url": "http://res.cloudinary.com/haywhyze/image/upload/v1548329998/pdwafyuw0uqo1nlzejde.jpg"
+                    }
+                ]
+            }
+            
+
+### Delete a Party [DELETE]
+
++ Request
+
+    + Headers
+    
+            x-access-token: Authentication token string provided on sign-up/sign-in
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "status": 204,
+                "data": [
+                    {
+                        "message": "Party successfully deleted"
+                    }
+                ]
+            }
+
+## Party name [/api/v1/parties/{party_id}/name]
+
++ Parameters
+
+    + party_id (number) - ID of the party in the form of an integer
+
+### Edit a political party's name [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            x-access-token: Authentication token string provided on sign-up/sign-in
+    
+    + Body
+
+            {
+                "name": "Alliance for Progressive Development"
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "status": 201
+                "data": {
+                    "id": 201,
+                    "name": "Social Democratic Party",
+                }
+            }
+
+## Offices [/api/v1/offices]
+
+### Fetch all political offices [GET]
+
++ Request
+
+    + Headers
+    
+            x-access-token: Authentication token string provided on sign-up/sign-in
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "status" : 200,
+                "data" : [
+                    {
+                        "id" : Integer, // office record unique id
+                        "type" : String, // type of office
+                        "name" : String // name of office
+                    }, {
+                        "id" : Integer, // office record unique id
+                        "type" : String, // type of office
+                        "name" : String // name of office
+                    }, {
+                        "id" : Integer, // office record unique id
+                        "type" : String, // type of office
+                        "name" : String // name of office
+                    }
+                ]
+            }
+
+### Create a political party [POST]
+
++ Request (application/json)
+
+    + Headers
+    
+            x-access-token: Authentication token string provided on sign-up/sign-in
+    
+    + Body
+
+            {
+                "name": "President", // name of the political office
+                "type": "federal" // federal, legislative, state, local government
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+            "status": 201,
+                "data": [{
+                    "id": Integer,
+                    "name": "President",
+                    "type": "federal"
+                }]
+            }
+
+## Office [/api/v1/offices/{office_id}]
+
++ Parameters
+
+    + office_id (number) - ID of the ofice in the form of an integer
+
+### View a Party's Detail [GET]
+
++ Request
+
+    + Headers
+    
+            x-access-token: Authentication token string provided on sign-up/sign-in
+
++ Response 200 (application/json)
+
+    + Body 
+
+            {
+                "status": 200,
+                "data": [
+                    {
+                        "id": 1,
+                        "name": "President",
+                        "type": "federal"
+                    }
+                ]
+            }
+            
+## Register a candidate [/api/v1/offices/{user_id}/register]
+
++ Parameters
+
+    + user_id (number) - ID of the user to be registered as a candidate.
+
+### Register a candidate for a specific office [POST]
+
++ Request (application/json)
+
+    + Headers
+    
+            x-access-token: Authentication token string provided on sign-up/sign-in
+    
+    + Body
+
+            {
+                "office": 1, // represents the office's id
+                "party": 2, // represents the party's id
+                "candidate": 1 // represents the user's id
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "status": 201,
+                "data": [{
+                    "office": 1,
+                    "party": 2,
+                    "candidate": 1
+                }]
+            }
+
+## Vote [/api/v1/vote]
+
+### Vote a candidate for a particular office [POST]
+
++ Request (application/json)
+
+    + Headers
+    
+            x-access-token: Authentication token string provided on sign-up/sign-in
+    
+    + Body
+
+            {
+                "office": 1, // represents the office's id
+                "candidate": 1 // represents the user's id
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "status": 201,
+                "data": [{
+                    "office": 1, // represents office id
+                    "candidate": 1, // represents candidate voted for
+                    "voter": 2, // represents voter's id
+                }]
+            }
+
+## Results [/api/v1/offices/{office_id}/results]
+
+### Fetch results for a particular office [GET]
+
++ Request
+
+    + Headers
+    
+            x-access-token: Authentication token string provided on sign-up/sign-in
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "status": 200
+                "data": [
+                    {
+                        "office": 1, // represents office id
+                        "candidate": 1, // represents candidate id
+                        "result": 4 // total vote polled by candidate
+                    },{
+                        "office": 1, // represents office id
+                        "candidate": 2, // represents candidate id
+                        "result": 5 // total vote polled by the candidate
                     }
                 ]
             }
