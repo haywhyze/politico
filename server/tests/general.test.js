@@ -11,7 +11,7 @@ const { expect } = chai;
 
 chai.use(chaiHttp);
 let tokenAdmin;
-describe('Offices Route', () => {
+describe('Initialize DB and log in user', () => {
   before(async () => {
     await dropTables();
     await createTables();
@@ -26,225 +26,6 @@ describe('Offices Route', () => {
     tokenAdmin = result.body.data[0].token;
   });
 
-  describe('POST /api/v1/offices', () => {
-    it('should not create when user is not logged in', done => {
-      chai
-        .request(app)
-        .post('/api/v1/offices')
-        .send({
-          name: 'Deputy Governor',
-          type: 'state',
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(401);
-          done();
-        });
-    });
-
-    it('should create when user is logged in', done => {
-      chai
-        .request(app)
-        .post('/api/v1/offices')
-        .set('x-access-token', tokenAdmin)
-        .send({
-          name: 'Deputy Governor',
-          type: 'state',
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(201);
-          done();
-        });
-    });
-
-    it('should not create an office if name value is invalid', done => {
-      chai
-        .request(app)
-        .post('/api/v1/offices')
-        .set('x-access-token', tokenAdmin)
-        .send({
-          name: 'Governor90',
-          type: 'state',
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.error).to.be.a('string');
-          done();
-        });
-    });
-
-    it('should not create an office if type value is invalid', done => {
-      chai
-        .request(app)
-        .post('/api/v1/offices')
-        .set('x-access-token', tokenAdmin)
-        .send({
-          name: 'Deputy Governor',
-          type: 'stateoforigin',
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.error).to.be.a('string');
-          done();
-        });
-    });
-
-    it('should not create an office if name value is not provided', done => {
-      chai
-        .request(app)
-        .post('/api/v1/offices')
-        .set('x-access-token', tokenAdmin)
-        .send({
-          type: 'state',
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.error).to.be.a('string');
-          done();
-        });
-    });
-
-    it('should not create an office if type value is not provided', done => {
-      chai
-        .request(app)
-        .post('/api/v1/offices')
-        .set('x-access-token', tokenAdmin)
-        .send({
-          name: 'Deputy Governor',
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.error).to.be.a('string');
-          done();
-        });
-    });
-  });
-});
-
-describe('POST /api/v1/offices/<user-id>/register', () => {
-  it('should not register candidate if user is not logged in', done => {
-    chai
-      .request(app)
-      .post('/api/v1/offices/1/register')
-      .send({
-        office: '1',
-        party: '1',
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(401);
-        done();
-      });
-  });
-
-  it('should register candidate if user is logged in', done => {
-    chai
-      .request(app)
-      .post('/api/v1/offices/1/register')
-      .set('x-access-token', tokenAdmin)
-      .send({
-        office: '1',
-        party: '1',
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(201);
-        done();
-      });
-  });
-
-  it('should not register is input is empty', done => {
-    chai
-      .request(app)
-      .post('/api/v1/offices/1/register')
-      .set('x-access-token', tokenAdmin)
-      .send({
-        office: '',
-        party: '',
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        done();
-      });
-  });
-
-  it('should not register a candidate if input value is invalid', done => {
-    chai
-      .request(app)
-      .post('/api/v1/offices/1/register')
-      .set('x-access-token', tokenAdmin)
-      .send({
-        office: '1iiooi',
-        party: '1',
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        done();
-      });
-  });
-  it('should not register a candidate if already registered', done => {
-    chai
-      .request(app)
-      .post('/api/v1/offices/1/register')
-      .set('x-access-token', tokenAdmin)
-      .send({
-        office: '1',
-        party: '1',
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(409);
-        done();
-      });
-  });
-});
-
-describe('GET /api/v1/offices', () => {
-  it('should get all offices if records exist', done => {
-    chai
-      .request(app)
-      .get('/api/v1/offices')
-      .set('x-access-token', tokenAdmin)
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-        expect(res.body.data).to.be.an('array');
-        done();
-      });
-  });
-});
-
-describe('GET /api/v1/offices/<office-id>', () => {
-  it('should get a specific office if ID exist', done => {
-    chai
-      .request(app)
-      .get('/api/v1/offices/1')
-      .set('x-access-token', tokenAdmin)
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-        done();
-      });
-  });
-
-  it('should send a 404 error if ID does not exist', done => {
-    chai
-      .request(app)
-      .get('/api/v1/offices/15')
-      .set('x-access-token', tokenAdmin)
-      .end((err, res) => {
-        expect(res.status).to.equal(404);
-        done();
-      });
-  });
-
-  it('should send a 400 error if ID is not valid', done => {
-    chai
-      .request(app)
-      .get('/api/v1/offices/1yut')
-      .set('x-access-token', tokenAdmin)
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        done();
-      });
-  });
-});
-
-describe('Parties Route', () => {
   describe('POST /parties - Create Party', () => {
     it('should not create when user is not logged in', async () => {
       const res = await chai
@@ -371,11 +152,12 @@ describe('Parties Route', () => {
     });
   });
 
-  describe('GET /api/v1/parties', () => {
+  describe('GET /api/v1/parties - Fetch Parties', () => {
     it('should return 401 on users not logged in', async () => {
       const res = await chai.request(app).get('/api/v1/parties');
       expect(res.status).to.equal(401);
     });
+
     it('should return 400 for invalid token', async () => {
       const res = await chai
         .request(app)
@@ -383,6 +165,7 @@ describe('Parties Route', () => {
         .set('x-access-token', 'justarandomddadd');
       expect(res.status).to.equal(401);
     });
+
     it('should get all parties for logged in user', async () => {
       const res = await chai
         .request(app)
@@ -392,7 +175,7 @@ describe('Parties Route', () => {
     });
   });
 
-  describe('GET /api/v1/parties/:id', () => {
+  describe('GET /api/v1/parties/:id - Fetch one Party', () => {
     it('should send a 400 error if ID is not valid', async () => {
       const res = await chai
         .request(app)
@@ -401,6 +184,7 @@ describe('Parties Route', () => {
       expect(res.status).to.equal(400);
       expect(res.body.error).to.be.a('string');
     });
+
     it('should send a 404 error if ID does not exist', async () => {
       const res = await chai
         .request(app)
@@ -409,6 +193,7 @@ describe('Parties Route', () => {
       expect(res.status).to.equal(404);
       expect(res.body.error).to.be.a('string');
     });
+
     it('should get a specific party if ID exist', async () => {
       const res = await chai
         .request(app)
@@ -417,7 +202,8 @@ describe('Parties Route', () => {
       expect(res.status).to.equal(200);
     });
   });
-  describe('PATCH api/v1/parties/<party-id>/name', () => {
+
+  describe(`PATCH api/v1/parties/<party-id>/name - Edit a party's name`, () => {
     it('should not change the name of the specified party if token is invalid', done => {
       chai
         .request(app)
@@ -508,20 +294,21 @@ describe('Parties Route', () => {
     });
   });
 
-  describe('DELETE /api/v1/parties/<party-id>', () => {
+  describe('DELETE /api/v1/parties/<party-id> - Delete a particular party', () => {
     it('should not delete if token is not provided', done => {
       chai
         .request(app)
-        .delete('/api/v1/parties/1')
+        .delete('/api/v1/parties/2')
         .end((err, res) => {
           expect(res.status).to.equal(401);
           done();
         });
     });
+
     it('should delete party record if party ID exist and user signed in', done => {
       chai
         .request(app)
-        .delete('/api/v1/parties/1')
+        .delete('/api/v1/parties/2')
         .set('x-access-token', tokenAdmin)
         .end((err, res) => {
           expect(res.status).to.equal(200);
@@ -529,6 +316,7 @@ describe('Parties Route', () => {
           done();
         });
     });
+
     it('should not delete record if party ID does not exist, 404', done => {
       chai
         .request(app)
@@ -540,6 +328,7 @@ describe('Parties Route', () => {
           done();
         });
     });
+
     it('should not delete record if party ID value is invalid, 400', done => {
       chai
         .request(app)
@@ -548,6 +337,294 @@ describe('Parties Route', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body.error).to.be.a('string');
+          done();
+        });
+    });
+  });
+
+  describe('POST /api/v1/offices - Create an office', () => {
+    it('should not create when user is not logged in', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices')
+        .send({
+          name: 'Deputy Governor',
+          type: 'state',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+    });
+
+    it('should create when user is logged in', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          name: 'Deputy Governor',
+          type: 'state',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          done();
+        });
+    });
+
+    it('should not create an office if name value is invalid', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          name: 'Governor90',
+          type: 'state',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.be.a('string');
+          done();
+        });
+    });
+
+    it('should not create an office if type value is invalid', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          name: 'Deputy Governor',
+          type: 'stateoforigin',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.be.a('string');
+          done();
+        });
+    });
+
+    it('should not create an office if name value is not provided', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          type: 'state',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.be.a('string');
+          done();
+        });
+    });
+
+    it('should not create an office if type value is not provided', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          name: 'Deputy Governor',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.be.a('string');
+          done();
+        });
+    });
+  });
+
+  describe('GET /api/v1/offices - Get all offices', () => {
+    it('should get all offices if records exist', done => {
+      chai
+        .request(app)
+        .get('/api/v1/offices')
+        .set('x-access-token', tokenAdmin)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.data).to.be.an('array');
+          done();
+        });
+    });
+  });
+
+  describe('GET /api/v1/offices/<office-id> - Get one office', () => {
+    it('should get a specific office if ID exist', done => {
+      chai
+        .request(app)
+        .get('/api/v1/offices/1')
+        .set('x-access-token', tokenAdmin)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('should send a 404 error if ID does not exist', done => {
+      chai
+        .request(app)
+        .get('/api/v1/offices/15')
+        .set('x-access-token', tokenAdmin)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+
+    it('should send a 400 error if ID is not valid', done => {
+      chai
+        .request(app)
+        .get('/api/v1/offices/1yut')
+        .set('x-access-token', tokenAdmin)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
+  });
+
+  describe('REGISTER /api/v1/offices/<user-id>/register - Register a candidate', () => {
+    it('should not register candidate if user is not logged in', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices/1/register')
+        .send({
+          office: '1',
+          party: '1',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+    });
+
+    it('should register candidate if user is logged in', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices/1/register')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          office: '1',
+          party: '1',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          done();
+        });
+    });
+
+    it('should not register is input is empty', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices/1/register')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          office: '',
+          party: '',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
+
+    it('should not register a candidate if input value is invalid', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices/1/register')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          office: '1iiooi',
+          party: '1',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
+
+    it('should not register a candidate if already registered', done => {
+      chai
+        .request(app)
+        .post('/api/v1/offices/1/register')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          office: '1',
+          party: '1',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(409);
+          done();
+        });
+    });
+
+    it('should not create a vote if user is not logged in', done => {
+      chai
+        .request(app)
+        .post('/api/v1/vote')
+        .send({
+          candidate: 1,
+          office: 1,
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+    });
+    it('should create a vote if user is logged in', done => {
+      chai
+        .request(app)
+        .post('/api/v1/vote')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          candidate: 1,
+          office: 1,
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          done();
+        });
+    });
+    it('should not create a vote if candidate is not found, 404', done => {
+      chai
+        .request(app)
+        .post('/api/v1/vote')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          candidate: 10,
+          office: 5,
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+    it('should not create a vote if office is not found, 404', done => {
+      chai
+        .request(app)
+        .post('/api/v1/vote')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          candidate: 1,
+          office: 10,
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+    it('should not create a vote if user already voted', done => {
+      chai
+        .request(app)
+        .post('/api/v1/vote')
+        .set('x-access-token', tokenAdmin)
+        .send({
+          candidate: 1,
+          office: 1,
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(409);
           done();
         });
     });

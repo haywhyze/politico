@@ -1,4 +1,4 @@
-import { getSymbol } from '../helpers';
+import { getSymbol, getAll, getOne } from '../helpers';
 import Query from '../helpers/Query';
 
 class PartyController {
@@ -23,21 +23,11 @@ class PartyController {
   }
 
   static async getAll(req, res) {
-    const { rows } = await Query.getAll(`parties`);
-    return res.status(200).send({
-      status: 200,
-      data: [rows],
-    });
+    getAll(req, res, 'parties');
   }
 
   static async getOne(req, res) {
-    const id = Number(req.params.id);
-    const { rows } = await Query.getOne(`parties`, [id]);
-
-    return res.status(200).send({
-      status: 200,
-      data: [rows],
-    });
+    getOne(req, res, 'parties');
   }
 
   static async updateName(req, res) {

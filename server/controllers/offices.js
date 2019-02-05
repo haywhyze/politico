@@ -1,4 +1,5 @@
 import Query from '../helpers/Query';
+import { getAll, getOne } from '../helpers';
 
 class OfficeContrller {
   static async create(req, res) {
@@ -23,21 +24,11 @@ class OfficeContrller {
   }
 
   static async getAll(req, res) {
-    const { rows } = await Query.getAll(`offices`);
-    return res.status(200).send({
-      status: 200,
-      data: [rows],
-    });
+    getAll(req, res, 'offices');
   }
 
   static async getOne(req, res) {
-    const id = Number(req.params.id);
-    const { rows } = await Query.getOne(`offices`, [id]);
-
-    return res.status(200).send({
-      status: 200,
-      data: [rows],
-    });
+    getOne(req, res, 'offices');
   }
 
   static async register(req, res) {
@@ -76,7 +67,7 @@ class OfficeContrller {
     }
     return res.status(500).send({
       status: 500,
-      result,
+      message: 'Internal Server Error',
     });
   }
 }

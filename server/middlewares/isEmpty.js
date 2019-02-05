@@ -18,12 +18,51 @@ const setErrorMsg = error => {
   return errorMsg;
 };
 
-const isEmpty = (req, res, next) => {
-  let path = req.url.split('/');
-  path = path[path.length - 1];
-  let error = [];
+const resolvePostType = requrl => {
+  const urlRoot = requrl.split('/')[3];
+  if (urlRoot === 'offices') {
+    if (requrl.split('/')[5] === 'register') return 'Register Candidate';
+    return 'Create Office';
+  }
+  if (urlRoot === 'parties') return 'Create Party';
+  if (urlRoot === 'vote') return 'Vote';
+  return 'Create Account';
+};
 
+const fillPostError = req => {
+  const postType = resolvePostType(req.originalUrl);
+  let error = [];
+  let err = [];
+  switch (postType) {
+    case 'Register Candidate':
+      error = populateError(req, 'office', 'party');
+      break;
+    case 'Create Office':
+      error = populateError(req, 'name', 'type');
+      break;
+    case 'Create Party':
+      error = populateError(req, 'name', 'hqAddress');
+      break;
+    case 'Vote':
+      error = populateError(req, 'office', 'candidate');
+      break;
+    default:
+      if (!req.body.fullname) error.push('fullname');
+      else {
+        const name = splitName(req.body.fullname);
+        if (!name.lastName) error.push('lastName');
+      }
+      err = populateError(req, 'email', 'phoneNumber', 'password', 'confirmPassword');
+      if (err[0]) err.map(e => error.push(e));
+      break;
+  }
+  return error;
+};
+
+const isEmpty = (req, res, next) => {
   if (req.method === 'PATCH') {
+    let path = req.url.split('/');
+    path = path[path.length - 1];
     if (!req.body[path]) {
       return res.status(400).send({
         status: 400,
@@ -31,25 +70,7 @@ const isEmpty = (req, res, next) => {
       });
     }
   } else {
-    const endpointRoot = req.originalUrl.split('/')[3];
-    if (endpointRoot === 'offices') {
-      if (req.originalUrl.split('/')[5] === 'register')
-        error = populateError(req, 'office', 'party');
-      else error = populateError(req, 'name', 'type');
-    } else if (endpointRoot === 'parties') error = populateError(req, 'name', 'hqAddress');
-    else if (endpointRoot === 'votes') error = populateError(req, 'office', 'candidate');
-    else {
-      if (!req.body.fullname) {
-        error.push('fullname');
-      } else {
-        const name = splitName(req.body.fullname);
-        if (!name.lastName) {
-          error.push('lastName');
-        }
-      }
-      const err = populateError(req, 'email', 'phoneNumber', 'password', 'confirmPassword');
-      if (err[0]) err.map(e => error.push(e));
-    }
+    const error = fillPostError(req);
     if (error[0]) {
       const errorMsg = setErrorMsg(error);
       return res.status(400).send({

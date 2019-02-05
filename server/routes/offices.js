@@ -5,9 +5,9 @@ import validateOfficeName from '../middlewares/validOfficeName';
 import OfficeContrller from '../controllers/offices';
 import verifyToken from '../middlewares/verifyToken';
 import justAdmin from '../middlewares/justAdmin';
-import officeExists from '../middlewares/officeExists';
+import fieldExists from '../middlewares/fieldExists';
 import validateID from '../middlewares/validateID';
-import validateCandidateInput from '../middlewares/validateCandidateInput';
+import validateInput from '../middlewares/validateInput';
 
 const office = Router();
 
@@ -18,7 +18,7 @@ office.post(
   isEmpty,
   validateType,
   validateOfficeName,
-  officeExists,
+  fieldExists,
   OfficeContrller.create,
 );
 
@@ -28,7 +28,7 @@ office.post(
   justAdmin,
   isEmpty,
   validateID,
-  validateCandidateInput,
+  validateInput,
   OfficeContrller.register,
 );
 
