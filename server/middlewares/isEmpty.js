@@ -49,7 +49,7 @@ const fillPostError = req => {
     default:
       if (!req.body.fullname) error.push('fullname');
       else {
-        const name = splitName(req.body.fullname);
+        const name = splitName(req.body.fullname.toString());
         if (!name.lastName) error.push('lastName');
       }
       err = populateError(req, 'email', 'phoneNumber', 'password', 'confirmPassword');

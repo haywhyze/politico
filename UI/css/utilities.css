@@ -25,3 +25,101 @@
   opacity: 1;
   border-bottom: 1px solid var(--color-white)
 }
+
+/**
+ * Errors
+ */
+ .error {
+  border: 1px solid red;
+}
+
+.error-message {
+	color: white;
+	font-style: italic;
+  margin-bottom: 1em;
+  text-shadow: 0px 0px 5px red;
+}
+
+/* Center the loader */
+#loader {
+  position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-top: -7vh;
+    margin-left: -6vw;
+    z-index: 9;
+    border: 16px solid var(--color-white);
+    border-radius: 50%;
+    border-top: 16px solid var(--color-primary);
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    display: none;
+}
+#loader-background {
+  background: rgba(20, 20, 20, .6);
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 8;
+  display: none;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+/* Loader courtesy of w3shools.com
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader5 */
+
+.alert {
+  padding: 2rem;
+  color: white;
+  display: none;
+  position: fixed;
+  width: 100%;
+  top: 20%;
+  left: 0;
+}
+
+.success {
+  background-color: var(--color-primary);
+}
+
+.failure {
+  background-color: var(--color-secondary);
+}
+
+.alert-message {
+  text-align: center;
+}

@@ -8,6 +8,7 @@ import partySymbolExists from '../middlewares/partySymbolExists';
 import PartyController from '../controllers/parties';
 import verifyToken from '../middlewares/verifyToken';
 import justAdmin from '../middlewares/justAdmin';
+import uploadToCloudinary from '../middlewares/uploadToCloudinary';
 
 const parties = Router();
 
@@ -20,6 +21,7 @@ parties.post(
   validateName,
   validateHqAddress,
   partySymbolExists,
+  uploadToCloudinary,
   PartyController.create,
 );
 
