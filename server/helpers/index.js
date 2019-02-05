@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import Query from './Query';
 
 const joinStrings = strings => {
   const stringArray = strings.map(x => `${x},`);
@@ -39,4 +40,31 @@ const getSymbol = str =>
     .join('')
     .toUpperCase();
 
-export { joinStrings, hashPassword, comparePassword, splitName, generateToken, getSymbol };
+const getOne = async (req, res, path) => {
+  const id = Number(req.params.id);
+  const { rows } = await Query.getOne(path, [id]);
+
+  return res.status(200).send({
+    status: 200,
+    data: [rows],
+  });
+};
+
+const getAll = async (req, res, path) => {
+  const { rows } = await Query.getAll(path);
+  return res.status(200).send({
+    status: 200,
+    data: [rows],
+  });
+};
+
+export {
+  getOne,
+  getAll,
+  joinStrings,
+  hashPassword,
+  comparePassword,
+  splitName,
+  generateToken,
+  getSymbol,
+};

@@ -9,6 +9,6 @@ const router = Router();
 router.use('/parties', parties);
 router.use('/offices', offices);
 router.use('/auth', auth);
-router.use('/votes', vote);
+router.use('/vote', vote);
 
 export default router;

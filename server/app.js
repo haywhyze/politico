@@ -25,11 +25,10 @@ app.get('/', (req, res) =>
 app.use('/api/v1/', router);
 
 app.all('*', (req, res) => {
-  res
-    .status(404)
-    .send(
-      '<h2>Well!!! This is Embarrasing</h2><p>There are no resources here. Check the documentation here for valid routes</p>',
-    );
+  res.status(404).send({
+    status: 404,
+    message: 'There is nothing here',
+  });
 });
 
 const PORT = process.env.PORT || 3000;
