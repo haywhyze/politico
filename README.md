@@ -1,16 +1,18 @@
 # politico
 
-[![Build Status](https://travis-ci.com/haywhyze/politico.svg?branch=ch-setup-ci-%23163504828)](https://travis-ci.com/haywhyze/politico)
-[![Coverage Status](https://coveralls.io/repos/github/haywhyze/politico/badge.svg?branch=ch-setup-ci-%23163504828)](https://coveralls.io/github/haywhyze/politico?branch=ch-setup-ci-%23163504828)
+[![Build Status](https://travis-ci.com/haywhyze/politico.svg?branch=develop)](https://travis-ci.com/haywhyze/politico)
+[![Coverage Status](https://coveralls.io/repos/github/haywhyze/politico/badge.svg?branch=develop)](https://coveralls.io/github/haywhyze/politico?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b493c2924608712dbcf3/maintainability)](https://codeclimate.com/github/haywhyze/politico/maintainability)
 
 Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
+
+The application is live on github pages [here](https://haywhyze.github.io/politico/UI)
 
 ## Motivation
 
 The general elections in my country is just around the corner, hence, politics is a major talking points in the country right now. In a way to get in the mood of the season, it would make sense to help build a platform which both the politicians and the citizens can use.
 
-## Expected Features
+## Implemented Features
 
 - Users can sign up.
 - Users can login.
@@ -19,8 +21,8 @@ The general elections in my country is just around the corner, hence, politics i
 - Admin (electoral body) can create different political offices .
 - Users can vote for only one politician per political office .
 - Users can see the results of election.
-- User can reset password.
-- A politician can create a petition against a concluded political office election.
+- User can reset password. (WIP)
+- A politician can create a petition against a concluded political office election. (WIP)
 
 ---
 
@@ -37,10 +39,6 @@ The general elections in my country is just around the corner, hence, politics i
 ---
 
 ## Installation
-
-**Note:**
-
-> As at the time of writing this, the application is still in development and the following commands might not behave as expected. This docs will be updated as soon as the application can be installed.
 
 #### Clone this repository and navigate into it.
 
@@ -72,7 +70,7 @@ After that rename the file to `.env`
 
 ## Documentation
 
-This application will be deployed on heroku where the following endpoints will be accessible
+This application is deployed on [heroku](politico-yusuf.herokuapp.com) with the following endpoints accessible
 
 | Method                              | Functionality                                                                                 | Endpoint                     |
 | ----------------------------------- | --------------------------------------------------------------------------------------------- | ---------------------------- |
@@ -86,9 +84,9 @@ This application will be deployed on heroku where the following endpoints will b
 | GET _/offices/\<office-id\>_        | Fetch a particular political office                                                           | `api/v1/offices/:id`         |
 | POST _/auth/signup_                 | Create a user account                                                                         | `api/v1/auth/signup`         |
 | POST _/auth/login_                  | Login a user                                                                                  | `api/v1/auth/login`          |
-| POST _/office/\<user-id\>/register_ | Register a user as a candidate running for a political office. Accessible by the admin alone. | `api/v1/office/:id/register` |
-| POST _/votes/_                      | Vote for a candidate                                                                          | `api/v1/votes`               |
-| POST _/office/\<office-id\>/result_ | Collate and fetch the result of specific office following a concluded election.               | `api/v1/office/:id/result`   |
+| POST _/offices/\<user-id\>/register_ | Register a user as a candidate running for a political office. Accessible by the admin alone. | `api/v1/office/:id/register` |
+| POST _/vote/_                      | Vote for a candidate                                                                          | `api/v1/vote`               |
+| POST _/offices/\<office-id\>/result_ | Collate and fetch the result of specific office following a concluded election.               | `api/v1/offices/:id/result`   |
 | POST _/auth/reset_                  | Reset user password                                                                           | `api/v1/auth/reset`          |
 | POST _/petitions/_                  | Create petitions challenging the outcome of a concluded election.                             | `api/v1/petitions`           |
 
@@ -265,7 +263,7 @@ Response spec:
 }
 ```
 
-#### POST _/office/\<user-id\>/register_
+#### POST _/offices/\<user-id\>/register_
 
 Response spec:
 
@@ -279,7 +277,7 @@ Response spec:
 }
 ```
 
-#### POST _/votes/_
+#### POST _/vote/_
 
 Response spec:
 
@@ -294,7 +292,7 @@ Response spec:
 }
 ```
 
-#### POST _/office/\<office-id\>/result_
+#### POST _/offices/\<office-id\>/result_
 
 Response spec:
 
@@ -305,14 +303,6 @@ Response spec:
     {
       “office” : Integer , // office unique id
       “candidate” : Integer , // candidate unique id
-      “result” : Integer // total vote for the candidate
-    }, {
-      “office” : Integer , // office id
-      “candidate” : Integer , // candidate unique id
-      “result” : Integer // total vote for the candidate
-    }, {
-      “office” : Integer , // office primary key
-      “candidate” : Integer , // politician primary key
       “result” : Integer // total vote for the candidate
     }
   ]

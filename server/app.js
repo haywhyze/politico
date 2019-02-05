@@ -16,11 +16,7 @@ app.get('/api/v1/', (req, res) => {
   });
 });
 
-app.get('/', (req, res) =>
-  res.status(200).send({
-    message: 'Welcome to politico',
-  }),
-);
+app.use(express.static('./server/docs'));
 
 app.use('/api/v1/', router);
 
