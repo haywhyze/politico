@@ -108,7 +108,7 @@
   min-height: 90vh;
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(to right bottom, rgba(1, 22, 39, .8), rgba(255, 0, 34, .8)), url('../img/img_2.jpg');
+  background-image: linear-gradient(to right bottom, rgba(223, 222, 239, .7), rgba(223, 223, 223, .8)), url('../img/img_2.jpg');
   background-size: cover;
   background-position: top;
   clip-path: polygon(0% 8%, 100% 0%, 100% 100%, 0% 100%);

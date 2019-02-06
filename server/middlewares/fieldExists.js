@@ -10,7 +10,7 @@ const fieldExists = async (req, res, next) => {
     result = await Query.checkDuplicate('offices', 'name', [res.locals.name]);
     field = 'Political Office';
   }
-  if (result.rows[0]) {
+  if (result.rowCount !== 0) {
     return res.status(409).send({
       status: 409,
       error: `${field} already Exists`,

@@ -1,11 +1,11 @@
 .form {
     margin: 1rem auto;
-    padding: 1rem .5rem;
-    max-width: 45vw;
+    padding: 1rem;
+    max-width: 40vw;
 }
 
 .input-group {
-    width: 100%;
+    width: 90%;
 }
 
 label {
@@ -21,13 +21,11 @@ label {
 select,
 textarea {
     margin: .5rem 0;
-    padding: 1rem;
+    padding: .7rem;
     display: block;
     width: 100%;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, .4);
     border-radius: 10px;
-    border-bottom: var(--color-tertiary) 2px solid;
-    border-right: var(--color-tertiary) 2px solid;
 }
 
 .form-paragraph {

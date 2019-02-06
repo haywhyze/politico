@@ -71,7 +71,7 @@ table {
 }
 
 .fa-github {
-    color: black;
+    color: var(--color-white);
 }
 
 .fa-twitter {

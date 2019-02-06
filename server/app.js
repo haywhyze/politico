@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import router from './routes';
 
@@ -16,7 +17,16 @@ app.get('/api/v1/', (req, res) => {
   });
 });
 
-app.use(express.static('./server/docs'));
+app.use(
+  cors({
+    credentials: true,
+    method: ['GET', 'POST', 'PATCH', 'DELETE'],
+  }),
+);
+
+app.use(express.static('./UI'));
+
+app.use('/docs', express.static('./docs'));
 
 app.use('/api/v1/', router);
 
