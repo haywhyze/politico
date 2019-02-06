@@ -11,6 +11,7 @@ const { expect } = chai;
 
 chai.use(chaiHttp);
 
+let tokenAdmin;
 describe('Authenticate User', () => {
   before(async () => {
     await dropTables();
@@ -212,6 +213,7 @@ describe('Authenticate User', () => {
         });
       expect(res.status).to.eql(200);
       expect(res.body.data[0].user).to.be.an('object');
+      tokenAdmin = res.body.data[0].token;
     });
     it('should not login user if email is not provided', async () => {
       const res = await chai
