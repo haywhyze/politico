@@ -75,6 +75,7 @@ document.addEventListener(
   'input',
   event => {
     // Only run if the field is in a form to be validated
+    if (!event.target.form) return;
     if (!event.target.form.classList.contains('validate')) return;
 
     // Validate the field
