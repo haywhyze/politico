@@ -37,6 +37,11 @@
     cursor: pointer;
 }
 
+#header-img {
+    height: 3rem;
+    border-radius: 50%;
+}
+
 .nav-list__item:hover {
     opacity: 1;
 }
