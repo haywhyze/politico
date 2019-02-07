@@ -1,10 +1,7 @@
 import chai from 'chai';
-import { describe, it, before } from 'mocha';
+import { describe, it } from 'mocha';
 import chaiHttp from 'chai-http';
 import app from '../app';
-import dropTables from '../models/dropTables';
-import createTables from '../models/createTables';
-import seedDb from '../models/seed/seedDb';
 import 'idempotent-babel-polyfill';
 
 const { expect } = chai;
@@ -22,7 +19,6 @@ describe('POST /parties - Create Party', () => {
         password: 'adminpassword',
       });
     tokenAdmin = res.body.data[0].token;
-    console.log(tokenAdmin, '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
   });
   it('should not create when user is not logged in', async () => {
     const res = await chai

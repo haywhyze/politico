@@ -18,7 +18,7 @@ class UserController {
 
     const { rows } = await Query.createUsersQuery(values);
     if (rows) {
-      const token = generateToken(rows[0].id);
+      const token = generateToken(rows[0].id, rows[0].is_admin);
       return res.status(201).send({
         status: 201,
         data: [
@@ -51,13 +51,14 @@ class UserController {
         error: 'Username/Password is incorrect',
       });
     }
-    const token = generateToken(rows[0].id);
+    const token = generateToken(rows[0].id, rows[0].is_admin);
+    const { id, firstname, lastname, passport_url, is_admin } = rows[0];
     return res.status(200).send({
       status: 200,
       data: [
         {
           token,
-          user: rows[0],
+          user: { id, firstname, lastname, passport_url, is_admin },
         },
       ],
     });

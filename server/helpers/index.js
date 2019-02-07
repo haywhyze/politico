@@ -20,10 +20,11 @@ const hashPassword = password => bcrypt.hashSync(password, bcrypt.genSaltSync(10
 
 const comparePassword = (hashedPassword, password) => bcrypt.compareSync(password, hashedPassword);
 
-const generateToken = id => {
+const generateToken = (id, isAdmin) => {
   const token = jwt.sign(
     {
       userId: id,
+      isAdmin,
     },
     process.env.SECRET,
     { expiresIn: '7d' },
