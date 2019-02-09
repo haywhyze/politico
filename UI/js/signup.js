@@ -9,6 +9,7 @@ const signUp = (url, data) =>
 const alert = document.querySelector('.alert');
 const alertMessage = document.querySelector('#alert-message');
 const url = 'https://politico-yusuf.herokuapp.com/api/v1/auth/signup';
+// const url = 'http://localhost:3000/api/v1/auth/signup';
 const passportUrl = document.querySelector('#passportUrl');
 const fullName = document.querySelector('#name');
 const email = document.querySelector('#email');
@@ -163,22 +164,28 @@ document.addEventListener(
           alert.style.display = 'block';
 
           if (data.status === 201){
+            if (alert.classList.contains('failure')) alert.classList.remove('failure');
             alert.classList.add('success');
             alertMessage.innerHTML = 'Account Registered Successfully';
-            localStorage.setItem('token', JSON.stringify(data.data[0].token));
+            localStorage.setItem('token', data.data[0].token);
+            localStorage.setItem('passport', data.data[0].user.passport_url);
+            localStorage.setItem(
+              'name',
+              `${data.data[0].user.firstname} ${data.data[0].user.lastname}`,
+            );
+
             if (data.data[0].user.is_admin === true) {
-              location = './admin.html';
+              setTimeout(() => (location = './admin.html'), 1000);
             } else {
-              location = './profile.html';
+              setTimeout(() => (location = './profile.html'), 1000);
             }
-          } 
+          }
           else { 
             alert.classList.add('failure');
             alertMessage.innerHTML = data.error;
           }
           setTimeout(() => (alert.style.display = 'none'), 5000);
           console.log(data);
-          // console.log(JSON.stringify(data));
         })
         .catch(error => {
           loaderBg.style.display = 'none';

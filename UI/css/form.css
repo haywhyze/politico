@@ -14,7 +14,8 @@ label {
     margin-top: 1rem;
     margin-bottom: .5rem;
     display: inline-block;
-    color: var(--color-white)
+    color: var(--color-white);
+    text-shadow: 2px 2px 4px #000;
 }
 
 .input,

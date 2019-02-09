@@ -13,6 +13,12 @@
 </head>
 
 <body>
+
+  <div id="loader"></div>
+  <div id="loader-background"></div>
+  <div class="alert">
+    <h4 id="alert-message"></h4>
+  </div>
   <header class="header">
     <div id="mobile-menu" class="menu-close">
       <div class="bar top"></div>
@@ -37,13 +43,16 @@
   <main class="sign-up">
     <div class="form-container">
       <h2 class="hero-text__heading">Login to Access Your Account</h2>
-      <form action="#" class="form">
-        <div class="input-group"><label for="email">Email</label><input name="email" class="input" id="email" type="email"></div>
-        <div class="input-group"><label for="password">Password</label><input name="password" class="input" id="password"
-            type="password"></div>
+      <form enctype="multipart/form-data" method="post" name="form" class="form validate">
+        <div class="input-group"><label for="email">Email</label>
+          <input required placeholder="Email address used to register on Politico." title="Please provide a valid email address"
+            pattern="^[\w\d.\-_]+@[\w\d.\-_]+\.[\w\d]{1,9}(\.[\w\d]{2,9})?$" name="email" class="input" id="email" type="email"></div>
+        <div class="input-group"><label for="password">Password</label>
+          <input required placeholder="Your secret is safe with us." name="password" class="input" id="password"
+            minlength="8" maxlength="32" type="password"></div>
 
         <div class="input-group  u-center">
-          <a href="admin.html" class="button button--alt">Login</a>
+          <a><input id="login" class="button button--alt" type="submit" value="Login"></a>
         </div>
       </form>
       <p class="form-paragraph">Forget Password? <a href="reset.html">Click here</a> to reset.</p>
@@ -60,6 +69,8 @@
 
 
   <script src="./js/index.js"></script>
+  <script src="./js/validateInput.js"></script>
+  <script src="./js/signin.js"></script>
 </body>
 
 </html>
