@@ -5,7 +5,7 @@ class UserController {
   static async create(req, res) {
     const name = splitName(res.locals.fullname);
     const hashedPassword = hashPassword(res.locals.password);
-    const values = [
+    const { rows } = await Query.createUsersQuery([
       name.firstName,
       name.lastName,
       name.otherNames,
@@ -14,11 +14,9 @@ class UserController {
       res.locals.phoneNumber,
       false,
       res.locals.image,
-    ];
-
-    const { rows } = await Query.createUsersQuery(values);
+    ]);
     if (rows) {
-      const token = generateToken(rows[0].id);
+      const token = generateToken(rows[0].id, rows[0].is_admin);
       return res.status(201).send({
         status: 201,
         data: [
@@ -29,8 +27,6 @@ class UserController {
         ],
       });
     }
-    const error = await Query.createUsersQuery(values);
-    console.log(error);
     return res.status(500).send({
       status: 500,
       error: 'Internal Server Error',
@@ -51,13 +47,14 @@ class UserController {
         error: 'Username/Password is incorrect',
       });
     }
-    const token = generateToken(rows[0].id);
+    const token = generateToken(rows[0].id, rows[0].is_admin);
+    const { id, firstname, lastname, email, phone_number, passport_url, is_admin } = rows[0];
     return res.status(200).send({
       status: 200,
       data: [
         {
           token,
-          user: rows[0],
+          user: { id, firstname, lastname, email, phone_number, passport_url, is_admin },
         },
       ],
     });

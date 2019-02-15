@@ -17,8 +17,10 @@ const validateHqAddress = (req, res, next) => {
           res.locals.address = response.json.results[0].formatted_address;
           return next();
         }
-        res.locals.address = req.body.hqAddress.trim().replace(/\s{2,}/gi, ' ');
-        return next();
+        return res.status(400).send({
+          status: 400,
+          error: 'Address not found, Please input a landmark around the area',
+        });
       },
     );
   } catch (error) {

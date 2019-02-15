@@ -33,7 +33,7 @@ app.use('/api/v1/', router);
 app.all('*', (req, res) => {
   res.status(404).send({
     status: 404,
-    message: 'There is nothing here',
+    message: 'The resource you are looking for does not exist',
   });
 });
 
