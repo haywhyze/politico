@@ -9,6 +9,10 @@
   padding-top: 7rem;
 }
 
+.profile-name {
+  line-height: 1;
+}
+
 .tab {
   display: flex;
 }
@@ -32,10 +36,6 @@
 .party-container {
   display: flex;
   justify-content: center;
-}
-
-#parties .review {
-  background-color: var(--color-primary);
 }
 
 #intent,

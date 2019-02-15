@@ -1,3 +1,7 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-return-assign */
+/* eslint-disable no-shadow */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-undef */
 /* eslint-disable no-underscore-dangle */
 const header = document.querySelector('.header');
@@ -6,11 +10,17 @@ const _top = document.querySelector('.top');
 const _middle = document.querySelector('.middle');
 const _bottom = document.querySelector('.bottom');
 const menu = document.querySelector('.header__nav');
+const dropToggle = document.querySelector('.dropdownTrigger');
+const dropContent = document.querySelector('.dropdownContent');
 let tablinks = document.querySelectorAll('.tablinks');
 let tabcontent = document.querySelectorAll('.tabcontent');
 
 const forms = Array.from(document.querySelectorAll('form'));
 forms.map(form => form.setAttribute('novalidate', true));
+
+dropToggle.addEventListener('click', () => {
+  dropContent.classList.toggle('show');
+});
 
 // TO animate page header on scroll
 if (header) {
@@ -18,7 +28,10 @@ if (header) {
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
       header.style.backgroundColor = 'var(--color-white)';
       header.style.color = 'var(--color-primary)';
+      dropContent.style.backgroundColor = 'var(--color-primary)';
+      dropContent.style.color = 'var(--color-white)';
     } else {
+      dropContent.style.backgroundColor = 'var(--color-secondary)';
       header.style.backgroundColor = 'var(--color-primary)';
       header.style.color = 'var(--color-white)';
     }
@@ -95,10 +108,16 @@ if (voteLinks && modalVote) openModal(voteLinks, modalVote);
 // When the user clicks on <span> (x), close the modal
 const close = Array.from(document.querySelectorAll('.close'));
 close.map(e =>
-  e.addEventListener('click', x => {
+  e.addEventListener('click', () => {
     if (modal) modal.style.display = 'none';
     if (modalEdit) modalEdit.style.display = 'none';
     if (modalDelete) modalDelete.style.display = 'none';
     if (modalVote) modalVote.style.display = 'none';
   }),
 );
+
+window.addEventListener('click', e => {
+  if (!e.target.matches('#header-img') && !e.target.matches('.dropdownContent')) {
+    if (dropContent.classList.contains('show')) dropContent.classList.remove('show');
+  }
+});
