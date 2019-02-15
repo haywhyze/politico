@@ -43,18 +43,21 @@
     <div class="form-container">
       <h2 class="hero-text__heading">Register Now to Get Started</h2>
       <form enctype="multipart/form-data" method="post" name="form" class="form validate">
-        <div class="input-group"><label for="name">Full Name</label>
-          <input name="name" class="input" id="name" type="text" pattern="^[a-zA-Z][ \-a-zA-Z]{5,50}$" title="Name should include only uppercase or lowercase and not more than 50 characters"  required placeholder="Needed for us to address you"></div>
+        <div class="input-group"><label for="name">Full Name <br><span class="small">firstname lastname othername(s)</span></label>
+          <input name="name" class="input" id="name" type="text" pattern="^[a-zA-Z][ \-a-zA-Z]{5,50}$" title="Name should include only uppercase or lowercase and not more than 50 characters"
+            required placeholder="Needed for us to address you"></div>
         <div class="input-group"><label for="phone">Phone Number</label>
-          <input title="Please fill in a valid phone number" required pattern="^[+]?(\d{0,3})(\d{10})$" placeholder="We might need to send you election results over SMS" name="phone" class="input" id="phone"
-            type="tel"></div>
+          <input title="Please fill in a valid phone number" required pattern="^[+]?(\d{0,3})(\d{10})$" placeholder="We might need to send you election results over SMS"
+            name="phone" class="input" id="phone" type="tel"></div>
         <div class="input-group"><label for="email">Email</label>
-          <input required placeholder="Just for us to uniquely identify you." title="Please provide a valid email address" pattern="^[\w\d.\-_]+@[\w\d.\-_]+\.[\w\d]{1,9}(\.[\w\d]{2,9})?$" name="email" class="input" id="email" type="email"></div>
+          <input required placeholder="Just for us to uniquely identify you." title="Please provide a valid email address"
+            pattern="^[\w\d.\-_]+@[\w\d.\-_]+\.[\w\d]{1,9}(\.[\w\d]{2,9})?$" name="email" class="input" id="email" type="email"></div>
         <div class="input-group"><label for="password">Password</label>
-          <input required placeholder="Your secret is safe with us." name="password" class="input" id="password" minlength="8" maxlength="32"
+          <input required placeholder="Your secret is safe with us." name="password" class="input" id="password"
+            minlength="8" maxlength="32" type="password"></div>
+        <div class="input-group"><label for="confirmPassword">Confirm Password</label><input required minlength="8"
+            maxlength="32" placeholder="Just to be sure you didn't make a typo" name="confirmPassword" class="input" id="confirmPassword"
             type="password"></div>
-        <div class="input-group"><label for="confirmPassword">Confirm Password</label><input required minlength="8" maxlength="32" placeholder="Just to be sure you didn't make a typo" name="confirmPassword"
-            class="input" id="confirmPassword" type="password"></div>
         <div class="input-group">
           <label for="passportUrl">Upload Passport</label> <input name="passportUrl" required type="file" id="passportUrl">
         </div>
