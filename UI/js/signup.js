@@ -8,8 +8,8 @@ const signUp = (url, data) =>
   }).then(response => response.json());
 const alert = document.querySelector('.alert');
 const alertMessage = document.querySelector('#alert-message');
-const url = 'https://politico-yusuf.herokuapp.com/api/v1/auth/signup';
-// const url = 'http://localhost:3000/api/v1/auth/signup';
+// const url = 'https://politico-yusuf.herokuapp.com/api/v1/auth/signup';
+const url = 'http://localhost:3000/api/v1/auth/signup';
 const passportUrl = document.querySelector('#passportUrl');
 const fullName = document.querySelector('#name');
 const email = document.querySelector('#email');
@@ -172,7 +172,10 @@ document.addEventListener(
             localStorage.setItem(
               'name',
               `${data.data[0].user.firstname} ${data.data[0].user.lastname}`,
-            );
+              );
+            localStorage.setItem('isAdmin', data.data[0].is_admin);
+            localStorage.setItem('email', data.data[0].user.email);
+            localStorage.setItem('phone_number', data.data[0].user.phone_number);
 
             if (data.data[0].user.is_admin === true) {
               setTimeout(() => (location = './admin.html'), 1000);
