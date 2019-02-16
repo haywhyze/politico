@@ -3,8 +3,8 @@ import db from '../db';
 const offices = async () => {
   const text = `
   INSERT INTO offices(
-    type,
-    name)
+    name,
+    type)
   VALUES($1, $2)
   `;
 

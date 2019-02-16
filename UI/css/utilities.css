@@ -132,8 +132,6 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader5 */
   margin: 0 auto;
   top: 50%;
   transform: perspective(1px) translate(-50%, -50%);
-
-  background-color: rgb(30, 158, 8)
 }
 
 .success {

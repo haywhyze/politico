@@ -18,9 +18,10 @@ let tabcontent = document.querySelectorAll('.tabcontent');
 const forms = Array.from(document.querySelectorAll('form'));
 forms.map(form => form.setAttribute('novalidate', true));
 
-dropToggle.addEventListener('click', () => {
-  dropContent.classList.toggle('show');
-});
+if (dropToggle)
+  dropToggle.addEventListener('click', () => {
+    dropContent.classList.toggle('show');
+  });
 
 // TO animate page header on scroll
 if (header) {
@@ -28,10 +29,10 @@ if (header) {
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
       header.style.backgroundColor = 'var(--color-white)';
       header.style.color = 'var(--color-primary)';
-      dropContent.style.backgroundColor = 'var(--color-primary)';
-      dropContent.style.color = 'var(--color-white)';
+      if (dropContent) dropContent.style.backgroundColor = 'var(--color-primary)';
+      if (dropContent) dropContent.style.color = 'var(--color-white)';
     } else {
-      dropContent.style.backgroundColor = 'var(--color-secondary)';
+      if (dropContent) dropContent.style.backgroundColor = 'var(--color-secondary)';
       header.style.backgroundColor = 'var(--color-primary)';
       header.style.color = 'var(--color-white)';
     }
@@ -79,18 +80,12 @@ tablinks.map(e => e.addEventListener('click', openTab()));
 // Modal
 const modal = document.querySelector('.modal');
 const modalVote = document.querySelector('.modal-vote');
-const modalEdit = document.querySelector('.modal-edit');
-const modalDelete = document.querySelector('.modal-delete');
 
 if (modal) modal.style.display = 'none';
-if (modalEdit) modalEdit.style.display = 'none';
-if (modalDelete) modalDelete.style.display = 'none';
 if (modalVote) modalVote.style.display = 'none';
 
 const voteLinks = Array.from(document.querySelectorAll('.vote-link'));
 const resultLinks = Array.from(document.querySelectorAll('.result-link'));
-const editLinks = Array.from(document.querySelectorAll('.edit'));
-const deleteLinks = Array.from(document.querySelectorAll('.delete'));
 
 const openModal = (links, modal) => {
   links.map(link => {
@@ -101,8 +96,6 @@ const openModal = (links, modal) => {
   });
 };
 if (resultLinks && modal) openModal(resultLinks, modal);
-if (editLinks && modalEdit) openModal(editLinks, modalEdit);
-if (deleteLinks && modalDelete) openModal(deleteLinks, modalDelete);
 if (voteLinks && modalVote) openModal(voteLinks, modalVote);
 
 // When the user clicks on <span> (x), close the modal
@@ -110,14 +103,21 @@ const close = Array.from(document.querySelectorAll('.close'));
 close.map(e =>
   e.addEventListener('click', () => {
     if (modal) modal.style.display = 'none';
-    if (modalEdit) modalEdit.style.display = 'none';
-    if (modalDelete) modalDelete.style.display = 'none';
     if (modalVote) modalVote.style.display = 'none';
   }),
 );
 
-window.addEventListener('click', e => {
-  if (!e.target.matches('#header-img') && !e.target.matches('.dropdownContent')) {
-    if (dropContent.classList.contains('show')) dropContent.classList.remove('show');
-  }
-});
+if (dropContent)
+  window.addEventListener('click', e => {
+    if (!e.target.matches('#header-img') && !e.target.matches('.dropdownContent')) {
+      if (dropContent.classList.contains('show')) dropContent.classList.remove('show');
+    }
+  });
+
+if (sessionStorage.getItem('reloadParties') === 'true') {
+  document.querySelector('#results').style.display = 'none';
+  document.querySelector('#a-parties').style.display = 'block';
+  document.querySelector('#results-link').classList.remove('active');
+  document.querySelector('#parties-link').classList.add('active');
+}
+sessionStorage.clear();

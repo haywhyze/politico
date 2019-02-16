@@ -13,8 +13,8 @@ const signIn = (url, data) =>
     },
   }).then(response => response.json());
 
-// const url = 'https://politico-yusuf.herokuapp.com/api/v1/auth/login';
-const url = 'http://localhost:3000/api/v1/auth/login';
+const url = 'https://politico-yusuf.herokuapp.com/api/v1/auth/login';
+// const url = 'http://localhost:3000/api/v1/auth/login';
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
 const alert = document.querySelector('.alert');
@@ -69,6 +69,7 @@ document.addEventListener(
             localStorage.setItem(
               'name',
               `${data.data[0].user.firstname} ${data.data[0].user.lastname}`,
+              localStorage.setItem('isAdmin', data.data[0].user.is_admin),
             );
             localStorage.setItem('isAdmin', data.data[0].user.is_admin);
             localStorage.setItem('email', data.data[0].user.email);

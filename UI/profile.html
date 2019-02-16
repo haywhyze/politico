@@ -10,7 +10,7 @@
     crossorigin='anonymous'>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="css/style.css">
-  <script src="./js/checkToken.js"></script>
+  <script src="./js/checkUserinfo.js"></script>
 </head>
 
 <body>
@@ -39,8 +39,8 @@
         <div class="dropdownContent">
           <div>
             <p class="nav-list__item profile-name"><i class='fas fa-user-alt'></i> Yusuf Ayo</p>
-            <p class="nav-list__item">08031961496</p>
-            <p class="nav-list__item">haywhyze@hotmail.com</p>
+            <p id="header-phone" class="nav-list__item"></p>
+            <p id="header-mail" class="nav-list__item">haywhyze@hotmail.com</p>
           </div>
           <hr>
           <a href="login.html">
@@ -144,43 +144,9 @@
       </div>
       <div id="parties" class="tabcontent">
         <h2 class="secondary-heading u-white">Political Parties</h2>
-        <p class="secondary-heading--small u-white">List of all registered political parties</p>
-        <div class="flex-container">
-          <div class="flex-item">
-            <div class="party-container">
-              <img class="img party-logo" src="./img/PDP.jpg" alt="" srcset="">
-              <h2 class="secondary-heading">PDP</h2>
-            </div>
-            <h3 class="tertiary-heading">Peoples Democratic Party</h3>
-          </div>
-          <div class="flex-item">
-            <div class="party-container">
-              <img class="img party-logo" src="./img/apc.jfif" alt="" srcset="">
-              <h2 class="secondary-heading">APC</h2>
-            </div>
-            <h3 class="tertiary-heading">All Progressive Congress</h3>
-          </div>
-          <div class="flex-item">
-            <div class="party-container">
-              <img class="img party-logo" src="./img/ACPN.jpg" alt="" srcset="">
-              <h2 class="secondary-heading">ACPN</h2>
-            </div>
-            <h3 class="tertiary-heading">Allied Congress Party of Nigeria</h3>
-          </div>
-          <div class="flex-item">
-            <div class="party-container">
-              <img class="img party-logo" src="./img/ypp.jfif" alt="" srcset="">
-              <h2 class="secondary-heading">YPP</h2>
-            </div>
-            <h3 class="tertiary-heading">Young Progressive Party</h3>
-          </div>
-          <div class="flex-item">
-            <div class="party-container">
-              <img class="img party-logo" src="./img/sdp.jfif" alt="" srcset="">
-              <h2 class="secondary-heading">SDP</h2>
-            </div>
-            <h3 class="tertiary-heading">Social Democratic Party</h3>
-          </div>
+        <p id="party-subheading" class="secondary-heading--small u-white">List of all registered political parties</p>
+        <div id="parties-container" class="flex-container">
+
         </div>
       </div>
       <div id="intent" class="tabcontent">
@@ -269,6 +235,7 @@
 
   <script src="./js/index.js"></script>
   <script src="./js/customizeHeader.js"></script>
+  <script src="./js/getAllPartiesUser.js"></script>
 </body>
 
 </html>

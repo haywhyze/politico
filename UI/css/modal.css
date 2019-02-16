@@ -5,7 +5,6 @@
     display: none;
     position: fixed;
     z-index: 20;
-    padding-top: 3rem;
     left: 0;
     top: 0;
     width: 100%;
@@ -13,7 +12,6 @@
     overflow: auto;
     background-color: rgba(0, 0, 0, .8);
 }
-
 
 /* Modal Content */
 
@@ -23,7 +21,10 @@
     background-color: var(--color-white);
     padding: 2rem;
     border: 1px solid #888;
-    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: perspective(1px) translate(-50%, -50%);
 }
 
 @media (max-width: 800px) {
@@ -38,11 +39,11 @@
 .close {
     color: #aaaaaa;
     float: right;
-    font-size: 5rem;
+    font-size: 2rem;
     font-weight: bold;
     position: fixed;
     top: 5%;
-    left: 83%
+    left: 92%
 }
 
 .close:hover,

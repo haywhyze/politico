@@ -8,8 +8,8 @@ const signUp = (url, data) =>
   }).then(response => response.json());
 const alert = document.querySelector('.alert');
 const alertMessage = document.querySelector('#alert-message');
-// const url = 'https://politico-yusuf.herokuapp.com/api/v1/auth/signup';
-const url = 'http://localhost:3000/api/v1/auth/signup';
+const url = 'https://politico-yusuf.herokuapp.com/api/v1/auth/signup';
+// const url = 'http://localhost:3000/api/v1/auth/signup';
 const passportUrl = document.querySelector('#passportUrl');
 const fullName = document.querySelector('#name');
 const email = document.querySelector('#email');

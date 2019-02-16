@@ -34,6 +34,7 @@ parties.patch(
   validateID,
   isEmpty,
   validateName,
+  partySymbolExists,
   PartyController.updateName,
 );
 parties.delete('/:id', verifyToken, justAdmin, validateID, PartyController.delete);
