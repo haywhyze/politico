@@ -77,36 +77,6 @@ const openTab = () => {
 
 tablinks.map(e => e.addEventListener('click', openTab()));
 
-// Modal
-const modal = document.querySelector('.modal');
-const modalVote = document.querySelector('.modal-vote');
-
-if (modal) modal.style.display = 'none';
-if (modalVote) modalVote.style.display = 'none';
-
-const voteLinks = Array.from(document.querySelectorAll('.vote-link'));
-const resultLinks = Array.from(document.querySelectorAll('.result-link'));
-
-const openModal = (links, modal) => {
-  links.map(link => {
-    link.addEventListener('click', x => {
-      x.preventDefault();
-      modal.style.display = 'block';
-    });
-  });
-};
-if (resultLinks && modal) openModal(resultLinks, modal);
-if (voteLinks && modalVote) openModal(voteLinks, modalVote);
-
-// When the user clicks on <span> (x), close the modal
-const close = Array.from(document.querySelectorAll('.close'));
-close.map(e =>
-  e.addEventListener('click', () => {
-    if (modal) modal.style.display = 'none';
-    if (modalVote) modalVote.style.display = 'none';
-  }),
-);
-
 if (dropContent)
   window.addEventListener('click', e => {
     if (!e.target.matches('#header-img') && !e.target.matches('.dropdownContent')) {

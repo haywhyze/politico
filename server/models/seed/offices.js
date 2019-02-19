@@ -8,7 +8,7 @@ const offices = async () => {
   VALUES($1, $2)
   `;
 
-  const values = [['Presidency', 'federal'], ['Gubertorial', 'state'], ['Senate', 'legislative']];
+  const values = [['Presidency', 'federal'], ['Gubernatorial', 'state'], ['Senate', 'legislative']];
 
   try {
     values.map(async value => {

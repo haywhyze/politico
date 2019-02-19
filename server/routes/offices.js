@@ -8,6 +8,7 @@ import justAdmin from '../middlewares/justAdmin';
 import fieldExists from '../middlewares/fieldExists';
 import validateID from '../middlewares/validateID';
 import validateInput from '../middlewares/validateInput';
+import candidateErrorHandler from '../middlewares/candidateErrorHandler';
 
 const office = Router();
 
@@ -29,6 +30,7 @@ office.post(
   isEmpty,
   validateID,
   validateInput,
+  candidateErrorHandler,
   OfficeContrller.register,
 );
 

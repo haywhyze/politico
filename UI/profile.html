@@ -14,6 +14,11 @@
 </head>
 
 <body>
+  <div id="loader"></div>
+  <div id="loader-background"></div>
+  <div class="alert">
+    <h4 id="alert-message"></h4>
+  </div>
   <header class="header">
     <div id="mobile-menu" class="menu-close">
       <div class="bar top"></div>
@@ -57,39 +62,11 @@
         <h2 class="secondary-heading u-white">Vote</h2>
         <p class="secondary-heading--small u-white">Click on the election you wish to vote in and choose your preferred
           candidate</p>
-        <div class="flex-container">
-          <div class="flex-item">
-            <a class="vote-link" href="">
-              <h3 class="tertiary-heading">President</h3>
-              <p>federal</p>
-            </a>
-          </div>
-          <div class="flex-item">
-            <a class="vote-link" href="">
-              <h3 class="tertiary-heading">Governor</h3>
-              <p>state</p>
-            </a>
-          </div>
-          <div class="flex-item">
-            <a class="vote-link" href="">
-              <h3 class="tertiary-heading">Senate</h3>
-              <p>legislative</p>
-            </a>
-          </div>
-          <div class="flex-item">
-            <a class="vote-link" href="">
-              <h3 class="tertiary-heading">House of Representatives</h3>
-              <p>legislative</p>
-            </a>
-          </div>
-          <div class="flex-item">
-            <a class="vote-link" href="">
-              <h3 class="tertiary-heading">Chairman</h3>
-              <p>local government</p>
-            </a>
-          </div>
+        <div id="offices-container" class="flex-container">
+
         </div>
       </div>
+
       <div id="my-vote" class="tabcontent">
         <h2 class="secondary-heading u-white">My Votes</h2>
         <p class="secondary-heading--small u-white">History of the votes you participated in and your choice of
@@ -142,6 +119,7 @@
 
         </div>
       </div>
+
       <div id="parties" class="tabcontent">
         <h2 class="secondary-heading u-white">Political Parties</h2>
         <p id="party-subheading" class="secondary-heading--small u-white">List of all registered political parties</p>
@@ -149,6 +127,7 @@
 
         </div>
       </div>
+
       <div id="intent" class="tabcontent">
         <h2 class="secondary-heading u-white">Intent to Run Form</h2>
         <p class="secondary-heading--small u-white">Fill this form to express your interest to run for a political
@@ -182,6 +161,7 @@
         </div>
 
       </div>
+
     </div>
   </main>
   <footer class="footer">
@@ -196,38 +176,10 @@
 
     <!-- Modal content -->
     <div class="modal-content">
-      <h2 class="secondary-heading">President</h2>
-      <div class="flex-container">
-        <div>
-          <label class="radio-label" for="apc">
-            <input class="input-radio" type="radio" name="vote" id="apc" value="apc">
-            <div class="flex-item flex-item--alt">
-              <img src="./img/apc.jfif" width="50%" alt="" class="img party-logo">
-              <img src="./img/buhari.jpg" alt="" class="img party-logo">
-              <p>Muhammadu Buhari (APC)</p>
-              <p>Total Votes: 73267</p>
-            </div>
-          </label>
-        </div>
-
-        <div>
-          <label class="radio-label" for="pdp">
-            <input class="input-radio" type="radio" name="vote" id="pdp" value="pdp">
-            <div class="flex-item flex-item--alt">
-              <img src="./img/PDP.jpg" width="50%" alt="" class="img party-logo">
-              <img src="./img/Atiku.jpg" alt="" class="img party-logo">
-              <p>Atiku Abubakar (PDP)</p>
-              <p>Total Votes: 73267</p>
-            </div>
-          </label>
-        </div>
+      <h2 id="modal-office-name" class="secondary-heading"></h2>
+      <div id="modal-office-container" class="flex-container">
 
       </div>
-      <div class="u-center">
-        <a href="#" class="button button--alt">Vote</a>
-      </div>
-
-
       <span class="close">&times;</span>
     </div>
 
@@ -236,6 +188,7 @@
   <script src="./js/index.js"></script>
   <script src="./js/customizeHeader.js"></script>
   <script src="./js/getAllPartiesUser.js"></script>
+  <script src="./js/getAllOfficeUsers.js"></script>
 </body>
 
 </html>

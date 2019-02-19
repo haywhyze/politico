@@ -15,8 +15,8 @@ const validateID = async (req, res, next) => {
     });
   }
 
-  const { rows } = await Query.getAll(`${endpointRoot}`, 'id', [id]);
-  if (!rows[0]) {
+  const result = await Query.getAll(`${endpointRoot}`, 'id', [id]);
+  if (result.rowCount === 0) {
     return res.status(404).send({
       status: 404,
       error: `${endpoint} ID does not exist`,

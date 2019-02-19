@@ -545,7 +545,7 @@ describe('REGISTER /api/v1/offices/<user-id>/register - Register a candidate', (
       .request(app)
       .post('/api/v1/vote')
       .send({
-        candidate: 1,
+        candidate: 4,
         office: 1,
       })
       .end((err, res) => {
@@ -559,7 +559,7 @@ describe('REGISTER /api/v1/offices/<user-id>/register - Register a candidate', (
       .post('/api/v1/vote')
       .set('x-access-token', tokenAdmin)
       .send({
-        candidate: 1,
+        candidate: 4,
         office: 1,
       })
       .end((err, res) => {
@@ -601,7 +601,7 @@ describe('REGISTER /api/v1/offices/<user-id>/register - Register a candidate', (
       .post('/api/v1/vote')
       .set('x-access-token', tokenAdmin)
       .send({
-        candidate: 1,
+        candidate: 4,
         office: 1,
       })
       .end((err, res) => {

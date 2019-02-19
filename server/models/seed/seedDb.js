@@ -1,11 +1,24 @@
 import users from './users';
 import parties from './parties';
 import offices from './offices';
+import Query from '../../helpers/Query';
 
 const seedDb = async () => {
-  await users();
-  await parties();
-  await offices();
+  console.log(`
+  
+  >>>>>>>>>>Seeding Data<<<<<<<<<<
+  
+  `);
+  await users()
+    .then(() => parties().then(() => offices()))
+    .then(() =>
+      (async () => {
+        await Query.register([1, 3, 3]);
+        await Query.register([1, 3, 3]);
+        await Query.register([1, 2, 2]);
+      })(),
+    )
+    .catch(error => console.log(error));
 };
 
 export default seedDb;

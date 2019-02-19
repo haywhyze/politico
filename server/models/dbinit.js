@@ -8,8 +8,7 @@ try {
     console.log('Database tables successfully dropped');
     await createTables();
     console.log('Database tables recreated successfully');
-    await seedDb();
-    console.log('Database successfully seeded with initial data');
+    await seedDb().then(() => console.log('Initial Data seeded successfully'));
   })();
 } catch (error) {
   console.log('An unexpected error occured', error);
