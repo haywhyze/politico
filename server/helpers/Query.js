@@ -157,6 +157,69 @@ class Query {
       return error;
     }
   }
+
+  static async getCandidates(id) {
+    try {
+      const result = await db.query(
+        `SELECT
+          candidates.id,
+          parties.name,
+          parties.symbol,
+          parties.logo_url,
+          users.firstname,
+          users.lastname,
+          users.passport_url
+
+        FROM
+          candidates
+        INNER JOIN
+          offices ON offices.id = candidates.office
+        INNER JOIN
+          parties ON parties.id = candidates.party
+        INNER JOIN
+          users ON users.id = candidates.candidate
+        WHERE candidates.office = $1`,
+        id,
+      );
+      return result;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  static async candidateOffice(values) {
+    try {
+      const result = await db.query(
+        `SELECT
+        *
+      FROM
+        candidates
+      WHERE
+        office = $1 AND candidate = $2`,
+        values,
+      );
+      return result;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  static async partyOffice(values) {
+    try {
+      const result = await db.query(
+        `SELECT
+        *
+        FROM
+          candidates
+        WHERE
+          office = $1 AND party = $2`,
+        values,
+      );
+      return result;
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default Query;

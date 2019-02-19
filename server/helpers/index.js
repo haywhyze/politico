@@ -44,6 +44,19 @@ const getSymbol = str =>
 const getOne = async (req, res, path) => {
   const id = Number(req.params.id);
   const { rows } = await Query.getOne(path, [id]);
+  if (path === 'offices') {
+    const result = await Query.getCandidates([id]);
+    if (result.rowCount !== 0) {
+      return res.status(200).send({
+        status: 200,
+        data: [rows, result.rows],
+      });
+    }
+    return res.status(200).send({
+      status: 200,
+      data: [rows, 'No candidates registered yet for this office'],
+    });
+  }
 
   return res.status(200).send({
     status: 200,

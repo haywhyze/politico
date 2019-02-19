@@ -74,23 +74,27 @@
           for.</p>
         <div class="form-container">
           <h2 class="hero-text__heading"></h2>
-          <form action="#" class="form">
-            <div class="input-group"><label for="office-name">Name of Political Office</label><input name="office-name"
-                class="input" id="office-name" type="text"></div>
-            <div class="input-group"><label for="">Type of Government office</label>
-              <select name="parties">
+          <form data-form="office" enctype="multipart/form-data" method="post" name="form" class="form validate">
+            <div class="input-group"><label for="office-name">Name of Political Office</label>
+              <input name="office-name" class="input" id="office-name" type="text" pattern="^[a-zA-Z\s]{2,30}$"
+                maxlength="70" title="Office name should consist only of alphabets and should be between 3 to 30 characters"
+                required placeholder="Name of government office to be registered">
+            </div>
+            <div class="input-group"><label for="type">Type of Government office</label>
+              <select name="type" id="type">
                 <option value="federal">federal</option>
-                <option value="legislative">legislative</option>
+                <option value="legislative">legislature</option>
                 <option value="state">state</option>
                 <option value="local">local government</option>
               </select>
             </div>
             <div class="input-group  u-center">
-              <a href="#" class="button button--alt">Create Office</a>
+              <a><input id="submit-office" class="button button--alt" type="submit" value="Create Office"></a>
             </div>
           </form>
         </div>
       </div>
+
       <div id="a-parties" class="tabcontent">
         <h2 class="secondary-heading u-white">Political Parties</h2>
         <p id="party-subheading" class="secondary-heading--small u-white">List of all registered political parties</p>
@@ -99,12 +103,13 @@
         </div>
 
       </div>
+
       <div id="create-party" class="tabcontent">
         <h2 class="secondary-heading u-white">Create a Political Party</h2>
         <p class="secondary-heading--small u-white">Fill this form to create a Political Party.</p>
         <div class="form-container">
           <h2 class="hero-text__heading"></h2>
-          <form enctype="multipart/form-data" method="post" name="form" class="form validate">
+          <form data-form="party" enctype="multipart/form-data" method="post" name="form" class="form validate">
             <div class="input-group"><label for="party-name">Name of Political Party</label>
               <input type="text" name="party-name" class="input" id="party-name" pattern="^[a-zA-Z][ \-a-zA-Z]{5,70}$"
                 maxlength="70" title="Party Name should be more than one word and not more than 70 characters" required
@@ -120,6 +125,8 @@
           </form>
         </div>
       </div>
+
+    </div>
   </main>
   <footer class="footer">
 
@@ -133,26 +140,8 @@
 
     <!-- Modal content -->
     <div class="modal-content">
-      <h2 class="secondary-heading">President</h2>
-      <div class="flex-container">
-        <div>
-          <div class="flex-item flex-item--alt">
-            <img src="./img/apc.jfif" width="50%" alt="" class="img party-logo">
-            <img src="./img/buhari.jpg" alt="" class="img party-logo">
-            <p>Muhammadu Buhari (APC)</p>
-            <p>Total Votes: 73267</p>
-          </div>
-        </div>
-
-        <div>
-          <div class="flex-item flex-item--alt">
-            <img src="./img/PDP.jpg" width="50%" alt="" class="img party-logo">
-            <img src="./img/Atiku.jpg" alt="" class="img party-logo">
-            <p>Atiku Abubakar (PDP)</p>
-            <p>Total Votes: 73267</p>
-          </div>
-        </div>
-
+      <h2 id="modal-office-name" class="secondary-heading"></h2>
+      <div id="modal-office-container" class="flex-container">
       </div>
 
       <span class="close">&times;</span>
@@ -194,6 +183,8 @@
   <script src="./js/validateInput.js"></script>
   <script src="./js/createParties.js"></script>
   <script src="./js/getAllParties.js"></script>
+  <script src="./js/getAllOffices.js"></script>
+  <script src="./js/createOffice.js"></script>
 </body>
 
 </html>

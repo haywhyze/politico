@@ -9,6 +9,11 @@ import petitions from './petitions';
 dotenv.load();
 
 const createTables = async () => {
+  console.log(`
+  
+  >>>>>>>>>>Creating tables<<<<<<<<<<
+  
+  `);
   await users();
   await parties();
   await offices();

@@ -12,9 +12,16 @@ const getAllParties = url =>
 const partiesContainer = document.querySelector('#parties-container');
 const partySubheading = document.querySelector('#party-subheading');
 const rurl = 'https://politico-yusuf.herokuapp.com/api/v1/parties';
+loader = document.querySelector('#loader');
+loaderBg = document.querySelector('#loader-background');
+loaderBg.style.display = 'block';
+loader.style.display = 'block';
+
 getAllParties(rurl)
   .then(data => {
     const partiesData = data.data[0];
+    loaderBg.style.display = 'none';
+    loader.style.display = 'none';
     if (!partiesData[0]) {
       partySubheading.innerHTML = 'No Party to display';
     }

@@ -1,23 +1,21 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable no-undef */
 token = localStorage.getItem('token');
-const createParty = (url, data) =>
+const createOffice = (url, data) =>
   fetch(url, {
     method: 'POST',
     mode: 'cors',
     cache: 'no-cache',
-    body: data,
+    body: JSON.stringify(data),
     headers: {
+      'Content-Type': 'application/json',
       'x-access-token': token,
     },
   }).then(response => response.json());
 
-const alert = document.querySelector('.alert');
-const alertMessage = document.querySelector('#alert-message');
-const url = 'https://politico-yusuf.herokuapp.com/api/v1/parties';
-const logoUrl = document.querySelector('#party-logo');
-const partyName = document.querySelector('#party-name');
-const hqAddress = document.querySelector('#party-hq-address');
+const createOfficeUrl = 'https://politico-yusuf.herokuapp.com/api/v1/offices';
+const officeName = document.querySelector('#office-name');
+const type = document.querySelector('#type');
 loader = document.querySelector('#loader');
 loaderBg = document.querySelector('#loader-background');
 
@@ -28,7 +26,6 @@ document.addEventListener(
     event.preventDefault();
     // Get all of the form elements
     const fields = event.target.elements;
-
     // Validate each field
     let err;
     let hasErr;
@@ -46,14 +43,14 @@ document.addEventListener(
     // If there are errors, don't submit form
     if (hasErr) {
       hasErr.focus();
-    } else if (event.target.dataset.form === 'party') {
+    } else if (event.target.dataset.form === 'office') {
       loaderBg.style.display = 'block';
       loader.style.display = 'block';
-      const formData = new FormData();
-      formData.append('logoUrl', logoUrl.files[0]);
-      formData.append('name', partyName.value);
-      formData.append('hqAddress', hqAddress.value);
-      createParty(url, formData)
+      data = {
+        name: officeName.value,
+        type: type.value,
+      };
+      createOffice(createOfficeUrl, data)
         .then(data => {
           loaderBg.style.display = 'none';
           loader.style.display = 'none';
@@ -63,7 +60,6 @@ document.addEventListener(
             if (alert.classList.contains('failure')) alert.classList.remove('failure');
             alert.classList.add('success');
             alertMessage.innerHTML = `${data.data[0].name} Created Successfully`;
-            sessionStorage.setItem('reloadParties', 'true');
             setTimeout(() => {
               window.location.reload();
             }, 5000);
