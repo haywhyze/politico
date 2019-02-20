@@ -37,6 +37,7 @@
         <li data-tab="create-office" class="nav-list__item tablinks">Create New Office</li>
         <li id="parties-link" data-tab="a-parties" class="nav-list__item tablinks">Political Parties</li>
         <li data-tab="create-party" class="nav-list__item tablinks">Create New Party</li>
+        <li id="candidates-link" data-tab="manage-candidates" class="nav-list__item tablinks">Manage Candidates</li>
       </ul>
       <ul class="nav-list dropdown">
         <div class="dropdownTrigger">
@@ -126,6 +127,30 @@
         </div>
       </div>
 
+      <div id="manage-candidates" class="tabcontent">
+        <h2 class="secondary-heading u-white">Prospective Candidates</h2>
+        <p id="candidates-subheading" class="secondary-heading--small u-white">List of Candidates Intending to Run for
+          Office</p>
+        <div class="flex-container">
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>ID</th>
+                  <th>Office</th>
+                  <th>Party</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="candidates-container">
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </main>
   <footer class="footer">
@@ -148,8 +173,8 @@
     </div>
 
   </div>
-  <div class="modal-edit">
 
+  <div class="modal-edit">
     <!-- Modal content -->
     <div class="modal-content">
       <p class="secondary-heading--small">Edit the name of the political party</p>
@@ -163,10 +188,9 @@
       </div>
       <span class="close">&times;</span>
     </div>
-
   </div>
-  <div class="modal-delete">
 
+  <div class="modal-delete">
     <!-- Modal content -->
     <div class="modal-content">
       <p class="secondary-heading--small">Are you sure you want to delete the party?</p>
@@ -175,7 +199,28 @@
       </div>
       <span class="close">&times;</span>
     </div>
+  </div>
 
+  <div class="modal-status">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <p class="secondary-heading--small">Are you sure you want to approve this candidate?</p>
+      <div class="form-container u-center">
+        <a data-status="approved" href="" class="confirm-approve button">Yes</a>
+      </div>
+      <span class="close">&times;</span>
+    </div>
+  </div>
+
+  <div class="modal-reject">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <p class="secondary-heading--small">Are you sure you want to reject this candidate?</p>
+      <div class="form-container u-center">
+        <a data-status="rejected" href="" class="confirm-reject button">Yes</a>
+      </div>
+      <span class="close">&times;</span>
+    </div>
   </div>
 
   <script src="./js/index.js"></script>
@@ -185,6 +230,7 @@
   <script src="./js/getAllParties.js"></script>
   <script src="./js/getAllOffices.js"></script>
   <script src="./js/createOffice.js"></script>
+  <script src="./js/manageCandidates.js"></script>
 </body>
 
 </html>

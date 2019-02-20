@@ -1,34 +1,37 @@
 .table-container {
-  display: block;
+  display: table;
   overflow-x: auto;
 }
 
 table {
   color: var(--color-black);
-  text-align: center;
   padding: 1rem;
 }
 
 thead {
   text-transform: uppercase;
   color: var(--color-white);
-  font-weight: bold;
-  background: var(--color-secondary)
+  background: var(--color-secondary);
 }
 
 tbody {
   background-color: var(--color-white);
-  color: var(--color-primary);
+  color: var(--color-secondary);
 }
 
 tr:nth-child(even) {
-  color: var(--color-white);
-  background-color: rgba(30, 139, 195, 8);
+  color: var(--color-secondary);
+  background-color: #e9e9e9;
 }
 
 td,
 th {
   padding: 1rem;
   border-collapse: collapse;
-  border: 1px solid rgba(100, 100, 100, .6);
+  text-align: left;
+}
+
+td .button {
+  margin: 0;
+  padding: .5rem;
 }

@@ -2,11 +2,7 @@ import db from './db';
 
 const dropTables = async () => {
   try {
-    console.log(`
-    
-    >>>>>>>>>>I'm here droping tables<<<<<<<<<<
-    
-    `);
+    console.log(`>>>>>>>>>>I'm here droping tables<<<<<<<<<<`);
     await db.query(`DROP TABLE IF EXISTS 
     petitions, 
     votes, 

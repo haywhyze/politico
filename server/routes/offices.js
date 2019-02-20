@@ -9,6 +9,7 @@ import fieldExists from '../middlewares/fieldExists';
 import validateID from '../middlewares/validateID';
 import validateInput from '../middlewares/validateInput';
 import candidateErrorHandler from '../middlewares/candidateErrorHandler';
+import validateStatus from '../middlewares/validateStatus';
 
 const office = Router();
 
@@ -26,12 +27,21 @@ office.post(
 office.post(
   '/:id/register',
   verifyToken,
-  justAdmin,
   isEmpty,
   validateID,
   validateInput,
   candidateErrorHandler,
   OfficeContrller.register,
+);
+
+office.patch(
+  '/:id/status',
+  verifyToken,
+  justAdmin,
+  isEmpty,
+  validateID,
+  validateStatus,
+  OfficeContrller.updateStatus,
 );
 
 office.get('/', verifyToken, OfficeContrller.getAll);

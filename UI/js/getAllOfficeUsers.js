@@ -10,11 +10,13 @@ const fetchOffices = url =>
   }).then(response => response.json());
 
 const officesContainer = document.querySelector('#offices-container');
-// const ourl = 'https://politico-yusuf.herokuapp.com/api/v1/offices';
-const ourl = 'http://localhost:3000/api/v1/offices';
+const selectOffices = document.querySelector('#select-offices');
+const ourl = 'https://politico-yusuf.herokuapp.com/api/v1/offices';
+// const ourl = 'http://localhost:3000/api/v1/offices';
 fetchOffices(ourl)
   .then(data => {
     const officesData = data.data[0];
+    officesData.sort((a, b) => (a.name < b.name ? -1 : 1));
     officesData.map(officeData => {
       const oFlexItem = document.createElement('div');
       oFlexItem.setAttribute('class', 'flex-item');
@@ -33,6 +35,11 @@ fetchOffices(ourl)
       voteLink.appendChild(pElem);
       pElemText = document.createTextNode(officeData.type);
       pElem.appendChild(pElemText);
+      const optionEl = document.createElement('option');
+      optionEl.setAttribute('value', officeData.id);
+      const optionText = document.createTextNode(`${officeData.name}`);
+      optionEl.appendChild(optionText);
+      selectOffices.appendChild(optionEl);
     });
 
     // Modal
@@ -50,7 +57,9 @@ fetchOffices(ourl)
           loaderBg.style.display = 'block';
           loader.style.display = 'block';
           const officeId = x.target.dataset.id || x.target.parentElement.dataset.id;
-          fetchOffices(`http://localhost:3000/api/v1/offices/${officeId}`)
+          // const getOneOfficeUrl = `http://localhost:3000/api/v1/offices/${officeId}`;
+          const getOneOfficeUrl = `https://politico-yusuf.herokuapp.com/api/v1/offices/${officeId}`;
+          fetchOffices(getOneOfficeUrl)
             .then(data => {
               loaderBg.style.display = 'none';
               loader.style.display = 'none';

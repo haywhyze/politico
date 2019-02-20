@@ -134,28 +134,18 @@
           office</p>
         <div class="form-container">
           <h2 class="hero-text__heading"></h2>
-          <form action="#" class="form">
+          <form enctype="multipart/form-data" method="post" name="form" class="form validate">
             <div class="input-group"><label for="office">Political Office</label>
-              <select name="office">
-                <option value="president">President</option>
-                <option value="senate">Senate</option>
-                <option value="governor">Governor</option>
-                <option value="rep">House of Representatives</option>
-                <option value="chaiman">Chairman</option>
+              <select id="select-offices" name="office">
               </select>
             </div>
             <div class="input-group"><label for="parties">Political Parties</label>
-              <select name="parties">
-                <option value="apc">All Progressive Congress (APC)</option>
-                <option value="pdp">Peoples Democratic Party (PDP)</option>
-                <option value="sdp">Social Democratic Party (SDP)</option>
+              <select id="select-parties" name="parties">
+
               </select>
             </div>
-
-            <div class="input-group"><label for="reason">Manifesto (Why you want to run for office)</label><textarea
-                name="description" id="reason" rows="10"></textarea></div>
             <div class="input-group  u-center">
-              <a href="profile.html" class="button button--alt">Submit Form</a>
+              <a><input id="submit-candidate-form" class="button button--alt" type="submit" value="Submit Form"></a>
             </div>
           </form>
         </div>
@@ -189,6 +179,8 @@
   <script src="./js/customizeHeader.js"></script>
   <script src="./js/getAllPartiesUser.js"></script>
   <script src="./js/getAllOfficeUsers.js"></script>
+  <script src="./js/validateInput.js"></script>
+  <script src="./js/registerCandidate.js"></script>
 </body>
 
 </html>

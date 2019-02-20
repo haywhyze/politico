@@ -2,7 +2,7 @@ import Query from '../helpers/Query';
 
 const validateID = async (req, res, next) => {
   let endpoint;
-  const endpointRoot = req.originalUrl.split('/')[3];
+  let endpointRoot = req.originalUrl.split('/')[3];
   if (endpointRoot === 'offices') {
     if (req.originalUrl.split('/')[5] === 'register') endpoint = 'candidate';
     else endpoint = 'office';
@@ -15,6 +15,8 @@ const validateID = async (req, res, next) => {
     });
   }
 
+  if (req.originalUrl.split('/')[5] === 'status') endpointRoot = 'candidates';
+  if (req.originalUrl.split('/')[5] === 'register') endpointRoot = 'users';
   const result = await Query.getAll(`${endpointRoot}`, 'id', [id]);
   if (result.rowCount === 0) {
     return res.status(404).send({
