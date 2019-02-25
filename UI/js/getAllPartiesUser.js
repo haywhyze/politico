@@ -11,14 +11,13 @@ const getAllParties = url =>
 
 const partiesContainer = document.querySelector('#parties-container');
 const partySubheading = document.querySelector('#party-subheading');
-const rurl = 'https://politico-yusuf.herokuapp.com/api/v1/parties';
 const selectParties = document.querySelector('#select-parties');
 const loader = document.querySelector('#loader');
 const loaderBg = document.querySelector('#loader-background');
 loaderBg.style.display = 'block';
 loader.style.display = 'block';
 
-getAllParties(rurl)
+getAllParties(`${baseUrl}parties`)
   .then(data => {
     const partiesData = data.data[0];
     loaderBg.style.display = 'none';

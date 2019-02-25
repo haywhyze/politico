@@ -14,7 +14,6 @@ const createParty = (url, data) =>
 
 const alert = document.querySelector('.alert');
 const alertMessage = document.querySelector('#alert-message');
-const url = 'https://politico-yusuf.herokuapp.com/api/v1/parties';
 const logoUrl = document.querySelector('#party-logo');
 const partyName = document.querySelector('#party-name');
 const hqAddress = document.querySelector('#party-hq-address');
@@ -53,7 +52,7 @@ document.addEventListener(
       formData.append('logoUrl', logoUrl.files[0]);
       formData.append('name', partyName.value);
       formData.append('hqAddress', hqAddress.value);
-      createParty(url, formData)
+      createParty(`${baseUrl}parties`, formData)
         .then(data => {
           loaderBg.style.display = 'none';
           loader.style.display = 'none';

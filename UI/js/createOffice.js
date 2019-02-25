@@ -13,7 +13,6 @@ const createOffice = (url, data) =>
     },
   }).then(response => response.json());
 
-const createOfficeUrl = 'https://politico-yusuf.herokuapp.com/api/v1/offices';
 const officeName = document.querySelector('#office-name');
 const type = document.querySelector('#type');
 loader = document.querySelector('#loader');
@@ -50,7 +49,7 @@ document.addEventListener(
         name: officeName.value,
         type: type.value,
       };
-      createOffice(createOfficeUrl, data)
+      createOffice(`${baseUrl}offices`, data)
         .then(data => {
           loaderBg.style.display = 'none';
           loader.style.display = 'none';

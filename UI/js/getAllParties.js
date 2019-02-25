@@ -33,11 +33,9 @@ const deleteParty = url =>
 
 const partiesContainer = document.querySelector('#parties-container');
 const partySubheading = document.querySelector('#party-subheading');
-const rurl = 'https://politico-yusuf.herokuapp.com/api/v1/parties';
-// const rurl = 'http://localhost:3000/api/v1/parties';
 loaderBg.style.display = 'block';
 loader.style.display = 'block';
-getAllParties(rurl)
+getAllParties(`${baseUrl}parties`)
   .then(data => {
     loaderBg.style.display = 'none';
     loader.style.display = 'none';
@@ -121,12 +119,10 @@ getAllParties(rurl)
         modalDelete.style.display = 'none';
         loaderBg.style.display = 'block';
         loader.style.display = 'block';
-        const updateUrl = `https://politico-yusuf.herokuapp.com/api/v1/parties/${partyId}/name`;
-        const deleteUrl = `https://politico-yusuf.herokuapp.com/api/v1/parties/${partyId}`;
         if (e.target.matches('.update')) {
           const newPartyName = document.querySelector('#new-party-name');
           nameData = { name: newPartyName.value };
-          updatePartyName(updateUrl, nameData)
+          updatePartyName(`${baseUrl}parties/${partyId}/name`, nameData)
             .then(data => {
               loaderBg.style.display = 'none';
               loader.style.display = 'none';
@@ -145,7 +141,7 @@ getAllParties(rurl)
             })
             .catch(error => console.log(error));
         } else if (e.target.matches('.confirm-delete'))
-          deleteParty(deleteUrl)
+          deleteParty(`${baseUrl}parties/${partyId}`)
             .then(data => {
               loaderBg.style.display = 'none';
               loader.style.display = 'none';

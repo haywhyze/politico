@@ -8,8 +8,6 @@ const signUp = (url, data) =>
   }).then(response => response.json());
 const alert = document.querySelector('.alert');
 const alertMessage = document.querySelector('#alert-message');
-const url = 'https://politico-yusuf.herokuapp.com/api/v1/auth/signup';
-// const url = 'http://localhost:3000/api/v1/auth/signup';
 const passportUrl = document.querySelector('#passportUrl');
 const fullName = document.querySelector('#name');
 const email = document.querySelector('#email');
@@ -157,7 +155,7 @@ document.addEventListener(
       formData.append('password', password.value);
       formData.append('confirmPassword', confirmPassword.value);
       formData.append('phoneNumber', phoneNumber.value);
-      signUp(url, formData)
+      signUp(`${baseUrl}auth/signup`, formData)
         .then(data => {
           loaderBg.style.display = 'none';
           loader.style.display = 'none';
@@ -168,13 +166,13 @@ document.addEventListener(
             alert.classList.add('success');
             alertMessage.innerHTML = 'Account Registered Successfully';
             localStorage.setItem('token', data.data[0].token);
-            localStorage.setItem('id', data.data[0].id);
+            localStorage.setItem('id', data.data[0].user.id);
             localStorage.setItem('passport', data.data[0].user.passport_url);
             localStorage.setItem(
               'name',
               `${data.data[0].user.firstname} ${data.data[0].user.lastname}`,
               );
-            localStorage.setItem('isAdmin', data.data[0].is_admin);
+            localStorage.setItem('isAdmin', data.data[0].user.is_admin);
             localStorage.setItem('email', data.data[0].user.email);
             localStorage.setItem('phone_number', data.data[0].user.phone_number);
 
