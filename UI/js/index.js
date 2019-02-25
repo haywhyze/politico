@@ -97,3 +97,6 @@ if (sessionStorage.getItem('reloadCandidates') === 'true') {
   document.querySelector('#candidates-link').classList.add('active');
 }
 sessionStorage.clear();
+
+const baseUrl = 'https://politico-yusuf.herokuapp.com/api/v1/';
+// const baseUrl = 'http://localhost:3000/api/v1/';

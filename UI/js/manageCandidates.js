@@ -23,11 +23,9 @@ const getPendingCandidates = url =>
 
 const candidatesContainer = document.querySelector('#candidates-container');
 const candidatesSubheading = document.querySelector('#candidates-subheading');
-const candidatesUrl = 'https://politico-yusuf.herokuapp.com/api/v1/candidates';
-// const candidatesUrl = 'http://localhost:3000/api/v1/candidates';
 loaderBg.style.display = 'block';
 loader.style.display = 'block';
-getPendingCandidates(candidatesUrl)
+getPendingCandidates(`${baseUrl}candidates`)
   .then(data => {
     loaderBg.style.display = 'none';
     loader.style.display = 'none';
@@ -36,7 +34,6 @@ getPendingCandidates(candidatesUrl)
       candidatesSubheading.innerHTML = 'No Candidate request to display';
       document.querySelector('.table-container').removeChild(document.querySelector('table'));
     }
-    console.log(candidatesData);
     candidatesData.sort((a, b) => (a.id < b.id ? -1 : 1));
 
     candidatesData.map(candidateData => {
@@ -80,12 +77,10 @@ getPendingCandidates(candidatesUrl)
         modalReject.style.display = 'none';
         loaderBg.style.display = 'block';
         loader.style.display = 'block';
-        updateStatusUrl = `http://localhost:3000/api/v1/offices/${candidateId}/status`;
-        updateStatusUrl = `https://politico-yusuf.herokuapp.com/api/v1/offices/${candidateId}/status`;
         const statusData = {
           status: e.target.dataset.status,
         };
-        updateStatus(updateStatusUrl, statusData).then(data => {
+        updateStatus(`${baseUrl}offices/${candidateId}/status`, statusData).then(data => {
           loaderBg.style.display = 'none';
           loader.style.display = 'none';
           alert.style.display = 'block';

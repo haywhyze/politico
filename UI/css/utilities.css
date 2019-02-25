@@ -135,6 +135,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader5 */
   animation: animatebottom .2s linear;
   margin: 0 auto;
   top: 50%;
+  z-index: 100;
   transform: perspective(1px) translate(-50%, -50%);
 }
 

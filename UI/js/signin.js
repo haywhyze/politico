@@ -13,8 +13,6 @@ const signIn = (url, data) =>
     },
   }).then(response => response.json());
 
-const url = 'https://politico-yusuf.herokuapp.com/api/v1/auth/login';
-// const url = 'http://localhost:3000/api/v1/auth/login';
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
 const alert = document.querySelector('.alert');
@@ -54,7 +52,7 @@ document.addEventListener(
         email: email.value,
         password: password.value,
       };
-      signIn(url, data)
+      signIn(`${baseUrl}auth/login`, data)
         .then(data => {
           loaderBg.style.display = 'none';
           loader.style.display = 'none';

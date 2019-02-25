@@ -17,8 +17,6 @@ const registerCandidate = (url, data) =>
 
 const id = localStorage.getItem('id');
 
-const url = `https://politico-yusuf.herokuapp.com/api/v1/offices/${id}/register`;
-// const url = `http://localhost:3000/api/v1/offices/${id}/register`;
 const alert = document.querySelector('.alert');
 const alertMessage = document.querySelector('#alert-message');
 
@@ -54,7 +52,7 @@ document.addEventListener(
         party: selectParties.value,
         office: selectOffices.value,
       };
-      registerCandidate(url, data)
+      registerCandidate(`${baseUrl}offices/${id}/register`, data)
         .then(data => {
           loaderBg.style.display = 'none';
           loader.style.display = 'none';
