@@ -16,6 +16,10 @@ hr {
   color: var(--color-black) !important;
 }
 
+.u-bg-green {
+  background-color: green !important;
+}
+
 .u-blue {
   background-color: var(--color-primary);
 }

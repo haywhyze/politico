@@ -168,6 +168,7 @@ document.addEventListener(
             alert.classList.add('success');
             alertMessage.innerHTML = 'Account Registered Successfully';
             localStorage.setItem('token', data.data[0].token);
+            localStorage.setItem('id', data.data[0].id);
             localStorage.setItem('passport', data.data[0].user.passport_url);
             localStorage.setItem(
               'name',

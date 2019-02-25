@@ -1,6 +1,8 @@
 .modal,
 .modal-edit,
 .modal-delete,
+.modal-status,
+.modal-reject,
 .modal-vote {
     display: none;
     position: fixed;

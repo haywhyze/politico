@@ -8,6 +8,7 @@ module.exports = async () => {
         office INTEGER REFERENCES offices (id) ON DELETE CASCADE,
         party INTEGER REFERENCES parties (id) ON DELETE CASCADE,
         candidate INTEGER REFERENCES users (id) ON DELETE CASCADE,
+        status TEXT DEFAULT 'pending',
         PRIMARY KEY (office, candidate)
       )`,
     );

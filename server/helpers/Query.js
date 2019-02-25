@@ -21,7 +21,14 @@ class Query {
 
   static async checkDuplicate(table, field, value) {
     try {
-      const result = await db.query(`SELECT ${field} FROM ${table} WHERE ${field} = $1`, value);
+      let result;
+      if (table === 'candidates')
+        result = await db.query(
+          `SELECT * FROM ${table} 
+          WHERE ${field} = $1 AND status = 'approved'`,
+          value,
+        );
+      else result = await db.query(`SELECT ${field} FROM ${table} WHERE ${field} = $1`, value);
       return result;
     } catch (err) {
       return err;
@@ -113,9 +120,10 @@ class Query {
         `INSERT INTO candidates(
         office,
         party,
-        candidate
+        candidate,
+        status
       )
-      VALUES($1, $2, $3) returning *`,
+      VALUES($1, $2, $3, $4) returning *`,
         info,
       );
       return result;
@@ -178,8 +186,34 @@ class Query {
           parties ON parties.id = candidates.party
         INNER JOIN
           users ON users.id = candidates.candidate
-        WHERE candidates.office = $1`,
-        id,
+        WHERE candidates.office = $1 AND candidates.status = $2`,
+        [id[0], 'approved'],
+      );
+      return result;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  static async getPendingCandidates() {
+    try {
+      const result = await db.query(
+        `SELECT
+          candidates.id,
+          parties.symbol,
+          offices.name,
+          users.firstname,
+          users.lastname
+        FROM
+          candidates
+        INNER JOIN
+          offices ON offices.id = candidates.office
+        INNER JOIN
+          parties ON parties.id = candidates.party
+        INNER JOIN
+          users ON users.id = candidates.candidate
+        WHERE candidates.status = $1`,
+        ['pending'],
       );
       return result;
     } catch (error) {

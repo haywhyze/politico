@@ -12,8 +12,9 @@ const getAllParties = url =>
 const partiesContainer = document.querySelector('#parties-container');
 const partySubheading = document.querySelector('#party-subheading');
 const rurl = 'https://politico-yusuf.herokuapp.com/api/v1/parties';
-loader = document.querySelector('#loader');
-loaderBg = document.querySelector('#loader-background');
+const selectParties = document.querySelector('#select-parties');
+const loader = document.querySelector('#loader');
+const loaderBg = document.querySelector('#loader-background');
 loaderBg.style.display = 'block';
 loader.style.display = 'block';
 
@@ -22,6 +23,8 @@ getAllParties(rurl)
     const partiesData = data.data[0];
     loaderBg.style.display = 'none';
     loader.style.display = 'none';
+    partiesData.sort((a, b) => (a.name < b.name ? -1 : 1));
+
     if (!partiesData[0]) {
       partySubheading.innerHTML = 'No Party to display';
     }
@@ -55,6 +58,11 @@ getAllParties(rurl)
       const hqAddText = document.createTextNode(partyData.hq_address);
       hqAdd.appendChild(hqAddText);
       dFlexItem.appendChild(hqAdd);
+      const optionEl = document.createElement('option');
+      optionEl.setAttribute('value', partyData.id);
+      const optionText = document.createTextNode(`${partyData.name} (${partyData.symbol})`);
+      optionEl.appendChild(optionText);
+      selectParties.appendChild(optionEl);
     });
   })
   .catch(error => console.log(error));

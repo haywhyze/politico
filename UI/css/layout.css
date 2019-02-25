@@ -32,9 +32,10 @@
 }
 
 .nav-list__item {
-    padding: 1.5rem;
+    padding: .8rem;
     opacity: .7;
     cursor: pointer;
+    font-size: 88%;
 }
 
 #header-img {

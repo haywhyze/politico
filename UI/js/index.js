@@ -90,4 +90,10 @@ if (sessionStorage.getItem('reloadParties') === 'true') {
   document.querySelector('#results-link').classList.remove('active');
   document.querySelector('#parties-link').classList.add('active');
 }
+if (sessionStorage.getItem('reloadCandidates') === 'true') {
+  document.querySelector('#results').style.display = 'none';
+  document.querySelector('#manage-candidates').style.display = 'block';
+  document.querySelector('#results-link').classList.remove('active');
+  document.querySelector('#candidates-link').classList.add('active');
+}
 sessionStorage.clear();
