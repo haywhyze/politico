@@ -31,6 +31,21 @@ class VoteController {
       error,
     });
   }
+
+  static async getAllByUser(req, res) {
+    const id = Number(req.params.id);
+    const result = await Query.getVotesByUser([id]);
+    if (result.rowCount !== 0) {
+      return res.status(200).send({
+        status: 200,
+        data: result.rows,
+      });
+    }
+    return res.status(500).send({
+      status: 500,
+      error: result.error,
+    });
+  }
 }
 
 export default VoteController;

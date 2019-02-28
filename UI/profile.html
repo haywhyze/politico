@@ -69,13 +69,15 @@
 
       <div id="my-vote" class="tabcontent">
         <h2 class="secondary-heading u-white">My Votes</h2>
-        <p class="secondary-heading--small u-white">History of the votes you participated in and your choice of
+        <p id="history-subheading" class="secondary-heading--small u-white">History of the votes you participated in
+          and your choice of
           candidate</p>
         <div class="flex-container">
           <div class="table-container">
             <table>
               <thead>
                 <tr>
+                  <th>S/N</th>
                   <th>Post/Office</th>
                   <th>Type</th>
                   <th>Candidate</th>
@@ -83,36 +85,7 @@
                   <th>Date</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>President</td>
-                  <td>federal</td>
-                  <td>Fela Durotoye</td>
-                  <td>AAC</td>
-                  <td>12/01/2019</td>
-                </tr>
-                <tr>
-                  <td>Governor</td>
-                  <td>state</td>
-                  <td>Jimi Sanwo-olu</td>
-                  <td>ADX</td>
-                  <td>12/01/2019</td>
-                </tr>
-                <tr>
-                  <td>Senate</td>
-                  <td>legislative</td>
-                  <td>Bukoye Saraki</td>
-                  <td>ADS</td>
-                  <td>12/01/2019</td>
-                </tr>
-                <tr>
-                  <td>Chairman</td>
-                  <td>local government</td>
-                  <td>Fela Harrison</td>
-                  <td>AFC</td>
-                  <td>12/01/2019</td>
-                </tr>
-
+              <tbody id="vote-history-container">
               </tbody>
             </table>
           </div>
@@ -179,6 +152,8 @@
   <script src="./js/customizeHeader.js"></script>
   <script src="./js/getAllPartiesUser.js"></script>
   <script src="./js/getAllOfficeUsers.js"></script>
+  <script src="./js/date.js"></script>
+  <script src="./js/getVoteHistory.js"></script>
   <script src="./js/validateInput.js"></script>
   <script src="./js/registerCandidate.js"></script>
 </body>

@@ -254,6 +254,38 @@ class Query {
       return error;
     }
   }
+
+  static async getVotesByUser(id) {
+    try {
+      const result = await db.query(
+        `
+        SELECT
+          offices.name AS office_name,
+          offices.type,
+          users.firstname,
+          users.lastname,
+          parties.symbol AS acronym,
+          created_on
+        FROM
+          votes
+        INNER JOIN
+          offices ON offices.id = votes.office
+        INNER JOIN
+          candidates ON candidates.id = votes.candidate
+        INNER JOIN
+          users ON users.id = candidates.candidate
+        INNER JOIN
+          parties ON parties.id = candidates.party
+        WHERE 
+          votes.created_by = $1`,
+        id,
+      );
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
 }
 
 export default Query;

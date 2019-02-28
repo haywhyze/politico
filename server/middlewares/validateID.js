@@ -6,7 +6,8 @@ const validateID = async (req, res, next) => {
   if (endpointRoot === 'offices') {
     if (req.originalUrl.split('/')[5] === 'register') endpoint = 'candidate';
     else endpoint = 'office';
-  } else endpoint = 'party';
+  } else if (endpointRoot === 'parties') endpoint = 'party';
+  else endpoint = 'user';
   const id = Number(req.params.id);
   if (Number.isNaN(id) || id % 1 !== 0) {
     return res.status(400).send({
@@ -17,6 +18,7 @@ const validateID = async (req, res, next) => {
 
   if (req.originalUrl.split('/')[5] === 'status') endpointRoot = 'candidates';
   if (req.originalUrl.split('/')[5] === 'register') endpointRoot = 'users';
+  if (endpointRoot === 'vote') endpointRoot = 'users';
   const result = await Query.getAll(`${endpointRoot}`, 'id', [id]);
   if (result.rowCount === 0) {
     return res.status(404).send({
