@@ -6,7 +6,7 @@
 
 Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
 
-The application is live on github pages [here](https://haywhyze.github.io/politico/UI)
+The application' UI template is on github pages [here](https://haywhyze.github.io/politico/UI)
 
 ## Motivation
 
@@ -70,7 +70,7 @@ After that rename the file to `.env`
 
 ## Documentation
 
-This application is deployed on [heroku](politico-yusuf.herokuapp.com) with the following endpoints accessible
+This application is deployed on [heroku](https://politico-yusuf.herokuapp.com) with the following endpoints accessible
 
 | Method                              | Functionality                                                                                 | Endpoint                     |
 | ----------------------------------- | --------------------------------------------------------------------------------------------- | ---------------------------- |
