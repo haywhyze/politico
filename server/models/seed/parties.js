@@ -16,19 +16,19 @@ const parties = async () => {
       'All Progressive Congress',
       'APC',
       'Plot 1970 Michael Okpara St, Wuse, Abuja',
-      'http://res.cloudinary.com/haywhyze/image/upload/v1548329998/pdwafyuw0uqo1nlzejde.jpg',
+      'https://res.cloudinary.com/haywhyze/image/upload/v1584180370/yks9d6wbldoo4tx8k0yh.jpg',
     ],
     [
       'Peoples Democratic Party',
       'PDP',
       'Plot 1970 Michael Okpara St, Wuse, Abuja',
-      'http://res.cloudinary.com/haywhyze/image/upload/v1548329998/pdwafyuw0uqo1nlzejde.jpg',
+      'https://res.cloudinary.com/haywhyze/image/upload/v1584180370/yks9d6wbldoo4tx8k0yh.jpg',
     ],
     [
       'Social Democratic Party',
       'SDP',
       'Plot 1970 Michael Okpara St, Wuse, Abuja',
-      'http://res.cloudinary.com/haywhyze/image/upload/v1548329998/pdwafyuw0uqo1nlzejde.jpg',
+      'https://res.cloudinary.com/haywhyze/image/upload/v1584180370/yks9d6wbldoo4tx8k0yh.jpg',
     ],
   ];
 

@@ -35,7 +35,7 @@ const users = async () => {
       '08031961496',
       `${hashedAdminPassword}`,
       true,
-      'https://res.cloudinary.com/haywhyze/image/upload/v1548899925/riw9zlsu4jjxwcc54yoa.jpg',
+      'https://res.cloudinary.com/haywhyze/image/upload/v1584180370/yks9d6wbldoo4tx8k0yh.jpg',
     ],
     [
       'Ayobami',
@@ -45,7 +45,7 @@ const users = async () => {
       '08055744044',
       `${hashedUserPassword}`,
       false,
-      'https://res.cloudinary.com/haywhyze/image/upload/v1548899925/riw9zlsu4jjxwcc54yoa.jpg',
+      'https://res.cloudinary.com/haywhyze/image/upload/v1584180370/yks9d6wbldoo4tx8k0yh.jpg',
     ],
     [
       'Shade',
@@ -55,7 +55,7 @@ const users = async () => {
       '07085033470',
       `${hashedUserPassword}`,
       false,
-      'https://res.cloudinary.com/haywhyze/image/upload/v1548899925/riw9zlsu4jjxwcc54yoa.jpg',
+      'https://res.cloudinary.com/haywhyze/image/upload/v1584180370/yks9d6wbldoo4tx8k0yh.jpg',
     ],
   ];
 
